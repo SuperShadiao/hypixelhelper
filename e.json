@@ -1,15 +1,14 @@
 {
 
-    "v":"4.5.2",
-    "u":"https://github.com/SuperShadiao/hypixelhelper/releases/download/v452/hypixelhelper-4.5.2.jar",
+    "v":"4.5.3",
+    "u":"https://github.com/SuperShadiao/hypixelhelper/releases/download/v453/hypixelhelper-4.5.3.jar",
     "a":[
         "%%hello%%",
-        "4.5.1更新公告:",
-        "1，第N+1次修改敌人拆家检测",
-        "2，新增设置项允许其他mod获取token，具体请看游戏内说明",
-        "3，新增快捷指令菜单设置，使用指令/hhm即可找到",
-        "4，修改marco detector，让其需要检测的时间更长",
-        "5，若设置菜单中设置的介绍文本太长顶出了屏幕，则会采用文字滚动的方式显示",
+        "4.5.3更新公告:",
+        "1，添加一个退出客户端的动画（？？）",
+        "2，优化客户端匿名因频繁使用转义文本导致卡顿",
+        "3，修复token授权无法使用的问题",
+        "4，优化床战kd检测器",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作MurderStars_(原创),HyperEnder(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢HyperEnder MurderStars_ XiuBaby_ Player302 sunhuai_tiejian Happystory AngyDelta LatestPig Zero_aircraft等小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ]
