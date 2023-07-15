@@ -1,20 +1,18 @@
 {
 
-    "v":"4.5.3",
-    "u":"https://github.com/SuperShadiao/hypixelhelper/releases/download/v453/hypixelhelper-4.5.3.jar",
+    "v":"4.6.1",
+    "u":"https://gitlink.org.cn/api/attachments/426189",
     "ul":[
-        "https://www.gitlink.org.cn/api/attachments/426044",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v453/hypixelhelper-4.5.3.jar",
+        "https://gitlink.org.cn/api/attachments/426189",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v461/hypixelhelper-4.6.1.jar",
     ],
     "a":[
         "%%hello%%",
-        "4.5.3更新公告:",
-        "1，添加一个退出客户端的动画 (？？)",
-        "2，优化客户端匿名因频繁使用转义文本导致卡顿",
-        "3，修复token授权无法使用的问题",
-        "4，优化床战kd检测器",
+        "4.6.1更新公告:",
+        "1，新增sbcrystalhollowposfinder (水晶矿洞divan找宝箱，代码来自not enough update mod)",
+        "2，废弃gitee，重新在gitlink部署更新文件，避免github无法访问",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作MurderStars_(原创),HyperEnder(二改),背景制作HyperEnder，代码制作维护：小沙雕",
-        "感谢HyperEnder MurderStars_ XiuBaby_ Player302 sunhuai_tiejian Happystory AngyDelta LatestPig Zero_aircraft等小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
+        "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ]
 
 }
