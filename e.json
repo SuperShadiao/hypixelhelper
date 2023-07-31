@@ -1,16 +1,15 @@
 {
 
-    "v":"4.7.1",
-    "u":"https://gitlink.org.cn/api/attachments/427417",
+    "v":"4.7.2",
+    "u":"https://gitlink.org.cn/api/attachments/427913",
     "ul":[
-        "https://gitlink.org.cn/api/attachments/427417",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v471/hypixelhelper-4.7.1.jar"
+        "https://gitlink.org.cn/api/attachments/427913",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v472/hypixelhelper-4.7.2.jar"
     ],
     "a":[
         "%%hello%%",
-        "4.7.1更新公告:",
-        "1，调整了代码结构",
-        "2，新增黑名单玩家狙击命令",
+        "4.7.2更新公告:",
+        "1，新增了一个奇怪而拉胯的功能",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作MurderStars_(原创),HyperEnder(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
