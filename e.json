@@ -1,23 +1,23 @@
 {
 
-    "v":"4.7.5",
-    "u":"https://gitlink.org.cn/api/attachments/429920",
+    "v":"4.7.7",
+    "u":"https://gitlink.org.cn/api/attachments/431138",
     "ul":[
-        "https://gitlink.org.cn/api/attachments/429920",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v475/hypixelhelper-4.7.5.jar"
+        "https://gitlink.org.cn/api/attachments/431138",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v477/hypixelhelper-4.7.7.jar"
     ],
     "a":[
         "%%hello%%",
-        "4.7.5更新公告:",
-        "1，配置设置界面/hhm现已支持自定义数字类设置",
-        "2，修复了一堆已知bug",
-        
+        "4.7.7更新公告:",
+        "1，在杂项中更新原神启动功能",
+        "2，掉帧问题终于解决了，世界奇迹",
+        "3，优化其他功能",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作MurderStars_(原创),HyperEnder(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
     "rpurls": [
-        "https://gitlink.org.cn/api/attachments/429921",
+        "https://gitlink.org.cn/api/attachments/431137",
         "https://github.com/SuperShadiao/hypixelhelper/releases/download/rp/hypixelhelperpack.xsd"
     ],
-    "rpv": 4
+    "rpv": 5
 }
