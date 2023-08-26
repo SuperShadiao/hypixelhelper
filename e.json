@@ -1,17 +1,17 @@
 {
 
-    "v":"4.7.7",
-    "u":"https://gitlink.org.cn/api/attachments/431138",
+    "v":"4.7.8",
+    "u":"https://gitlink.org.cn/api/attachments/431659",
     "ul":[
-        "https://gitlink.org.cn/api/attachments/431138",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v477/hypixelhelper-4.7.7.jar"
+        "https://gitlink.org.cn/api/attachments/431659",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v478/hypixelhelper-4.7.8.jar"
     ],
     "a":[
         "%%hello%%",
-        "4.7.7更新公告:",
-        "1，在杂项中更新原神启动功能",
-        "2，掉帧问题终于解决了，世界奇迹",
-        "3，优化其他功能",
+        "4.7.8更新公告:",
+        "1，更改黑名单玩家高亮显示透明度",
+        "2，更改了沙雕语交流的提示方式",
+        "3，修复高亮玩家显示隐身仍显示的问题",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作MurderStars_(原创),HyperEnder(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
