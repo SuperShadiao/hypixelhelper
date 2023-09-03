@@ -1,17 +1,16 @@
 {
 
-    "v":"4.7.8",
-    "u":"https://gitlink.org.cn/api/attachments/431659",
+    "v":"4.7.9",
+    "u":"https://gitlink.org.cn/api/attachments/432234",
     "ul":[
-        "https://gitlink.org.cn/api/attachments/431659",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v478/hypixelhelper-4.7.8.jar"
+        "https://gitlink.org.cn/api/attachments/432234",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v479/hypixelhelper-4.7.9.jar"
     ],
     "a":[
-        "%%hello%%",
-        "4.7.8更新公告:",
-        "1，更改黑名单玩家高亮显示透明度",
-        "2，更改了沙雕语交流的提示方式",
-        "3，修复高亮玩家显示隐身仍显示的问题",
+        "%%hello%% [!!IMPORTANT!!] 由于当前看门狗反作弊可能更新，现在4.7.8及以下版本可能出现慢狗，因此请快速更新到新版本！",
+        "4.7.9更新公告:",
+        "1，移除功能僵尸末日自动开枪(多次黑卡测试无果)",
+        "2，更改了模拟右键的方式",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作MurderStars_(原创),HyperEnder(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
