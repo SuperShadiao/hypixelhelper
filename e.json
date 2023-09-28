@@ -1,22 +1,22 @@
 {
 
-    "v":"4.7.9",
-    "u":"https://gitlink.org.cn/api/attachments/432234",
+    "v":"4.8.1",
+    "u":"https://gitlink.org.cn/api/attachments/434000",
     "ul":[
-        "https://gitlink.org.cn/api/attachments/432234",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v479/hypixelhelper-4.7.9.jar"
+        "https://gitlink.org.cn/api/attachments/434000",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v481/hypixelhelper-4.8.1.jar"
     ],
     "a":[
         "%%hello%% [!!IMPORTANT!!] 由于当前看门狗反作弊可能更新，现在4.7.8及以下版本可能出现慢狗，因此请快速更新到新版本！",
-        "4.7.9更新公告:",
-        "1，移除功能僵尸末日自动开枪(多次黑卡测试无果)",
-        "2，更改了模拟右键的方式",
+        "4.8.1更新公告:",
+        "1，新增功能小沙雕点歌台(肝没了)",
+        "2，修复模拟右键偶尔不起作用的问题",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作MurderStars_(原创),HyperEnder(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
     "rpurls": [
-        "https://gitlink.org.cn/api/attachments/431137",
+        "https://gitlink.org.cn/api/attachments/433999",
         "https://github.com/SuperShadiao/hypixelhelper/releases/download/rp/hypixelhelperpack.xsd"
     ],
-    "rpv": 5
+    "rpv": 6
 }
