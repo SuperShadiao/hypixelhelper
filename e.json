@@ -1,23 +1,21 @@
 {
 
-    "v":"4.8.2",
-    "u":"https://gitlink.org.cn/api/attachments/437118",
+    "v":"4.8.4",
+    "u":"https://gitlink.org.cn/api/attachments/441716",
     "ul":[
-        "https://gitlink.org.cn/api/attachments/437118",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v482/hypixelhelper-4.8.2.jar"
+        "https://gitlink.org.cn/api/attachments/441716",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v484/hypixelhelper-4.8.4.jar"
     ],
     "a":[
         "%%hello%% [!!IMPORTANT!!] 由于当前看门狗反作弊可能更新，现在4.7.8及以下版本可能出现慢狗，因此请快速更新到新版本！",
-        "4.8.2更新公告:",
-        "1，优化点歌台",
-        "2，点歌台新增接口歌曲宝",
-        "3，新增功能起床陷阱显示",
+        "4.8.4更新公告:",
+        "不知道更新了什么",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作MurderStars_(原创),HyperEnder(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
     "rpurls": [
-        "https://gitlink.org.cn/api/attachments/433999",
+        "https://gitlink.org.cn/api/attachments/441718",
         "https://github.com/SuperShadiao/hypixelhelper/releases/download/rp/hypixelhelperpack.xsd"
     ],
-    "rpv": 6
+    "rpv": 7
 }
