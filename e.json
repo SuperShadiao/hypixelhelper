@@ -1,15 +1,19 @@
 {
 
-    "v":"4.8.4",
-    "u":"https://gitlink.org.cn/api/attachments/441716",
+    "v":"4.8.5",
+    "u":"https://gitlink.org.cn/api/attachments/146cc422-1550-477a-b999-42a17f310730",
     "ul":[
-        "https://gitlink.org.cn/api/attachments/441716",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v484/hypixelhelper-4.8.4.jar"
+        "https://gitlink.org.cn/api/attachments/146cc422-1550-477a-b999-42a17f310730",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v485/hypixelhelper-4.8.5.jar"
     ],
     "a":[
         "%%hello%% [!!IMPORTANT!!] 由于当前看门狗反作弊可能更新，现在4.7.8及以下版本可能出现慢狗，因此请快速更新到新版本！",
-        "4.8.4更新公告:",
-        "不知道更新了什么",
+        "4.8.5更新公告:",
+        "1，由于点歌台的存在，删除主界面背景音乐",
+        "2，新增变量delayedmessage，详见指令/hhf",
+        "3，点歌台界面中正在下载的音乐会被标记为蓝色",
+        "4，修复变量randomplayername只返回自己名字的问题",
+        "5，更新沙雕语新加密方式，现可支持unicode字符",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作MurderStars_(原创),HyperEnder(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
