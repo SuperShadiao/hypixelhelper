@@ -1,22 +1,17 @@
 {
 
-    "v":"4.8.8",
-    "u":"https://www.gitlink.org.cn/api/attachments/042e1039-ff5b-419d-b70b-a53cb32aa749",
+    "v":"4.8.9",
+    "u":"https://www.gitlink.org.cn/api/attachments/557835f7-a3d1-4e21-b1aa-f6f3d3121b18",
     "ul":[
-        "https://www.gitlink.org.cn/api/attachments/042e1039-ff5b-419d-b70b-a53cb32aa749",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v488/hypixelhelper-4.8.8.jar"
+        "https://www.gitlink.org.cn/api/attachments/557835f7-a3d1-4e21-b1aa-f6f3d3121b18",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v489/hypixelhelper-4.8.9.jar"
     ],
     "a":[
         "%%hello%% [!!IMPORTANT!!] 由于当前看门狗反作弊可能更新，现在4.7.8及以下版本可能出现慢狗，因此请快速更新到新版本！",
-        "4.8.8更新公告:",
-        "1，修复点歌台灵魂云API的ffmpeg进程无法正常释放的问题",
-        "2，修复点歌台歌曲宝偶尔发生https证书异常无法请求网站的问题",
-        "3，新增床战拆家距离显示",
-        "4，优化黑名单系统",
-        "5，新增点歌台歌词自定义大小",
-        "6，优化token加密方式",
-        "7，修复可能存在的账号安全问题",
-        "8，新增快捷键床战梦境票券自动抽奖 (警告：未确认其安全性！)",
+        "4.8.9更新公告:",
+        "1，新增按键显示功能",
+        "2，解决了点歌台的一些bug",
+        "3，修改了一些提示",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
