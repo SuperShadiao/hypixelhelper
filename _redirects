@@ -6,10 +6,11 @@ qq https://qm.qq.com/cgi-bin/qm/qr?k=q81NLZlNYHko_9k-tFL2PQMYpb8c5ESC&noverify=0
 
 b/:bv https://www.bilibili.com/video/:bv 301
 hypapi https://developer.hypixel.net/auth/login 301
-xsdb https://space.bilibili.com/507787788 301
+xsdb video 301
 video https://space.bilibili.com/507787788 301
 download1 https://github.com/SuperShadiao/hypixelhelper/releases 301
 download2 https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases 301
+obf https://github.com/SuperShadiao/XiaoShadiao-Obfuscator 301
 
 bv/:bv https://www.bilibili.com/video/BV:bv 301
 
