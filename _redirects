@@ -6,7 +6,7 @@ qq https://qm.qq.com/q/Iwe9MAw1qM 301
 
 b/:bv https://www.bilibili.com/video/:bv 301
 hypapi https://developer.hypixel.net/auth/login 301
-xsdb video 301
+xsdb /video 301
 video https://space.bilibili.com/507787788 301
 download1 https://github.com/SuperShadiao/hypixelhelper/releases 301
 download2 https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases 301
