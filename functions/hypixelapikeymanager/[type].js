@@ -1,5 +1,10 @@
 export function onRequest(context) {
 
+  return fetch(new URL("https://hh.xiaoshadiao.workers.dev/hhapikeymanager?action=" + context.params.type))
+  
+}
+/*
+
   if(context.params.type == "puttempkey") {
     let jsonObj = JSON.parse(context.env.hypixelkey)
   
@@ -27,4 +32,4 @@ export function onRequest(context) {
     return new Response("别吵, 我在思考", {status: 403})
   }
   
-}
+*/
