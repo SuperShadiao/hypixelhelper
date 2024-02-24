@@ -18,6 +18,7 @@ export async function onRequest(context) {
     i = context.env.ntyl_pic_count
     context.env.flushflag = parseInt(context.env.flushflag) + 1
   }
+  i--
 
   let url2 = new URL(context.request.url)
   url2.pathname = url0.pathname + "/" + (Math.floor(Math.random() * i) + 1) + ".png"
