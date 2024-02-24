@@ -4,7 +4,7 @@ export function onRequest(context) {
     status: 301
   })
 
-  res.headers.append("Location", new URL(context.request.url).pathname + Math.floor(Math.random() * 30) + ".jpg")
+  res.headers.append("Location", new URL(context.request.url).pathname + "/" + Math.floor(Math.random() * 30) + ".jpg")
 
   return res
 }
