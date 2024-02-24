@@ -6,4 +6,5 @@ async function onRequest(context) {
   res = await context.env.ASSETS.fetch(new URL(context.request.url))
   
   return new Response("Code: " + res.status)
+  
 }
