@@ -1,17 +1,17 @@
 {
 
-    "v":"4.8.9",
-    "u":"https://www.gitlink.org.cn/api/attachments/557835f7-a3d1-4e21-b1aa-f6f3d3121b18",
+    "v":"4.9.1",
+    "u":"https://www.gitlink.org.cn/api/attachments/40c1acd8-a0bf-424f-8d1f-f3ba7427affd",
     "ul":[
-        "https://www.gitlink.org.cn/api/attachments/557835f7-a3d1-4e21-b1aa-f6f3d3121b18",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v489/hypixelhelper-4.8.9.jar"
+        "https://www.gitlink.org.cn/api/attachments/40c1acd8-a0bf-424f-8d1f-f3ba7427affd",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v491/hypixelhelper-4.9.1.jar"
     ],
     "a":[
         "%%hello%% [!!IMPORTANT!!] 由于当前看门狗反作弊可能更新，现在4.7.8及以下版本可能出现慢狗，因此请快速更新到新版本！",
-        "4.8.9更新公告:",
-        "1，新增按键显示功能",
-        "2，解决了点歌台的一些bug",
-        "3，修改了一些提示",
+        "4.9.1更新公告:",
+        "1，Patch了一下酷狗音乐接口",
+        "2，点歌台添加了问题帮助",
+        "3，优化了Hypixel API Key管理",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
