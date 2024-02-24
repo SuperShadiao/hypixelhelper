@@ -13,15 +13,15 @@ export async function onRequest(context) {
       res1 = await context.env.ASSETS.fetch(url1)
     } while(i < 100 && res1.status == 200)
   
-    let res = new Response("redirect", {
-      status: 301
-    })
     context.env.ntyl_pic_count = i
   } else {
     i = context.env.ntyl_pic_count
     context.env.flushflag = parseInt(context.env.flushflag) + 1
   }
-  
+
+  let res = new Response("redirect", {
+    status: 301
+  })
   res.headers.append("Location", new URL(context.request.url).pathname + "/" + (Math.floor(Math.random() * i) + 1) + ".png")
 
   return res
