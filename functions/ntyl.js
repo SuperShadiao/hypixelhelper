@@ -1,5 +1,5 @@
 export function onRequest(context) {
   
-  return context.env.ASSETS.fetch(url)
+  return context.env.ASSETS.fetch()
   
 }
