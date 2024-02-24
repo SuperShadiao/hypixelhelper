@@ -1,5 +1,7 @@
 export function onRequest(context) {
-  
-  return context.env.ASSETS.fetch()
+
+  console.log("hi")
+  // response.headers.append("Set-Cookie", `${cookieName}=${version}; path=/`)
+  return context.next()
   
 }
