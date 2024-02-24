@@ -28,6 +28,7 @@ export async function onRequest(context) {
   // let res2 = await context.env.ASSETS.fetch(new URL(url0.pathname + "/" + (Math.floor(Math.random() * i) + 1) + ".jpg"))
 
   // return new Response(res2.body)
-
-  return context.env.ASSETS.fetch(new URL(url0.pathname + "/" + (Math.floor(Math.random() * i) + 1) + ".jpg"))
+  let url2 = new URL(context.request.url)
+  url2.pathname = url0.pathname + "/" + (Math.floor(Math.random() * i) + 1) + ".jpg"
+  return context.env.ASSETS.fetch(url2.pathname)
 }
