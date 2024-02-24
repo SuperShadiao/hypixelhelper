@@ -17,13 +17,15 @@ export async function onRequest(context) {
     i = context.env.zz2z_lore_pic_count
     context.env.flushflag = parseInt(context.env.flushflag) + 1
   }
-  let res = new Response("redirect", {
-    status: 301
-  })
+  // let res = new Response("redirect", {
+  //   status: 301
+  // })
 
-  res.headers.append("Location", new URL(context.request.url).pathname + "/" + (Math.floor(Math.random() * i) + 1) + ".jpg")
+  // res.headers.append("Location", new URL(context.request.url).pathname + "/" + (Math.floor(Math.random() * i) + 1) + ".jpg")
 
-  return res
+  // return res
 
-  // return await context.env.ASSETS.fetch(url0.pathname + "/" + (Math.floor(Math.random() * i) + 1) + ".jpg")
+  let res2 = await context.env.ASSETS.fetch(url0.pathname + "/" + (Math.floor(Math.random() * i) + 1) + ".jpg")
+
+  return new Response(res2.body)
 }
