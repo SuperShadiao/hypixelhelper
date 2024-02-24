@@ -17,6 +17,11 @@ export async function onRequest(context) {
     i = context.env.zz2z_lore_pic_count
     context.env.flushflag = parseInt(context.env.flushflag) + 1
   }
+  let url2 = new URL(context.request.url)
+  url2.pathname = url0.pathname + "/" + (Math.floor(Math.random() * i) + 1) + ".jpg"
+  return context.env.ASSETS.fetch(url2)
+}
+
   // let res = new Response("redirect", {
   //   status: 301
   // })
@@ -28,7 +33,3 @@ export async function onRequest(context) {
   // let res2 = await context.env.ASSETS.fetch(new URL(url0.pathname + "/" + (Math.floor(Math.random() * i) + 1) + ".jpg"))
 
   // return new Response(res2.body)
-  let url2 = new URL(context.request.url)
-  url2.pathname = url0.pathname + "/" + (Math.floor(Math.random() * i) + 1) + ".jpg"
-  return context.env.ASSETS.fetch(url2)
-}
