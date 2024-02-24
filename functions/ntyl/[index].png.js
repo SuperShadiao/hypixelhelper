@@ -1,10 +1,10 @@
 export async function onRequest(context) {
 
-  let i = context.params.index
+  // let i = context.params.index
 
-  let res
-  res = await context.env.ASSETS.fetch(new URL(context.request.url))
+  // let res
+  // res = await context.env.ASSETS.fetch(new URL(context.request.url))
   
-  return new Response("Code: " + res.status)
-  
+  // return new Response("Code: " + res.status)
+  return context.next()
 }
