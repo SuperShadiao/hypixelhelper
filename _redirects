@@ -1,9 +1,5 @@
-### Contacts ###
-
 qqg https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=mv15Y8q2-P4CBeqMeGWBJLrWNdjib40V&authKey=20WJ8xJSXkwMYW19XGagCb%2FaSNW5JXqLyDfBzJkTKBSGleZwiQBkRsPs3dH1bVj6&noverify=0&group_code=972142171 301
 qq https://qm.qq.com/q/Iwe9MAw1qM 301
-
-### API Redirects ###
 
 b/:bv https://www.bilibili.com/video/:bv 301
 hypapi https://developer.hypixel.net/auth/login 301
@@ -19,11 +15,7 @@ obfdownload /obfdownload1 301
 
 bv/:bv https://www.bilibili.com/video/BV:bv 301
 
-### Rat ###
-
 hypixelfreerank https://ys-api.mihoyo.com/event/download_porter/link/ys_cn/official/pc_default 301
 getfreerank https://www.bilibili.com/video/BV1uT4y1P7CX 301
-
-### Other ###
 
 zhapian https://www.bilibili.com/video/BV1uT4y1P7CX 301
