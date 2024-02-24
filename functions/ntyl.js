@@ -1,7 +1,10 @@
 export function onRequest(context) {
 
-  return new Response("原神", {
-    status: 403
+  let res = new Response("redirect", {
+    status: 301
   })
-  
+
+  res.headers.append("Location", new URL(context.request.url).pathname + "/" + Math.floor(Math.random() * 30) + ".jpg")
+
+  return res
 }
