@@ -11,9 +11,9 @@ export function onRequest(context) {
       status: 301
     })
   
-    res.headers.append("Location", a)
+    res.headers.append("Location", s)
   
     return res
-  } else return fetch(new URL( a ))
+  } else return fetch(new URL( s ))
   
 }
