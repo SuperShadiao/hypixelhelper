@@ -19,10 +19,14 @@ export async function onRequest(context) {
     context.env.flushflag = parseInt(context.env.flushflag) + 1
   }
 
-  let res = new Response("redirect", {
-    status: 301
-  })
-  res.headers.append("Location", new URL(context.request.url).pathname + "/" + (Math.floor(Math.random() * i) + 1) + ".png")
-
-  return res
+  let url2 = new URL(context.request.url)
+  url2.pathname = url0.pathname + "/" + (Math.floor(Math.random() * i) + 1) + ".png"
+  return context.env.ASSETS.fetch(url2)
 }
+
+  // let res = new Response("redirect", {
+  //   status: 301
+  // })
+  // res.headers.append("Location", new URL(context.request.url).pathname + "/" + (Math.floor(Math.random() * i) + 1) + ".png")
+
+  // return res
