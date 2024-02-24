@@ -1,4 +1,4 @@
-async function onRequest(context) {
+export async function onRequest(context) {
 
   let i = context.params.index
 
