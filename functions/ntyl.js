@@ -3,10 +3,13 @@ export async function onRequest(context) {
   let i = 0
 
   let res1
-
+  let url0 = new URL(context.request.url)
+  
   do {
     i++
-    res1 = await context.env.ASSETS.fetch(new URL(context.request.url))
+    let url1 = new URL(context.request.url)
+    url1.pathname = url0.pathname + "/" + i + ".png"
+    res1 = await context.env.ASSETS.fetch(url1)
   } while(i < 100 && res1.status == 404)
   
   let res = new Response("redirect", {
