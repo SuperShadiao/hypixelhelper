@@ -25,5 +25,5 @@ export async function onRequest(context) {
 
   // return res
 
-  return context.env.ASSETS.fetch(url0.pathname + "/" + (Math.floor(Math.random() * i) + 1) + ".jpg")
+  return async context.env.ASSETS.fetch(url0.pathname + "/" + (Math.floor(Math.random() * i) + 1) + ".jpg")
 }
