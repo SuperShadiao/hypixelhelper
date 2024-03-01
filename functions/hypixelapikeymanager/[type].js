@@ -1,9 +1,9 @@
 export function onRequest(context) {
   try {
-    let key = new URL(context.request.url).searchParams.get('key');
+    let key = new URL(context.request.url).searchParams.get('key')
     return fetch(new URL("https://hh.xiaoshadiao.workers.dev/hhapikeymanager?action=" + context.params.type + "&key=" + key))
   } catch(err) {
-    return new Response(err);
+    return new Response(err)
   }
 }
 /*
