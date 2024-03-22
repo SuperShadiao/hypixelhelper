@@ -6,6 +6,9 @@ export async function onRequest(context) {
   let key = (await ((await fetch(new URL("https://hypixelhelper.pages.dev/e.json"))).json())) ["api.linhun.vip.qqmusic.api.accesskey"]
   // return await context.env.ASSETS.fetch(new URL("https://api.linhun.vip/api/qqyy?name=" + name + "&y=1&n=1&apiKey=" + key))
   let res = await fetch(new URL("https://api.linhun.vip/api/qqyy?name=" + name + "&y=1&n=1&apiKey=" + key))
-  return new Response(await res.text() + " " + res.status)
+
+  if(type == "redirect" || type == "red") {
+    return new Response('<script> window.location.replace("' + await res.json() ["mp3"] + '") </script>')
+  } else return res
  //  return await context.env.ASSETS.fetch(new URL("https://api.linhun.vip/api/qqyy?name=" + name + "&y=1&n=1&apiKey=" + key))
 }
