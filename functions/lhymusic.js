@@ -8,7 +8,7 @@ export async function onRequest(context) {
   let res = await fetch(new URL("https://api.linhun.vip/api/qqyy?name=" + name + "&y=1&n=1&apiKey=" + key))
 
   if(type == "redirect" || type == "red") {
-    return new Response('<script> window.location.replace("' + (await res.json()) ["mp3"] + '") </script>', headers:{"Content-Type": "text/html; charset=utf-8"})
+    return new Response('<script> window.location.replace("' + (await res.json()) ["mp3"] + '") </script>', {headers:{"Content-Type": "text/html; charset=utf-8"}})
   } else return res
  //  return await context.env.ASSETS.fetch(new URL("https://api.linhun.vip/api/qqyy?name=" + name + "&y=1&n=1&apiKey=" + key))
 }
