@@ -1,17 +1,15 @@
 {
 
-    "v":"4.9.3",
-    "u":"https://www.gitlink.org.cn/api/attachments/847796ad-be54-4718-9c75-d0a0b4357b70",
+    "v":"4.9.4",
+    "u":"https://www.gitlink.org.cn/api/attachments/47903104-fd06-4a45-91e7-553a625a277f",
     "ul":[
-        "https://www.gitlink.org.cn/api/attachments/847796ad-be54-4718-9c75-d0a0b4357b70",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v493/hypixelhelper-4.9.3.jar"
+        "https://www.gitlink.org.cn/api/attachments/47903104-fd06-4a45-91e7-553a625a277f",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v494/hypixelhelper-4.9.4.jar"
     ],
     "a":[
-        "%%hello%% 4.9.3更新公告: ",
-        "1，新增功能起床战争自定义击杀信息",
-        "2，点歌台新增云歌单功能",
-        "3，优化了与Feather的兼容性",
-        "4，修了些bug",
+        "%%hello%% 4.9.4更新公告: ",
+        "1，新增Nametag的小沙雕标志显示",
+        "2，修复一些小问题",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
