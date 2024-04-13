@@ -1,10 +1,10 @@
 {
 
-    "v":"4.9.5",
-    "u":"https://www.gitlink.org.cn/api/attachments/6780cacf-422d-4569-a1ad-6f4eb94f19b9",
+    "v":"4.9.5-FIX-1",
+    "u":"https://www.gitlink.org.cn/api/attachments/fe71af76-580c-4e02-bce9-c8058c5392b6",
     "ul":[
-        "https://www.gitlink.org.cn/api/attachments/6780cacf-422d-4569-a1ad-6f4eb94f19b9",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v495/hypixelhelper-4.9.5.jar"
+        "https://www.gitlink.org.cn/api/attachments/fe71af76-580c-4e02-bce9-c8058c5392b6",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v495f1/hypixelhelper-4.9.5-FIX-1.jar"
     ],
     "a":[
         "%%hello%% 4.9.5更新公告: ",
