@@ -11,7 +11,7 @@ export async function onRequest(context) {
     let url1 = new URL(context.request.url)
     url1.pathname = url0.pathname + "/" + Math.floor(picCount * Math.random()) + ".jpg"
     res1 = await context.env.ASSETS.fetch(url1)
-  } while(i < 100 && res1.status == 404)
+  } while(i < 100 && res1.status != 200)
     
   return res1
 }
