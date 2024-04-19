@@ -14,7 +14,6 @@ export async function onRequest(context) {
     res1 = await context.env.ASSETS.fetch(url1)
   } while(i < 100 && await (res1.text()) == indexText)
 
-  return new Response(JSON.stringify(context.env.ASSETS) + "")
   return res1
 }
 
