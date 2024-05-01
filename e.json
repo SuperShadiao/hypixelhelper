@@ -1,17 +1,17 @@
 {
 
-    "v":"4.9.5-FIX-2",
-    "u":"https://hypixelhelper.pages.dev/hypixelhelper-4.9.5-FIX-2.jar",
+    "v":"4.9.6",
+    "u":"https://hypixelhelper.pages.dev/release.jar",
     "ul":[
-        "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/hypixelhelper-4.9.5-FIX-2.jar?ref=main",
-        "https://hypixelhelper.pages.dev/hypixelhelper-4.9.5-FIX-2.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v495f2/hypixelhelper-4.9.5-FIX-2.jar"
+        "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
+        "https://hypixelhelper.pages.dev/release.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v496/hypixelhelper-4.9.6.jar"
     ],
     "a":[
-        "%%hello%% 4.9.5更新公告: ",
-        "1，为小沙雕的pages.dev挂了个代理(感谢小Y提供的域名!)",
-        "2，新增起床自动刷票功能, 与自动抽奖绑在同一个按键",
-        "3，修复玩家隐身时Nametag的小沙雕标志仍在显示",
+        "%%hello%% 4.9.6更新公告: ",
+        "1，优化Boss条, 显示回血动画",
+        "2，将点歌台的ffmpeg程序放到服务器内缩小mod体积",
+        "3，现在bw部分战绩在游戏内会显示在TAB上",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
