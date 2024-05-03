@@ -12,6 +12,7 @@ obf https://github.com/SuperShadiao/XiaoShadiao-Obfuscator 301
 obfdownload1 https://github.com/SuperShadiao/XiaoShadiao-Obfuscator/releases 301
 obfdownload2 /obfdownload1 301
 obfdownload /obfdownload1 301
+release /release.jar
 
 bv/:bv https://www.bilibili.com/video/BV:bv 301
 
