@@ -1,17 +1,19 @@
 {
 
-    "v":"4.9.7",
+    "v":"4.9.8",
     "u":"https://hypixelhelper.pages.dev/release.jar",
     "ul":[
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v497/hypixelhelper-4.9.7.jar",
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v498/hypixelhelper-4.9.8.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
         "https://hypixelhelper.pages.dev/release.jar",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v497/hypixelhelper-4.9.7.jar"
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v498/hypixelhelper-4.9.8.jar"
     ],
     "a":[
-        "%%hello%% 4.9.7更新公告: ",
-        "1，新增了些帮助类提示",
-        "2，修复了一些bug",
+        "%%hello%% 4.9.8更新公告: ",
+        "1，由于林魂云api跑路, 紧急修复点歌台, 新增了额外的api接口",
+        "2，修复哔哩哔哩直播姬点歌台因林魂云api跑路失效问题",
+        "3，重写了雕反, 暂时移除了无用的Scaffold检测",
+        "4，拆家自动报警现在将在起床战争Swap模式, 40v40等部分模式下禁用, 以免出现难堪的bug",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
