@@ -13,6 +13,7 @@ obfdownload1 https://github.com/SuperShadiao/XiaoShadiao-Obfuscator/releases 301
 obfdownload2 /obfdownload1 301
 obfdownload /obfdownload1 301
 release /release.jar
+xsdblive https://live.bilibili.com/32674116
 绫华 /ZZ2Z_Lore/special/山里灵活.jpg
 灵活 /绫华
 
