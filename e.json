@@ -1,17 +1,19 @@
 {
 
-    
-    "v":"5.0.0-PRE3",
+    "v":"5.0.0",
     "u":"https://hypixelhelper.pages.dev/release.jar",
     "ul":[
         "https://hypixelhelper.pages.dev/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v500p3/hypixelhelper-5.0.0-PRE3.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v500p3/hypixelhelper-5.0.0-PRE3.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v500/hypixelhelper-5.0.0.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v500/hypixelhelper-5.0.0.jar"
     ],
     "a":[
         "%%hello%% 5.0.0更新公告: ",
         "1，更新B站直播间监听器",
+        "2，新增钓鱼扩展功能",
+        "3，点歌台新增切歌延时",
+        "4，修复其他一堆bug",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
@@ -22,5 +24,4 @@
     "rpv": 9,
     "api.linhun.vip.qqmusic.api.accesskey": "4d7e7ae811d807a5874908f921088f20"
 
-    
 }
