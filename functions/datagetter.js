@@ -4,7 +4,7 @@ export function onRequest(context) {
   let headers = context.request.headers
   if(url.search("api.groq.com") != -1) headers["cf-ipcountry"] = "SG"
   
-  return fetch(new URL( url ), {headers: headers})
+  return fetch(new URL( url )/*, {headers: headers}*/)
 }
 
 export function onRequestPost(context) {
