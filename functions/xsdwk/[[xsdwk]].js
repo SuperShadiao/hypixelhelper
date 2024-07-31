@@ -3,7 +3,7 @@ export function onRequestPost(context) {
 
   let headers = context.request.headers
   headers["cf-ipcountry"] = "SG"
-  return fetch(new URL("https://hh.xiaoshadiao.workers.dev/" + url.pathname.substr(7) + url.search), {method: "POST", body: context.request.body, headers: headers})
+  return fetch(new URL("https://hh.xiaoshadiao.workers.dev/" + url.pathname.substr(7) + url.search), {method: "POST", body: context.request.body, headers: {"cf-ipcountry": "SG"}})
 }
 
 export function onRequest(context) {
@@ -11,5 +11,5 @@ export function onRequest(context) {
 
   let headers = context.request.headers
   headers["cf-ipcountry"] = "SG"
-  return fetch(new URL("https://hh.xiaoshadiao.workers.dev/" + url.pathname.substr(7) + url.search), {headers: headers})
+  return fetch(new URL("https://hh.xiaoshadiao.workers.dev/" + url.pathname.substr(7) + url.search), {headers: {"cf-ipcountry": "SG"}})
 }
