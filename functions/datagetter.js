@@ -1,7 +1,7 @@
 export function onRequest(context) {
   let url = new URL(context.request.url).searchParams.get('url');
   
-  return fetch(new URL( url ), {context.request.headers})
+  return fetch(new URL( url ), {headers: context.request.headers})
 }
 
 export function onRequestPost(context) {
