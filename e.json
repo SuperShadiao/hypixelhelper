@@ -1,18 +1,20 @@
 {
 
-    "v":"5.0.2-PRE2",
+    "v":"5.0.2",
     "u":"https://hypixelhelper.pages.dev/release.jar",
     "ul":[
         "https://hypixelhelper.pages.dev/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v502p2/hypixelhelper-5.0.2-PRE2.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v502p2/hypixelhelper-5.0.2-PRE2.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v502/hypixelhelper-5.0.2.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v502/hypixelhelper-5.0.2.jar"
     ],
     "a":[
         "%%hello%% 5.0.2更新公告: ",
-        "1，新增一个抽象功能",
+        "1，新增在线聊天功能",
         "2，尝试解决了一些bug",
         "3，优化寻路, 机器人走的更快了",
+        "4，点歌台新增快速删除按钮",
+        "5，修复B站直播间监听器严重bug",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
