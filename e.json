@@ -1,6 +1,6 @@
 {
 
-    "v":"5.0.6",
+    "v":"5.0.7",
     "u":"https://hypixelhelper.pages.dev/release.jar",
     "ul":[
         "https://hypixelhelper.pages.dev/release.jar",
@@ -9,9 +9,10 @@
         "https://github.com/SuperShadiao/hypixelhelper/releases/download/v506/hypixelhelper-5.0.6.jar"
     ],
     "a":[
-        "%%hello%% 5.0.6更新公告: ",
-        "1，修复自动钓鱼S08Packet检测与反炸飞冲突",
-        "2，在线聊天功能服务器放弃cloudflared改用cpolar",
+        "%%hello%% 5.0.7更新公告: ",
+        "1，新增自动钓鱼自动切回钓鱼竿的功能",
+        "2，修复自动钓鱼崩溃的bug",
+        "3，修改/hhsc指令使寻路指令/hhsc stopgoal, /hhsc goto x y z, /hhsc followentity name, /hhsc attackentity name可以使用TAB补全",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
