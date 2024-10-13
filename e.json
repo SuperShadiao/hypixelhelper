@@ -1,12 +1,12 @@
 {
 
-    "v":"5.1.0",
+    "v":"5.1.0-FIX-1",
     "u":"https://hypixelhelper.pages.dev/release.jar",
     "ul":[
         "https://hypixelhelper.pages.dev/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v510/hypixelhelper-5.1.0.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v510/hypixelhelper-5.1.0.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v410f1/hypixelhelper-5.1.0-FIX-1.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v510f1/hypixelhelper-5.1.0-FIX-1.jar"
     ],
     "a":[
         "%%hello%% 5.1.0更新公告: ",
