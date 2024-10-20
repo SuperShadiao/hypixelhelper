@@ -1,18 +1,19 @@
 {
 
-    "v":"5.1.0-FIX-1",
+    "v":"5.1.1",
     "u":"https://hypixelhelper.pages.dev/release.jar",
     "ul":[
         "https://hypixelhelper.pages.dev/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v410f1/hypixelhelper-5.1.0-FIX-1.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v510f1/hypixelhelper-5.1.0-FIX-1.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v511/hypixelhelper-5.1.1.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v511/hypixelhelper-5.1.1.jar"
     ],
     "a":[
-        "%%hello%% 5.1.0更新公告: ",
-        "1，优化寻路",
-        "2，起床战争新增床位置显示功能, 再也不怕找不着床了",
-        "3, 使点歌台音乐分享功能可以在XSDChat内使用, 且分享由自动发送改为自动复制剪切板",
+        "%%hello%% 5.1.1更新公告: ",
+        "1，优化寻路, 修复了寻路一个抽象bug",
+        "2，由于Hypixel API更新, 进入游戏时将不再自动请求获取黑名单玩家信息",
+        "3, 在反反自动钓鱼中新增: 受到骚扰时自动向XSDChat中发送警告信息",
+        "4, 自动钓鱼当收到S08Packet时, 若不是挂机状态, 则不出发自动逃离",
         "关于作者小沙雕: 小沙雕的闲聊群972142171，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
