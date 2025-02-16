@@ -1,19 +1,19 @@
 {
 
-    "v":"5.1.7",
+    "v":"5.1.8",
     "u":"https://hypixelhelper.pages.dev/release.jar",
     "ul":[
         "https://hypixelhelper.pages.dev/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v517/hypixelhelper-5.1.7.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v517/hypixelhelper-5.1.7.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v518/hypixelhelper-5.1.8.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v518/hypixelhelper-5.1.8.jar"
     ],
     "a":[
-        "%%hello%% 5.1.7更新公告: ",
-        "1，新增微软账号登录系统",
-        "2，优化寻路",
-        "3，修复Yqloss动态模糊中一处渲染错误",
-        "4，将寻路指令单独提取到/hhpf指令",
+        "%%hello%% 5.1.8更新公告: ",
+        "1，[+] 新增Scaffold A & B检测",
+        "2，移除了从NEU抄的功能",
+        "3，优化寻路",
+        "4，新增一个超级战墙功能",
         "关于作者小沙雕: 小沙雕的闲聊群1103539591，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
