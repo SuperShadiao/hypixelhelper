@@ -22,6 +22,15 @@
         "https://github.com/SuperShadiao/hypixelhelper/releases/download/rp/hypixelhelperpack.xsd"
     ],
     "rpv": 12,
-    "api.linhun.vip.qqmusic.api.accesskey": "4d7e7ae811d807a5874908f921088f20"
+    "aas": [
+        {"name": "Cloudflare Artificial Idiot", "msgprefix": "@AI"},
+        {"name": "DeepSeek深度思考", "msgprefix": "@DS"},
+        {"name": "DeepSeek - 流萤", "msgprefix": "@DS{流萤}"}
+        {"name": "DeepSeek - 芙宁娜", "msgprefix": "@DS{芙宁娜}"},
+        {"name": "DeepSeek - 猫猫", "msgprefix": "@DS{猫猫}"},
+        {"name": "DeepSeek - 盟主", "msgprefix": "@DS{盟主}"},
+        {"name": "DeepSeek - 温迪", "msgprefix": "@DS{温迪}"},
+        {"name": "DeepSeek - 银狼", "msgprefix": "@DS{银狼}"}
+    ]
 
 }
