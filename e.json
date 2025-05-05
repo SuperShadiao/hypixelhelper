@@ -1,20 +1,18 @@
 {
 
-    "v":"5.1.9",
+    "v":"5.2.0",
     "u":"https://hypixelhelper.pages.dev/release.jar",
     "ul":[
         "https://hypixelhelper.pages.dev/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v519/hypixelhelper-5.1.9.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v519/hypixelhelper-5.1.9.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v520/hypixelhelper-5.2.0.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v520/hypixelhelper-5.2.0.jar"
     ],
     "a":[
-        "%%hello%% 5.1.9更新公告: ",
-        "1，修复寻路的一些bug",
-        "2，新增skyblock自动弹竖琴 (Melody NPC)",
-        "3，更改了聊天输入框右侧按钮",
-        "4，新增自身NameTag显示",
-        "5，修复自动起床战争由于寻路更新而出现的bug",
+        "%%hello%% 5.2.0更新公告: ",
+        "1，修复在某些情况下启动游戏会崩溃的问题",
+        "2，新增功能Skyblock自动吸血鬼",
+        "3，优化了主播模式敏感词检测 (DeepSeek太强大了)",
         "关于作者小沙雕: 小沙雕的闲聊群728972740，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
