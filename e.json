@@ -31,6 +31,11 @@
         {"name": "DeepSeek - 盟主", "msgprefix": "@DS{盟主}"},
         {"name": "DeepSeek - 温迪", "msgprefix": "@DS{温迪}"},
         {"name": "DeepSeek - 银狼", "msgprefix": "@DS{银狼}"}
+    ],
+    "yqlossmixinclienturls":[
+        "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/yqlossclientmixin-1.8.9-forge.jar?ref=main",
+        "https://hypixelhelper.pages.dev/yqlossclientmixin-1.8.9-forge.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/blob/main/yqlossclientmixin-1.8.9-forge.jar"
     ]
 
 }
