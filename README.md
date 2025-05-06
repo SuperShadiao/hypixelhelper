@@ -12,6 +12,5 @@
 - 另外，关于mod更新的内容可在MC主界面上方公告栏查看！
 
 ### 友情链接
-
-[ABCOC - SoarClient](https://github.com/ABCOA/Legacy-SoarClient")
-[Yqloss - YqlossClientMixin](https://modrinth.com/mod/yqlossclientmixin")
+- [ABCOC - SoarClient](https://github.com/ABCOA/Legacy-SoarClient)
+- [Yqloss - YqlossClientMixin](https://modrinth.com/mod/yqlossclientmixin)
