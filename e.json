@@ -1,18 +1,17 @@
 {
 
-    "v":"5.2.0",
+    "v":"5.2.1",
     "u":"https://hypixelhelper.pages.dev/release.jar",
     "ul":[
         "https://hypixelhelper.pages.dev/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v520/hypixelhelper-5.2.0.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v520/hypixelhelper-5.2.0.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v521/hypixelhelper-5.2.1.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v521/hypixelhelper-5.2.1.jar"
     ],
     "a":[
-        "%%hello%% 5.2.0更新公告: ",
-        "1，修复在某些情况下启动游戏会崩溃的问题",
-        "2，新增功能Skyblock自动吸血鬼",
-        "3，优化了主播模式敏感词检测 (DeepSeek太强大了)",
+        "%%hello%% 5.2.1更新公告: ",
+        "1，修复起床战争陷阱因翻译问题无法工作的问题",
+        "2，玩家状态不再依赖Hypixel Dev API, 现在依赖Hypixel API Mod",
         "关于作者小沙雕: 小沙雕的闲聊群728972740，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！",
         ""
