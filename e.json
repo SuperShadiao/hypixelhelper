@@ -1,18 +1,18 @@
 {
 
-    "v":"5.2.2",
+    "v":"5.2.3",
     "u":"https://hypixelhelper.pages.dev/release.jar",
     "ul":[
         "https://hypixelhelper.pages.dev/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v522/hypixelhelper-5.2.2.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v522/hypixelhelper-5.2.2.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v523/hypixelhelper-5.2.3.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v523/hypixelhelper-5.2.3.jar"
     ],
     "a":[
-        "%%hello%% 5.2.2更新公告: ",
-        "1，修复起床战争陷阱因翻译问题无法工作的问题",
-        "2，玩家状态不再依赖Hypixel Dev API, 现在依赖Hypixel API Mod",
-        "3，修复检测床的防御掉帧的问题",
+        "%%hello%% 5.2.3更新公告: ",
+        "1，更新了Autofish",
+        "2，B站直播间新增预约功能",
+        "3，点歌台搜索界面按钮样式修改",
         "关于作者小沙雕: 小沙雕的闲聊群728972740，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
