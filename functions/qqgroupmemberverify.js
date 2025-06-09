@@ -35,12 +35,16 @@ export async function onRequest(context) {
             return new Response("参数缺失", { status: 400 })
         }
 
+        const data = await context.env.gv.get(code)
+        if(!data) {
+            return new Response("验证代码" + code + "不存在", { status: 400 })
+        }
+
         if (!(await doVerify(context, response))) {
             return new Response("验证失败", { status: 401 })
         }
 
-        return Response.json(await context.env.gv.get(code))
-        let obj = JSON.parse(await context.env.gv.get(code))
+        let obj = JSON.parse(data)
         obj.msg = "成功啦"
 
         await context.env.gv.delete(code)
