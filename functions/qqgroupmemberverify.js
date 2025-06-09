@@ -31,6 +31,9 @@ export async function onRequest(context) {
         const init = createJsonContentType();
         return new Response(JSON.stringify(json), init)
     }
+
+
+    return new Response("参数错误", { status: 400 })
 }
 
 function createJsonContentType() {
