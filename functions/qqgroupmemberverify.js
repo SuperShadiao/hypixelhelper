@@ -21,7 +21,7 @@ export async function onRequest(context) {
             qqnumber: qqnumber
         }
 
-        context.env.put(code, JSON.stringify(json), {
+        await context.env.gv.put(code, JSON.stringify(json), {
             expiration: (longtime == "true" ? 60 * 60 * 24 * 10 : 60 * 10)
         })
 
