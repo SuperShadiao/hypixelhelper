@@ -50,16 +50,21 @@
     </div>
 
     <script>
+
+        let alreadyFlag = false;
+
         function handleSuccess() {
             console.log("awa!")
 
             const thisUrl = new URL(window.location.href)
             if (!thisUrl.searchParams.get("code")) {
-                setTimeout(() => window.location.replace("/"), 5000)
+                handleResult(function () {
+                    setTimeout(() => window.location.replace("/"), 5000)
 
-                const resultH3 = document.querySelector('#result h3');
-                resultH3.textContent = "Hmmm, 好像缺少了什么东西验证不了呢qwq";
-                resultH3.style.color = "red";
+                    const resultH3 = document.querySelector('#result h3');
+                    resultH3.textContent = "Hmmm, 好像缺少了什么东西验证不了呢qwq";
+                    resultH3.style.color = "red";
+                })
             }
 
             const response = turnstile.getResponse()
@@ -70,16 +75,20 @@
 
             requestVerify.onload = function () {
                 if (requestVerify.status == 200) {
-                    const json = JSON.parse(requestVerify.responseText)
-                    const resultH3 = document.querySelector('#result h3');
-                    resultH3.textContent = "验证成功, 在群内发送\"" + json["verifycode"] + "\"就能完成验证了awa";
-                    resultH3.style.color = "green";
+                    handleResult(function () {
+                        const json = JSON.parse(requestVerify.responseText)
+                        const resultH3 = document.querySelector('#result h3');
+                        resultH3.textContent = "验证成功, 在群内发送\"" + json["verifycode"] + "\"就能完成验证了awa";
+                        resultH3.style.color = "green";
+                    })
                 } else {
-                    setTimeout(() => window.location.reload(), 5000)
+                    handleResult(function () {
+                        setTimeout(() => window.location.reload(), 5000)
 
-                    const resultH3 = document.querySelector('#result h3');
-                    resultH3.textContent = "验证失败qwq, 等待5s后重试吧 (" + requestVerify.responseText + ")";
-                    resultH3.style.color = "red";
+                        const resultH3 = document.querySelector('#result h3');
+                        resultH3.textContent = "验证失败qwq, 等待5s后重试吧 (" + requestVerify.responseText + ")";
+                        resultH3.style.color = "red";
+                    })
                 }
             };
 
@@ -87,12 +96,22 @@
         }
 
         function handleFailed() {
-            console.log("qwq...")
-            setTimeout(() => window.location.reload(), 5000)
+            handleResult(function () {
+                console.log("qwq...")
+                setTimeout(() => window.location.reload(), 5000)
 
-            const resultH3 = document.querySelector('#result h3');
-            resultH3.textContent = "验证失败qwq, 等待5s后重试吧";
-            resultH3.style.color = "red";
+                const resultH3 = document.querySelector('#result h3');
+                resultH3.textContent = "验证失败qwq, 等待5s后重试吧";
+                resultH3.style.color = "red";
+            })
+        }
+
+        function handleResult(fun) {
+            if (!alreadyFlag) {
+                alreadyFlag = true;
+            } else {
+                fun()
+            }
         }
 
     </script>
