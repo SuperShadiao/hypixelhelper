@@ -1,8 +1,8 @@
 export async function onRequest(context) {
     const url = new URL(context.request.url);
 
-    const code = url.searchParams.get("code")
-    const verifycode = generateRandomString1(5)
+    let code = url.searchParams.get("code")
+    let verifycode = generateRandomString1(5)
     const action = url.searchParams.get("action")
     const groupnumber = url.searchParams.get("groupnumber")
     const qqnumber = url.searchParams.get("qqnumber")
