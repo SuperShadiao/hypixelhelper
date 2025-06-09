@@ -53,11 +53,19 @@
         function handleSuccess() {
             console.log("awa!")
 
+            const thisUrl = new URL(window.location.href)
+            if (!thisUrl.searchParams.get("code")) {
+                setTimeout(() => window.location.replace("/"), 5000)
+
+                const resultH3 = document.querySelector('#result h3');
+                resultH3.textContent = "Hmmm, 好像缺少了什么东西验证不了呢qwq";
+                resultH3.style.color = "red";
+            }
+
             const response = turnstile.getResponse()
 
             const requestVerify = new XMLHttpRequest()
 
-            const thisUrl = new URL(window.location.href)
             requestVerify.open("get", "https://xiaoshadiao.club/qqgroupmemberverify?action=handle&code=" + thisUrl.searchParams.get("code") + "&response=" + response)
 
             requestVerify.onload = function () {
