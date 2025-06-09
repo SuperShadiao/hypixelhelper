@@ -30,6 +30,19 @@ export async function onRequest(context) {
 
         const init = createJsonContentType();
         return new Response(JSON.stringify(json), init)
+    } else if (action == "handle") {
+        if (!code || !response) {
+            return new Response("参数缺失", { status: 400 })
+        }
+
+        if (!doVerify(context, response)) {
+            return new Response("验证失败", { status: 401 })
+        }
+
+        let obj = JSON.parse(await context.env.gv.get(code))
+        obj.msg = "成功啦"
+    
+        return Response.json(obj)
     }
 
 
@@ -51,4 +64,24 @@ function generateRandomString(length, chars) {
 
 function generateRandomString1(length) {
     return generateRandomString(length, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789');
+}
+
+async function doVerify(context, response) {
+
+    const ip = context.request.headers.get('CF-Connecting-IP');
+
+    let formData = new FormData();
+    formData.append("secret", "0x4AAAAAABghjcqHdi_eQ0ZRx-rIpzl4jtg");
+    formData.append("response", response);
+    formData.append('remoteip', ip);
+
+    const url2 = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+    const result = await fetch(url2, {
+        body: formData,
+        method: "POST",
+    });
+
+    const jsonData = await (result.json())
+
+    return jsonData.success
 }
