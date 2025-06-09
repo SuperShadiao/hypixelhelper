@@ -22,7 +22,7 @@ export async function onRequest(context) {
         }
 
         await context.env.gv.put(code, JSON.stringify(json), {
-            expiration: (longtime == "true" ? 60 * 60 * 24 * 10 : 60 * 10)
+            expirationTtl: (longtime == "true" ? 60 * 60 * 24 * 10 : 60 * 10)
         })
 
         json.msg = "成功啦"
