@@ -35,7 +35,7 @@ export async function onRequest(context) {
             return new Response("参数缺失", { status: 400 })
         }
 
-        if (!doVerify(context, response)) {
+        if (!(await doVerify(context, response))) {
             return new Response("验证失败", { status: 401 })
         }
 
