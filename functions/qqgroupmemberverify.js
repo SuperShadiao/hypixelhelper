@@ -1,7 +1,7 @@
 export async function onRequest(context) {
     const url = new URL(context.request.url);
 
-    const code = generateRandomString1(7)
+    const code = url.searchParams.get("code")
     const verifycode = generateRandomString1(5)
     const action = url.searchParams.get("action")
     const groupnumber = url.searchParams.get("groupnumber")
@@ -10,6 +10,9 @@ export async function onRequest(context) {
     const response = url.searchParams.get("response")
 
     if (action == "new") {
+
+        code = generateRandomString1(7)
+        verifycode = generateRandomString1(5)
 
         if (!groupnumber || !qqnumber || !longtime) {
             return new Response("参数缺失", { status: 400 })
@@ -36,7 +39,7 @@ export async function onRequest(context) {
         }
 
         const data = await context.env.gv.get(code)
-        if(!data) {
+        if (!data) {
             return new Response("验证代码" + code + "不存在", { status: 400 })
         }
 
@@ -48,9 +51,9 @@ export async function onRequest(context) {
         obj.msg = "成功啦"
 
         await context.env.gv.delete(code)
-    
+
         return Response.json(obj)
-    } else if(!action) {
+    } else if (!action) {
         return context.next();
     }
 
