@@ -41,8 +41,12 @@ export async function onRequest(context) {
 
         let obj = JSON.parse(await context.env.gv.get(code))
         obj.msg = "成功啦"
+
+        await context.env.gv.delete(code)
     
         return Response.json(obj)
+    } else if(!action) {
+        return context.next();
     }
 
 
