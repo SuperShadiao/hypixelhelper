@@ -39,6 +39,7 @@ export async function onRequest(context) {
             return new Response("验证失败", { status: 401 })
         }
 
+        return Response.json(await context.env.gv.get(code))
         let obj = JSON.parse(await context.env.gv.get(code))
         obj.msg = "成功啦"
 
