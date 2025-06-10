@@ -8,7 +8,7 @@
 ### 关于Mod
 - shit mountain代码维护：小沙雕
 - 第一张背景图制作：HyperEnder
-- 如要反馈bug，可以[进群](https://hypixelhelper.pages.dev/qqg)反馈！:d
+- 如要反馈bug，可以[进群](https://xiaoshadiao.club/qqg)反馈！:d
 - 另外，关于mod更新的内容可在MC主界面上方公告栏查看！
 
 ### 友情链接
