@@ -1,3 +1,7 @@
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/b9a42da4-3130-436f-aadd-c0318f1d44aa" alt="Hypixel_Helper" width="900"/>
+</div>
+
 ### 介绍
 - 小沙雕为Hypixel打造的一个mod，功能杂乱（？），比较实用（？）
 
