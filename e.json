@@ -1,18 +1,24 @@
 {
 
-    "v":"5.2.3",
-    "u":"https://hypixelhelper.pages.dev/release.jar",
+    "v":"5.2.4",
+    "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
-        "https://hypixelhelper.pages.dev/release.jar",
+        "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v523/hypixelhelper-5.2.3.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v523/hypixelhelper-5.2.3.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v524/hypixelhelper-5.2.4.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v524/hypixelhelper-5.2.4.jar"
     ],
     "a":[
-        "%%hello%% 5.2.3更新公告: ",
-        "1，更新了Autofish",
-        "2，B站直播间新增预约功能",
-        "3，点歌台搜索界面按钮样式修改",
+        "%%hello%% 5.2.4更新公告: ",
+        "1，点歌台发布音乐Fishe Song",
+        "2，优化B站直播间点歌台",
+        "3，解决Auto bloodfiend在Killing spring和storm共存的情况下不右键的问题",
+        "4，解决Auto bloodfiend的最终优先级问题, 在storm状态下仍然尝试攻击Bloodfiend",
+        "5，B站监听器设置界面新增\"预约ID\"描述",
+        "6，优化寻路",
+        "7，新增XSD AC检测队友开关",
+        "8，新增自动改匿名功能",
+        "9，修复Autofish的一个bug",
         "关于作者小沙雕: 小沙雕的闲聊群728972740，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
