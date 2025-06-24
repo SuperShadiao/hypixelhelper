@@ -1,0 +1,54 @@
+.NMSL {
+    color: aquamarine;
+}
+
+.test-block {
+    color: royalblue;
+    background-color: aqua;
+    width: 250px;
+    height: 100px;
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+}
+
+#spantest {
+    color: red;
+    background-color: yellow;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.bb {
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+
+.b0 {
+    background-color: rgba(0, 0, 0, 0);
+    width: 300px;
+    height: 300px;
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+}
+
+.b1 {
+    background-color: red;
+}
+
+.b2 {
+    background-color: green;
+}
+
+.b3 {
+    background-color: blue;
+}
+
+.mid {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
