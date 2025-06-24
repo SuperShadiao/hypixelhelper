@@ -1,0 +1,1 @@
+if(document.location.pathname != "/") document.location.replace("https://github.com/SuperShadiao/hypixelhelper");
