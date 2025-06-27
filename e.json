@@ -1,19 +1,20 @@
 {
 
-    "v":"5.2.5",
+    "v":"5.2.5-FIX-1",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v525/hypixelhelper-5.2.5.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v525/hypixelhelper-5.2.5.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v525f1/hypixelhelper-5.2.5-FIX-1.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v525f1/hypixelhelper-5.2.5-FIX-1.jar"
     ],
     "a":[
-        "%%hello%% 5.2.5更新公告: ",
+        "%%hello%% 5.2.5-FIX-1更新公告: ",
         "1，修复B站提示消息: 当存在与B站有关的提示消息时, 自动向上抬升避免被B站自带的遮罩挡住",
         "2，点歌台添加音乐C$DN Song part 1",
         "3，为\"不可修改音乐\"添加禁用状态保存",
         "4，修复自动钓鱼的bug",
+        "5，优化事件公交注入",
         "关于作者小沙雕: 小沙雕的闲聊群728972740，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
