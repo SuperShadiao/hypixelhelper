@@ -1,77 +1,433 @@
 {
     "BlacklistedPlayers": [
-        // {"2337399de0744c11858f30db6ee7850a": "sniper"},
-        // {"b912d436d3da49189762567455294848": "scw"},
-        // {"471dab8ab56b4305b5b704f72cc9aafc": null},
-        // {"630547d36514473f953c288ee399e7d3": "safe"},
-        // {"2b618d8d96b841c1b8994f8945d80c7e": "safe"},
-        // {"8fb814ce159f4c71a5a373902c414bfc": "safe"},
-        // {"94313749432c46fc85c22d772aa6beec": "toxic"},
-        // {"bbf94e128f944e37a338afb1d7f193be": "toxic"},
-        // {"f091b168e21c42c898095c97c86b5152": "toxic"},
-        // {"c0726d4df77f483db8ca6c28ee5821f3": "safe"},
-        // {"f31014e198dd4ca38e49ed729e209cd4": "safe"},
-        {"e78ea84a3e244e038ef537f4ae28e731": "du_li_xuan_yan"},
-        {"b0845b4689f74542986ce74a80371f11": "du_li_xuan_yan"},
-        {"a962e8f502064ef18de8517774c3075d": "du_li_xuan_yan"},
-        {"c0446616f0e843d08159646e61eef485": "du_li_xuan_yan"},
-        // {"16f76d9c9c6b4c0dacdd66c0a607fa99": "toxic"},
-        // {"2b1be53d3d2c4301be0426379bb83a29": "toxic"},
-        // {"39006927ecf741ddb1db7724f20c3299": "toxic"},
-        // {"4afb5ba7a13f4648a4f431c6a06ab44c": "toxic"},
-        // {"481076b122324efbba8d635f271aba16": "toxic"},
-        // {"3e42188d994e47eabb2e0f9f74af3291": "toxic"},
-        // {"f1d951ca9263403cb1e220d783142f80": "toxic"},
-        // {"87faafd8e8264b0280bb2c97326e8d71": "toxic"},
-        // {"bfbc98b3e25a429c8fe957cbc7455ef9": "toxic"},
-        {"7310e4c80f74413ab5a4032402113e0c": "du_li_xuan_yan"},
-        // {"ff8c8242ca9a4ffd9762468a17881b68": "toxic"},
-        // {"74b1a45225014e258eec8b2b9fece187": "safe"},
-        {"3e96ce18bd904af4a68cb39553fead88": "du_li_xuan_yan"},
-        // {"9d96bad42fed4d738703cd2321378a44": "toxic"},
-        // {"a451d99b9b254b7fadece190026eb314": "toxic"},
-        {"77c1fb753da14ecbaf1d7c0996358528": "du_li_xuan_yan"},
-        {"84881593a08d424da9f163efe734595c": "du_li_xuan_yan"},
-        // {"531a02e26af0491db03b471bc4792d32": "toxic"},
-        // {"150a0bff54af4dfba97f6351d89138c4": "toxic"},
-        // {"dc9e7c923b99408aa58eb67ae17ac857": "toxic"},
-        // {"468c0a57778c4e27964c4cda3d1a42ee": "toxic"},
-        {"b343ed27089c47a2b0c282cdf9572239": "scw"},
-        // {"fe1d9c3a1ed845359cf53830bd78749f": "toxic"},
-        // {"576e831770f945658bb5288599214a12": "toxic"},
-        // {"ca795332accd411d8a93d45c879d9f19": "safe"},
-        // {"057f9fe224b14ab493b48228cde800c6": "safe"},
-        // {"a4add7fa1bbe46af9fbba10aef6c9289": "toxic"},
-        // {"b8223ec0bf324a54b1d3d08c085a5b53": "toxic"},
-        {"4e9103940d6849f69318a5d253312564": "du_li_xuan_yan"},
-        // {"b3cd8120cc894760aabb97d6986d5879": "toxic"},
-        {"5557beec04224c4b82d81e3f2329825e": "scw"},
-        {"8f6cdc16d73546ccab4a59f339c543f5": "scw"},
-        // {"d84e507b7b7b419397a9c74d12e3cd14": "toxic"},
-        // {"c189cda02fcc478fa68fb13b481b0a28": "toxic"},
-        // {"71fc27339be04f3eb920397a14c1ddbb": "toxic"},
-        // {"0564114130ef445ca8cf35820b9767a7": "toxic"},
-        // {"5913578c2f0847b0b2d1c72d15ea6133": "toxic"},
-        // {"5d609cbae7df431ca249625d513a2714": "toxic"},
-        // {"da739f10a66b4dc0a088d5232af0d4c1": "toxic"},
-        // {"832cdd289ca94903ac660bc484ed5ebb": "toxic"},
-        // {"d7414f83e4a04bdb81c1d3bdd92005c3": "toxic"},
-        // {"39e9d7a7f5a248d6aa039f05175a5d80": "toxic"},
-        {"d467d0522e9443c5bf461b329390c859": "scw"},
-        {"e687c11cee9e40cc8aef8f6a176d5293": "scw"},
-        // {"0791d67b2637444494b444b0db824d50": "toxic"},
-        {"202970804fd14d349aa95c9ec285d433": "scw"},
-        // {"22bb3ebf190d4bb38615e75314455f56": "toxic"},
-        {"e292b36acd224b0eb81e7f85cd534184": "du_li_xuan_yan"},
-        // {"77bf796048584ef3b76fc7fcf2f7c97a": "safe"},
-        // {"fbdf1f2c547c47f28a0e8d8799a55185": "toxic"},
-        // {"f874571bbb644e3c96c2f495180aca46": "toxic"},
-        // {"142b905378a845669493e72c449a9459": "toxic"},
-        // {"a5907f1af0004b6e8d0c8e1799147cd9": "toxic"},
-        // {"bc1ee4a1fc6f4e8f906d195265a37645": "du_li_xuan_yan"},
-        {"11d41954122342f2b76e5b3aa7e0fe0d": "scw"},
-        {"8639aa519efc47a5bf5ecbe9fd4079fa": "scw"},
-        {"de4943bfaf014d28bd10d2cfcba14c99": "toxic"},                                                    // per! https://xiaoshadiao.yqloss.net/something/ant1411.mp4    https://xiaoshadiao.yqloss.net/something/instantswitchitem.png
-        {"16edc99a493e417b965ec1e5f63aa6ef": "scw"}
+        {
+            "e78ea84a3e244e038ef537f4ae28e731": "du_li_xuan_yan"
+        },
+        {
+            "b0845b4689f74542986ce74a80371f11": "du_li_xuan_yan"
+        },
+        {
+            "a962e8f502064ef18de8517774c3075d": "du_li_xuan_yan"
+        },
+        {
+            "c0446616f0e843d08159646e61eef485": "du_li_xuan_yan"
+        },
+        {
+            "7310e4c80f74413ab5a4032402113e0c": "du_li_xuan_yan"
+        },
+        {
+            "3e96ce18bd904af4a68cb39553fead88": "du_li_xuan_yan"
+        },
+        {
+            "77c1fb753da14ecbaf1d7c0996358528": "du_li_xuan_yan"
+        },
+        {
+            "84881593a08d424da9f163efe734595c": "du_li_xuan_yan"
+        },
+        {
+            "b343ed27089c47a2b0c282cdf9572239": "scw"
+        },
+        {
+            "4e9103940d6849f69318a5d253312564": "du_li_xuan_yan"
+        },
+        {
+            "5557beec04224c4b82d81e3f2329825e": "scw"
+        },
+        {
+            "8f6cdc16d73546ccab4a59f339c543f5": "scw"
+        },
+        {
+            "d467d0522e9443c5bf461b329390c859": "scw"
+        },
+        {
+            "e687c11cee9e40cc8aef8f6a176d5293": "scw"
+        },
+        {
+            "202970804fd14d349aa95c9ec285d433": "scw"
+        },
+        {
+            "e292b36acd224b0eb81e7f85cd534184": "du_li_xuan_yan"
+        },
+        {
+            "11d41954122342f2b76e5b3aa7e0fe0d": "scw"
+        },
+        {
+            "8639aa519efc47a5bf5ecbe9fd4079fa": "scw"
+        },
+        {
+            "de4943bfaf014d28bd10d2cfcba14c99": "toxic"
+        },
+        {
+            "16edc99a493e417b965ec1e5f63aa6ef": "scw"
+        },
+
+
+        /* Autofishe Start */
+
+        {
+            "4558735a5b1747e1be595372f166f334": "autofishe"
+        },
+        {
+            "46fc86165e614cc8a71268d09299bec8": "autofishe"
+        },
+        {
+            "94832090461d48acbfeaa2b6e6db2fb7": "autofishe"
+        },
+        {
+            "90feee6eb0574b5a882eaf3f8368604b": "autofishe"
+        },
+        {
+            "65968af7216649bcaa630a3f1afb22c7": "autofishe"
+        },
+        {
+            "2a5432bbce8a49f09a718b24edc9cd0e": "autofishe"
+        },
+        {
+            "5d6761a1e01b48fe89705352c00ea2a7": "autofishe"
+        },
+        {
+            "40e3b3024baa481990fae621e46aef2d": "autofishe"
+        },
+        {
+            "83155c48287f4c94a47eb8513225ecdf": "autofishe"
+        },
+        {
+            "1783f0915e7c41d28c49113488955190": "autofishe"
+        },
+        {
+            "59cf311b153f4c04a046a53050c474b0": "autofishe"
+        },
+        {
+            "cc40461b84804c9ca0de791d63bef197": "autofishe"
+        },
+        {
+            "c38c70f68306451db20991a4a75fca04": "autofishe"
+        },
+        {
+            "4c8baf41a5c34e4b81c34061623a4584": "autofishe"
+        },
+        {
+            "13fafc44d21e4f7993791d8f11abacca": "autofishe"
+        },
+        {
+            "8173e63bf3a64e18b3fa60eb252238ab": "autofishe"
+        },
+        {
+            "708226f1ab9648e7a1071ec5b431ea42": "autofishe"
+        },
+        {
+            "c92d627f61f943ca87dc7c94e0ce7c24": "autofishe"
+        },
+        {
+            "e6d1827e90be45638a800824e3a7c8f5": "autofishe"
+        },
+        {
+            "164f682e605b491e82d3b1ace6e48984": "autofishe"
+        },
+        {
+            "af40d408f2c4421b81497d4a0f7431dc": "autofishe"
+        },
+        {
+            "3a47b43f2a9249269dd74b1b04a35006": "autofishe"
+        },
+        {
+            "e277419c04aa47edbb8323da4426b7bd": "autofishe"
+        },
+        {
+            "e83e253e2679469db13045891274e280": "autofishe"
+        },
+        {
+            "49c984afc4b54998a2b96fa7b0b23c06": "autofishe"
+        },
+        {
+            "5d24f9a4779949f9837197dde0cd638c": "autofishe"
+        },
+        {
+            "224d9e26cc264d7fb1ec378fc2d66b02": "autofishe"
+        },
+        {
+            "a1424ee875ce4721b2e583d27e3d4ed8": "autofishe"
+        },
+        {
+            "ed76cbb7ba264299809875b317a65f8e": "autofishe"
+        },
+        {
+            "6d843b55a45e4bd6ac00de44dabd0cd4": "autofishe"
+        },
+        {
+            "17bf852b8f774f52b58ace4da228e772": "autofishe"
+        },
+        {
+            "d6bfb925fe984d6185fdd10637eee496": "autofishe"
+        },
+        {
+            "cf4b6dd9f6644b4f853a8d58c63f7592": "autofishe"
+        },
+        {
+            "2ca47421483c49eaa1c7f582f08a07a9": "autofishe"
+        },
+        {
+            "7558cea00d1c4821a8dff87e33edcc35": "autofishe"
+        },
+        {
+            "a4c09ed9a602431f9fd442364a31d655": "autofishe"
+        },
+        {
+            "d4643ffa59c7486babb2d6e6a227aaa5": "autofishe"
+        },
+        {
+            "452a786a0bd24291b7292bef24a0e302": "autofishe"
+        },
+        {
+            "78e42cccc40b4553a0ef4c58e2c13f14": "autofishe"
+        },
+        {
+            "2ed15ea0e7d64c72afc98e345d73dad3": "autofishe"
+        },
+        {
+            "c2f19c9141bf484dbceec8c8edac2a30": "autofishe"
+        },
+        {
+            "355775704da54f8bbda918a57b3cc1d0": "autofishe"
+        },
+        {
+            "3c9ed95b5a7d4825974ade434a8bb130": "autofishe"
+        },
+        {
+            "8e2a07f9510b4748b77f965a171922cc": "autofishe"
+        },
+        {
+            "22c55580947043ab895696bb28ce62bb": "autofishe"
+        },
+        {
+            "d90085e445ef474daf79d6eaa83ee514": "autofishe"
+        },
+        {
+            "e8246bf0613349daac4f7ea07fd79773": "autofishe"
+        },
+        {
+            "a1c52c7003db4f4a832d0f7cde579f43": "autofishe"
+        },
+        {
+            "e29a495d0ad54c4dbd3541f12d0887f6": "autofishe"
+        },
+        {
+            "00f9b83210704a608ffd97aa7c25ea8e": "autofishe"
+        },
+        {
+            "2be65d09c4c343e883d6e13f9cbb0445": "autofishe"
+        },
+        {
+            "ac4808e7988441b28346781a22d569d0": "autofishe"
+        },
+        {
+            "696e21cd12034b94a4513ffee52690ec": "autofishe"
+        },
+        {
+            "efc10e4ae73c4a3988698fcdb4f31df9": "autofishe"
+        },
+        {
+            "acb446c6e3094642b73254f9a6461a04": "autofishe"
+        },
+        {
+            "53ffbb0bacd045d5867fdebfb5bc6754": "autofishe"
+        },
+        {
+            "d382ebea2182441aae5937c0e52756c7": "autofishe"
+        },
+        {
+            "a86615087ee340988324c97d489979a8": "autofishe"
+        },
+        {
+            "4a6db06a932d4c058abeaf45f974a457": "autofishe"
+        },
+        {
+            "50714dea74d54c2c99467d4eddced34a": "autofishe"
+        },
+        {
+            "818245ffb8ef4dd5b865f589b888e6be": "autofishe"
+        },
+        {
+            "d32270bd269a4fcc873e3d8df524eb5e": "autofishe"
+        },
+        {
+            "67faf9a1601148c7b550dda226e3d6c1": "autofishe"
+        },
+        {
+            "42eaad74e78843c4a1ffee84c00102e8": "autofishe"
+        },
+        {
+            "bd230f2b4ab74639a30f0c650d3a8d8f": "autofishe"
+        },
+        {
+            "ca577a297c2141759e135af302d3c387": "autofishe"
+        },
+        {
+            "3fba68b3dc014922a866a489d72fdc35": "autofishe"
+        },
+        {
+            "1589244f9f924adba62fd9c50964b947": "autofishe"
+        },
+        {
+            "b701f62b78e64a7da69cb9e1f4b1cdce": "autofishe"
+        },
+        {
+            "d61cd4e9fcf146d2bd1dd9b494405b07": "autofishe"
+        },
+        {
+            "bf42fd9315c44fefac9b6e9afaa056b6": "autofishe"
+        },
+        {
+            "f35ee90d164b4c73b89964fbca515821": "autofishe"
+        },
+        {
+            "43804af84abd4f5abcb2f0c2e2f1247f": "autofishe"
+        },
+        {
+            "cafc60dce0b1464fa45c4ac60ee7ab48": "autofishe"
+        },
+        {
+            "c14df07c8efb427f8594d162b22ad05b": "autofishe"
+        },
+        {
+            "268049483f6c4669be3449368cb44242": "autofishe"
+        },
+        {
+            "49215af9b0fc4e49b12edc97d3b9a8b1": "autofishe"
+        },
+        {
+            "f586dff766a64fc89a39bcc718cd4477": "autofishe"
+        },
+        {
+            "94797269678448fdb8451a446da9bfff": "autofishe"
+        },
+        {
+            "9c90592ed0dc4081876f46aee2730efb": "autofishe"
+        },
+        {
+            "a5c1dc954c6c4dc8b36434ca29a84ec8": "autofishe"
+        },
+        {
+            "9364793ff0644209b672af3bd1cf6d75": "autofishe"
+        },
+        {
+            "65fa6989824743049a41c3d87b6e48f5": "autofishe"
+        },
+        {
+            "c654875af1dd41b4acb01f679b0e8aa9": "autofishe"
+        },
+        {
+            "26f2bce602434e47a97ad87b93716914": "autofishe"
+        },
+        {
+            "957c72eeef7e4971861bdbe530507037": "autofishe"
+        },
+        {
+            "7ca5f666efe245859895ab05d766856b": "autofishe"
+        },
+        {
+            "e00f63fba566466e9cdbbdfe61937f46": "autofishe"
+        },
+        {
+            "4998a0a4086141b0ab8876a9ef7da3ae": "autofishe"
+        },
+        {
+            "b36927f5f78f435d9534bc4d973872a3": "autofishe"
+        },
+        {
+            "8c6fcdc5dc634e53aee98aec0a23d1b1": "autofishe"
+        },
+        {
+            "a3dabf3902964db6873f9fb5d872a123": "autofishe"
+        },
+        {
+            "03a9cad5c1284266a86581d62c934c84": "autofishe"
+        },
+        {
+            "a8fb3743db1a4057a76bfb432155fb96": "autofishe"
+        },
+        {
+            "7376ae7fe79a4c9db21c048306ae65a8": "autofishe"
+        },
+        {
+            "1926205c5b924315b3b3a8490ffe1af2": "autofishe"
+        },
+        {
+            "94fb02eddefc4b5fa70da5c3812e32f5": "autofishe"
+        },
+        {
+            "810693f05a554661baf4f46ecbee4f50": "autofishe"
+        },
+        {
+            "0b11fd26b4474853b1ad9bd5a0f0162a": "autofishe"
+        },
+        {
+            "b949f15395634acaa066665c75ee7518": "autofishe"
+        },
+        {
+            "8cfcc36fa25d45f6a1382352a1751646": "autofishe"
+        },
+        {
+            "de346fa3c6594662993b41fc14e78256": "autofishe"
+        },
+        {
+            "d554f11d2e2f4a50be0994ace2427ffd": "autofishe"
+        },
+        {
+            "8de7ee6806d54fb19b3d1de73063f150": "autofishe"
+        },
+        {
+            "cc24a439bd3e48ec9858e807d2cb7288": "autofishe"
+        },
+        {
+            "3db113c7b2d64141b5e58e7c9768c625": "autofishe"
+        },
+        {
+            "726ccb890e6c4bdbad099c310ca4ec0c": "autofishe"
+        },
+        {
+            "1b6ff7f0bb444b0ab49c6708cf02c28a": "autofishe"
+        },
+        {
+            "2cd249dfb64d4d6ebe8a7cd53e218dfc": "autofishe"
+        },
+        {
+            "929cb7d0f1f74602938662b45e33d1cb": "autofishe"
+        },
+        {
+            "064fd0fe399c407989161319c60374b7": "autofishe"
+        },
+        {
+            "5f34eb385a3c4b4eae5fafc9f58f700b": "autofishe"
+        },
+        {
+            "e50993d20816437981d6ffdf7865a665": "autofishe"
+        },
+        {
+            "6b0dd872102347a29509c5446ad1c25f": "autofishe"
+        },
+        {
+            "d32e1c69abf84710973d3d0f42087f38": "autofishe"
+        },
+        {
+            "cca9ee4464c840e98bef1c6626ac0588": "autofishe"
+        },
+        {
+            "5ff04a94a37d4e9cb11384f88fc53a8f": "autofishe"
+        },
+        {
+            "931ec6da2e044911913b26e40b310be3": "autofishe"
+        },
+        {
+            "1c4d8b7b652c42dba776866cb6b96912": "autofishe"
+        },
+        {
+            "e1905f1cf8b24f258f0f98a1755bdef3": "autofishe"
+        },
+        {
+            "ab8f3fecb9d0465bbfea982bde11c1f3": "autofishe"
+        }
+        
+        /* Autofishe End */
     ]
 }
