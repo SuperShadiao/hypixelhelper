@@ -1,23 +1,35 @@
+<br>
+<br>
+<div align="center">** 注意: 这个Mod只能在Windows系统上正常运行 **</div>
+<br>
+<br>
 <div align="center">
     <img src="https://github.com/user-attachments/assets/b9a42da4-3130-436f-aadd-c0318f1d44aa" alt="Hypixel_Helper" width="900"/>
 </div>
 
-### Introduction
+<br>
+<br>
+
+小沙雕有[英文README.md](https://xiaoshadiao.club/modrinth)文件可阅读
+
+XiaoShadiao has a English version for README.md file [at here](https://xiaoshadiao.club/modrinth)
+
+### 介绍
 - 小沙雕为Hypixel打造的一个mod，功能杂乱（？），比较实用（？）
 
 ---
-### Installation
+### 安装
 - 从release区下载mod之后将mod丢入.minecraft\mods文件夹，
 - **前提**:​​ 前提是需要安装forge
 
 ---
-### Commands
+### 指令
 - **/hhm** (打开设置菜单)
 - **/hhmusic** (打开点歌台)
 - 还有更多...
 
 ---
-### Features
+### 功能
 
 <details>
 <summary>自动类</summary>
