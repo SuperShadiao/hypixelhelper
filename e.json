@@ -1,28 +1,31 @@
 {
 
-    "v":"5.2.6",
+    "v":"5.2.7",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v525f1/hypixelhelper-5.2.5-FIX-1.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v525f1/hypixelhelper-5.2.5-FIX-1.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v527/hypixelhelper-5.2.7.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v527/hypixelhelper-5.2.7.jar"
     ],
     "a":[
-        "%%hello%% 5.2.6更新公告: ",
-        "1，修复了因为Logo渲染实体过滤问题导致的掉帧",
-        "2，优化了自动钓鱼",
-        "3，修复密室杀手侦探弓不显示的问题",
-        "4，调整了英语对密室杀手侦探弓显示的描述",
-        "5，新增功能Freelook (自由视角) & Freecam (自由相机)",
+        "%%hello%% 5.2.7更新公告: ",
+        "1，新增自动钓鱼自定义抛竿延迟",
+        "2，尝试了修复skyblock auto dance room跳出玻璃位置的问题",
+        "3，新增在线玩家，同服玩家提示",
+        "4，通过使用线程池提高自动挖掘的方块扫描效率",
+        "5，IRC的挂机状态文本内容添加I18n国际化支持",
+        "6，为mod下载的部分文件添加md5检查，避免下载到错误的文件",
+        "7，修复mod的exe文件因为目录路径带空格导致无法运行的问题",
         "关于作者小沙雕: 小沙雕的闲聊群728972740，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕，其他致谢：Discord somebody_lmfao",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
     "rpurls": [
         "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/rp2/hypixelhelperpack.xsd",
+        "https://xiaoshadiao.club/hypixelhelperpack.xsd",
         "https://github.com/SuperShadiao/hypixelhelper/releases/download/rp/hypixelhelperpack.xsd"
     ],
-    "rpv": 12,
+    "rpv": 13,
     "aas": [
         {"name": "Cloudflare Artificial Idiot", "msgprefix": "@AI"},
         {"name": "DeepSeek深度思考", "msgprefix": "@DS"},
