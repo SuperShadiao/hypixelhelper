@@ -1,15 +1,18 @@
 {
 
-    "v":"5.2.7",
+    "v":"5.2.8",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v527/hypixelhelper-5.2.7.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v527/hypixelhelper-5.2.7.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v528/hypixelhelper-5.2.8.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v528/hypixelhelper-5.2.8.jar"
     ],
     "a":[
-        "%%hello%% 5.2.7更新公告: ",
+        "%%hello%% 5.2.8更新公告: ",
+        "1，修复了Skyblock auto dance room因为延迟问题在Punch环节失败的问题",
+        "2，修复了randomcase变量的神秘bug (我也不知道怎么回事)",
+        "5.2.7更新公告",
         "1，新增自动钓鱼自定义抛竿延迟",
         "2，尝试了修复skyblock auto dance room跳出玻璃位置的问题",
         "3，新增在线玩家，同服玩家提示",
