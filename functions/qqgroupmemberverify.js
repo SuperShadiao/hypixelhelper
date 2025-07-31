@@ -65,8 +65,8 @@ export async function onRequest(context) {
             return response
         }
 
-        obj.code = code
         obj = JSON.parse(data)
+        obj.code = code
         obj.success = true
         obj.msg = "成功啦"
 

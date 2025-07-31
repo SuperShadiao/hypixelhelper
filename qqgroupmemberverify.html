@@ -87,11 +87,14 @@
                     const resultH3 = document.querySelector('#result h3');
                     if (json.success) {
 
+                        resultH3.textContent = "请稍等片刻...";
+                        resultH3.style.color = "black";
+
                         const requestHook = new XMLHttpRequest()
                         requestHook.open("get", "https://hook.xiaoshadiao.club/qqgmv?code=" + json.code + "&verifycode=" + json.verifycode + "&groupnumber=" + json.groupnumber + "&qqnumber=" + json.qqnumber)
 
                         requestHook.onload = function () {
-                            if(requestHook.responseText == "成功啦") {
+                            if (requestHook.responseText == "成功啦") {
                                 resultH3.textContent = "验证成功啦awa, 你可以关闭这个页面了!";
                                 resultH3.style.color = "green";
                             } else {
@@ -107,7 +110,7 @@
 
                         requestHook.send()
 
-                    } else if(requestVerify.status == 404) {
+                    } else if (requestVerify.status == 404) {
                         resultH3.textContent = "验证链接不存在或已过期!";
                         resultH3.style.color = "red";
                     } else {
