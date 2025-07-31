@@ -72,7 +72,7 @@
 
             const requestVerify = new XMLHttpRequest()
 
-            requestVerify.open("get", "https://xiaoshadiao.club/qqgroupmemberverify?action=handle&code=" + thisUrl.searchParams.get("code") + "&response=" + response)
+            requestVerify.open("post", "https://xiaoshadiao.club/qqgroupmemberverify?action=handle&code=" + thisUrl.searchParams.get("code") + "&response=" + response)
 
             requestVerify.onload = requestSuccess
 
