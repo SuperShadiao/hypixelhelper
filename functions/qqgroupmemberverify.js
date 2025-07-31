@@ -70,7 +70,7 @@ export async function onRequest(context) {
         obj.success = true
         obj.msg = "成功啦"
 
-        await context.env.gv.delete(code)
+        // await context.env.gv.delete(code)
 
         return Response.json(obj)
     } else if (!action) {
