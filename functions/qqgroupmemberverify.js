@@ -35,17 +35,25 @@ export async function onRequest(context) {
         return new Response(JSON.stringify(json), init)
     } else if (action == "handle") {
 
+        const data = await context.env.gv.get(code)
+
+        let obj = {success: false, msg: "未知错误"}
+
         if (context.request.method !== "POST") {
-            return new Response("请使用POST请求!", { status: 405 })
+            // return new Response("请使用POST请求!", { status: 405 })
+            obj.msg = "请使用POST请求!"
+            const response = Response.json(obj)
+            response.status = 405
+            return response
         }
 
         if (!code || !response) {
-            return new Response("参数缺失", { status: 400 })
+            // return new Response("参数缺失", { status: 400 })
+            obj.msg = "参数缺失"
+            const response = Response.json(obj)
+            response.status = 400
+            return response
         }
-
-        const data = await context.env.gv.get(code)
-        
-        let obj = {success: false, msg: "未知错误"}
 
         if (!data) {
             obj.msg = "验证代码" + code + "不存在"
