@@ -74,26 +74,60 @@
 
             requestVerify.open("get", "https://xiaoshadiao.club/qqgroupmemberverify?action=handle&code=" + thisUrl.searchParams.get("code") + "&response=" + response)
 
-            requestVerify.onload = function () {
-                if (requestVerify.status == 200) {
-                    handleResult(function () {
-                        const json = JSON.parse(requestVerify.responseText)
-                        const resultH3 = document.querySelector('#result h3');
-                        resultH3.textContent = "验证成功, 在群内发送\"" + json["verifycode"] + "\"就能完成验证了awa";
-                        resultH3.style.color = "green";
-                    })
-                } else {
-                    handleResult(function () {
-                        setTimeout(() => window.location.reload(), 5000)
+            requestVerify.onload = requestSuccess
 
-                        const resultH3 = document.querySelector('#result h3');
-                        resultH3.textContent = "验证失败qwq, 等待5s后重试吧 (" + requestVerify.responseText + ") (如果你挂了梯子, 关掉重试)";
-                        resultH3.style.color = "red";
-                    })
-                }
-            };
+            requestVerify.ontimeout = requestVerify.onerror = requestVerify.onabort = requestFailed
 
             requestVerify.send()
+
+            function requestSuccess() {
+                handleResult(function () {
+                    const json = JSON.parse(requestVerify.responseText)
+
+                    const resultH3 = document.querySelector('#result h3');
+                    if (json.success) {
+
+                        const requestHook = new XMLHttpRequest()
+                        requestHook.open("get", "https://hook.xiaoshadiao.club/qqgmv?code=" + json.code + "&verifycode=" + json.verifycode + "&groupnumber=" + json.groupnumber + "&qqnumber=" + json.qqnumber)
+
+                        requestHook.onload = function () {
+                            if(requestHook.responseText == "成功啦") {
+                                resultH3.textContent = "验证成功啦awa, 你可以关闭这个页面了!";
+                                resultH3.style.color = "green";
+                            } else {
+                                requestHookFailed();
+                            }
+                        }
+                        function requestHookFailed() {
+                            resultH3.textContent = "验证成功了qwq, 但是请求网络钩子失败了, 等待5s后重试吧";
+                            resultH3.style.color = "red";
+                        }
+                        requestHook.ontimeout = requestHook.onerror = requestHook.onabort = requestHookFailed
+
+                        requestHook.send()
+
+                    } else if(requestVerify.status == 404) {
+                        resultH3.textContent = "验证链接不存在或已过期!";
+                        resultH3.style.color = "red";
+                    } else {
+                        setTimeout(() => window.location.reload(), 5000)
+                        resultH3.textContent = "验证失败了qwq, 等待5s后重试吧 (" + json.msg + ")";
+                        resultH3.style.color = "red";
+                    }
+
+                })
+            }
+            function requestFailed() {
+                handleResult(function () {
+                    console.log("qwq...")
+                    setTimeout(() => window.location.reload(), 5000)
+
+                    const resultH3 = document.querySelector('#result h3');
+                    resultH3.textContent = "请求验证网址失败了qwq, 等待5s后重试吧";
+                    resultH3.style.color = "red";
+                })
+            }
+
         }
 
         function handleFailed() {

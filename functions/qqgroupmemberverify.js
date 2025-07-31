@@ -34,20 +34,35 @@ export async function onRequest(context) {
         const init = createJsonContentType();
         return new Response(JSON.stringify(json), init)
     } else if (action == "handle") {
+
+        if (context.request.method !== "POST") {
+            return new Response("请使用POST请求!", { status: 405 })
+        }
+
         if (!code || !response) {
             return new Response("参数缺失", { status: 400 })
         }
 
         const data = await context.env.gv.get(code)
+        
+        let obj = {success: false, msg: "未知错误"}
+
         if (!data) {
-            return new Response("验证代码" + code + "不存在", { status: 400 })
+            obj.msg = "验证代码" + code + "不存在"
+            const response = Response.json(obj)
+            response.status = 404
+            return response
         }
 
         if (!(await doVerify(context, response))) {
-            return new Response("验证失败", { status: 401 })
+            obj.msg = "验证失败"
+            const response = Response.json(obj)
+            response.status = 401
+            return response
         }
 
-        let obj = JSON.parse(data)
+        obj = JSON.parse(data)
+        obj.success = true
         obj.msg = "成功啦"
 
         await context.env.gv.delete(code)
