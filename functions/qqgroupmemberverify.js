@@ -42,30 +42,26 @@ export async function onRequest(context) {
         if (context.request.method !== "POST") {
             // return new Response("请使用POST请求!", { status: 405 })
             obj.msg = "请使用POST请求!"
-            const response = Response.json(obj)
-            response.status = 405
+            const response = Response.json(obj, { status: 405 })
             return response
         }
 
         if (!code || !response) {
             // return new Response("参数缺失", { status: 400 })
             obj.msg = "参数缺失"
-            const response = Response.json(obj)
-            response.status = 400
+            const response = Response.json(obj, { status: 400 })
             return response
         }
 
         if (!data) {
             obj.msg = "验证代码" + code + "不存在"
-            const response = Response.json(obj)
-            response.status = 404
+            const response = Response.json(obj, { status: 404 })
             return response
         }
 
         if (!(await doVerify(context, response))) {
             obj.msg = "验证失败"
-            const response = Response.json(obj)
-            response.status = 401
+            const response = Response.json(obj, { status: 401 })
             return response
         }
 
