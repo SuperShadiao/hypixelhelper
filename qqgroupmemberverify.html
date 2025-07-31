@@ -99,6 +99,7 @@
                             }
                         }
                         function requestHookFailed() {
+                            setTimeout(() => window.location.reload(), 5000)
                             resultH3.textContent = "验证成功了qwq, 但是请求网络钩子失败了, 等待5s后重试吧";
                             resultH3.style.color = "red";
                         }
