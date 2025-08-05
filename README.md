@@ -106,6 +106,7 @@ XiaoShadiao has a English version for README.md file [at here](https://xiaoshadi
 - **Rift Auto Dance Room**
 - **Auto Play Harp**
 - **Auto Bloodfiend Slayer**
+- **Glacite Mineshaft Sharing**
 
 </details>
 
@@ -204,4 +205,4 @@ B站官方饭饭: [点击这里](https://play-live.bilibili.com/details/35483977
 **有些功能是基于Hypixel中文制作的, 如果你是英文的Hypixel有些功能可能无法工作.**
 
 ---
-_Last update at: Hypixel Helper v5.2.5_
+_Last update at: Hypixel Helper v5.2.9_
