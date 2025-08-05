@@ -1,6 +1,6 @@
 {
 
-    "v":"5.2.8",
+    "v":"5.2.9-PRE-1",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
@@ -9,17 +9,12 @@
         "https://github.com/SuperShadiao/hypixelhelper/releases/download/v528/hypixelhelper-5.2.8.jar"
     ],
     "a":[
-        "%%hello%% 5.2.8更新公告: ",
-        "1，修复了Skyblock auto dance room因为延迟问题在Punch环节失败的问题",
-        "2，修复了randomcase变量的神秘bug (我也不知道怎么回事)",
-        "5.2.7更新公告",
-        "1，新增自动钓鱼自定义抛竿延迟",
-        "2，尝试了修复skyblock auto dance room跳出玻璃位置的问题",
-        "3，新增在线玩家，同服玩家提示",
-        "4，通过使用线程池提高自动挖掘的方块扫描效率",
-        "5，IRC的挂机状态文本内容添加I18n国际化支持",
-        "6，为mod下载的部分文件添加md5检查，避免下载到错误的文件",
-        "7，修复mod的exe文件因为目录路径带空格导致无法运行的问题",
+        "%%hello%% 5.2.9-PRE-1更新公告: ",
+        "1，修复自动钓鱼在水中偶尔误判的问题, 并更改了判定方式",
+        "2，优化了寻路",
+        "3，新增功能起床战争火球飞行路径显示",
+        "4，修了点杂七杂八的bug",
+        "5，新增实验功能: Skyblock Glacite Mineshaft Sharing",
         "关于作者小沙雕: 小沙雕的闲聊群728972740，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕，其他致谢：Discord somebody_lmfao",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
