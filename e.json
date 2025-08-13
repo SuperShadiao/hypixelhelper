@@ -1,15 +1,24 @@
 {
 
-    "v":"5.2.9-PRE-1",
+    "v":"5.2.9",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v528/hypixelhelper-5.2.8.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v528/hypixelhelper-5.2.8.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v529/hypixelhelper-5.2.9.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v529/hypixelhelper-5.2.9.jar"
     ],
     "a":[
-        "%%hello%% 5.2.9-PRE-1更新公告: ",
+        "%%hello%% 5.2.9更新公告: ",
+        "1，优化Mineshaft Sharing的一处地方",
+        "2，新增功能弓箭路径显示 (将与火球路径显示绑定在一起)",
+        "3，新增功能Skyblock Rift Auto Timite",
+        "4，优化自动钓鱼",
+        "5，修复寻路可以穿过冰和史莱姆块的问题",
+        "6，优化寻路",
+        "7，新增建筑猜猜乐助手词库云同步",
+        "8，新增Skyblock Safe Island",
+        "5.2.9-PRE-1更新公告: ",
         "1，修复自动钓鱼在水中偶尔误判的问题, 并更改了判定方式",
         "2，优化了寻路",
         "3，新增功能起床战争火球飞行路径显示",
