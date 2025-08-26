@@ -44,10 +44,8 @@
         {"name": "DeepSeek - 银狼", "msgprefix": "@DS{银狼}"}
     ],
     "yqlossmixinclienturls":[
-        "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/yqlossclientmixin-1.8.9-forge.jar?ref=main",
-        "https://hypixelhelper.pages.dev/yqlossclientmixin-1.8.9-forge.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/blob/main/yqlossclientmixin-1.8.9-forge.jar"
+        "https://cdn.modrinth.com/data/jbJKIVzJ/versions/fCOIL9Dk/yqlossclientmixin-1.8.9-forge-2.0.0.jar"
     ],
-    "yqlossmixinclientmd5": "21257a176dddc220e9d8fa1fecf9707c"
+    "yqlossmixinclientmd5": "5022ac8c929ff36376c3b2267b2e1aad"
 
 }
