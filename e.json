@@ -44,6 +44,7 @@
         {"name": "DeepSeek - 银狼", "msgprefix": "@DS{银狼}"}
     ],
     "yqlossmixinclienturls":[
+        "https://xiaoshadiao.club/datagetter?url=https://cdn.modrinth.com/data/jbJKIVzJ/versions/fCOIL9Dk/yqlossclientmixin-1.8.9-forge-2.0.0.jar",
         "https://cdn.modrinth.com/data/jbJKIVzJ/versions/fCOIL9Dk/yqlossclientmixin-1.8.9-forge-2.0.0.jar"
     ],
     "yqlossmixinclientmd5": "5022ac8c929ff36376c3b2267b2e1aad"
