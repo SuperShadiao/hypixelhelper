@@ -1,15 +1,23 @@
 {
 
-    "v":"5.3.0-PRE-1",
+    "v":"5.3.0",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v530p1/hypixelhelper-5.3.0-PRE-1.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v530p1/hypixelhelper-5.3.0-PRE-1.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v530/hypixelhelper-5.3.0.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v530/hypixelhelper-5.3.0.jar"
     ],
     "a":[
-        "%%hello%% 5.3.0-PRE-1更新公告: ",
+        "%%hello%% 5.3.0更新公告: ",
+        "1，新增功能强制疾跑",
+        "2，对自动防砍mod和Patcher打兼容补丁",
+        "3，修复自动更新程序偶尔无法启动的问题",
+        "4，修复了Freecam崩端的问题",
+        "5，设置界面新增搜索设置功能",
+        "6，新增指令/repartykick",
+        "7，将大号直播间状态检测与原直播号一并加入mod",
+        "5.3.0-PRE-1更新公告: ",
         "1，优化了Auto Bloodfiend, 主要优化了讨伐超时的问题",
         "2，修复了自动钓鱼因为高延迟而未能识别到神话鱼的问题",
         "3，修复了自动钓鱼偶尔卡杆的问题 (鱼钩被抛出但鱼竿处于未抛竿状态)",
