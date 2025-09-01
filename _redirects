@@ -15,7 +15,7 @@ download2 https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases
 obf https://github.com/SuperShadiao/XiaoShadiao-Obfuscator 
 obfdownload1 https://github.com/SuperShadiao/XiaoShadiao-Obfuscator/releases 
 obfdownload2 /obfdownload1 
-obfdownload /obfdownload1 
+obfdownload /obfdownload1
 release /release.jar
 xsdblive https://live.bilibili.com/1883012366
 xsdblive2 https://live.bilibili.com/32674116
