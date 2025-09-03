@@ -71,9 +71,8 @@ export async function onRequest(context) {
         obj.ip = result.ip
 
         const json = obj
-        const response = (await fetch("https://hook.xiaoshadiao.club/qqgmv?code=" + json.code + "&verifycode=" + code + "&groupnumber=" + json.groupnumber + "&qqnumber=" + json.qqnumber + "&ip=" + json.ip))
 
-        if(await response.text() != "成功啦") {
+        if(await (await fetch("https://hook.xiaoshadiao.club/qqgmv?code=" + json.code + "&verifycode=" + code + "&groupnumber=" + json.groupnumber + "&qqnumber=" + json.qqnumber + "&ip=" + json.ip)).text() != "成功啦") {
             obj.msg = "验证成功了, 但是请求网络钩子失败了qwq, 等待5s后重试吧"
         }
         obj.success = true
