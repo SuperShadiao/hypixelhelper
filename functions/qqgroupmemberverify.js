@@ -66,7 +66,7 @@ export async function onRequest(context) {
             return response
         }
 
-        obj = JSON.parse(data)
+        obj = Object.assign(JSON.parse(data), obj)
         obj.code = code
         obj.ip = result.ip
 
