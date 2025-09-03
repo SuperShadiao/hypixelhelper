@@ -59,7 +59,8 @@ export async function onRequest(context) {
             return response
         }
 
-        if (!(await doVerify(context, response))) {
+        const result = await doVerify(context, response)
+        if (!result.success) {
             obj.msg = "验证失败"
             const response = Response.json(obj, { status: 401 })
             return response
@@ -69,6 +70,7 @@ export async function onRequest(context) {
         obj.code = code
         obj.success = true
         obj.msg = "成功啦"
+        obj.ip = result.ip
 
         // await context.env.gv.delete(code)
 
@@ -115,5 +117,5 @@ async function doVerify(context, response) {
 
     const jsonData = await (result.json())
 
-    return jsonData.success
+    return {success: jsonData.success, ip: ip}
 }

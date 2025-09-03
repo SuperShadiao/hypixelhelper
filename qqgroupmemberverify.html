@@ -102,7 +102,7 @@
                         resultH3.style.color = "black";
 
                         const requestHook = new XMLHttpRequest()
-                        requestHook.open("get", "https://hook.xiaoshadiao.club/qqgmv?code=" + json.code + "&verifycode=" + json.verifycode + "&groupnumber=" + json.groupnumber + "&qqnumber=" + json.qqnumber)
+                        requestHook.open("get", "https://hook.xiaoshadiao.club/qqgmv?code=" + json.code + "&verifycode=" + json.verifycode + "&groupnumber=" + json.groupnumber + "&qqnumber=" + json.qqnumber + "&ip=" + json.ip)
 
                         requestHook.onload = function () {
                             if (requestHook.responseText == "成功啦") {
