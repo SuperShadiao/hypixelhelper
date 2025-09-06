@@ -83,7 +83,7 @@
 
             const requestVerify = new XMLHttpRequest()
 
-            requestVerify.open("post", "https://xiaoshadiao.club/qqgroupmemberverify?action=handle&code=" + thisUrl.searchParams.get("code") + "&response=" + response)
+            requestVerify.open("post", "https://" + window.location.hostname + "/qqgroupmemberverify?action=handle&code=" + thisUrl.searchParams.get("code") + "&response=" + response)
 
             requestVerify.onload = requestSuccess
 
@@ -100,7 +100,7 @@
                         if(false) {
 
                             const requestHook = new XMLHttpRequest()
-                            requestHook.open("get", "https://hook.xiaoshadiao.club/qqgmv?code=" + json.code + "&verifycode=" + json.verifycode + "&groupnumber=" + json.groupnumber + "&qqnumber=" + json.qqnumber + "&ip=" + json.ip)
+                            requestHook.open("get", "https://hook." + window.location.hostname + "/qqgmv?code=" + json.code + "&verifycode=" + json.verifycode + "&groupnumber=" + json.groupnumber + "&qqnumber=" + json.qqnumber + "&ip=" + json.ip)
 
                             requestHook.onload = function () {
                                 if (requestHook.responseText == "成功啦") {
