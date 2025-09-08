@@ -65,6 +65,7 @@
 
         function handleSuccess() {
             console.log("awa!")
+            if(alreadyFlag) return;
             const resultH3 = document.querySelector('#result h3');
             const thisUrl = new URL(window.location.href)
             if (!thisUrl.searchParams.get("code")) {
