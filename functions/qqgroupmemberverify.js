@@ -46,6 +46,13 @@ export async function onRequest(context) {
             return response
         }
 
+        const result = await doVerify(context, response)
+        if (!result.success) {
+            obj.msg = "验证失败"
+            const response = Response.json(obj, { status: 401 })
+            return response
+        }
+
         if (!code || !response) {
             // return new Response("参数缺失", { status: 400 })
             obj.msg = "参数缺失"
@@ -56,13 +63,6 @@ export async function onRequest(context) {
         if (!data) {
             obj.msg = "验证代码" + code + "不存在"
             const response = Response.json(obj, { status: 404 })
-            return response
-        }
-
-        const result = await doVerify(context, response)
-        if (!result.success) {
-            obj.msg = "验证失败"
-            const response = Response.json(obj, { status: 401 })
             return response
         }
 
