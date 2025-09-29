@@ -8,11 +8,6 @@
 </div>
 
 <br>
-<br>
-
-小沙雕有[英文README.md](https://xiaoshadiao.club/modrinth)文件可阅读
-
-XiaoShadiao has a English version for README.md file [at here](https://xiaoshadiao.club/modrinth)
 
 ### 介绍
 - 小沙雕为Hypixel打造的一个mod，功能杂乱（？），比较实用（？）
