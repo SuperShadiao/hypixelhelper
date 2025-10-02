@@ -374,6 +374,18 @@
         },
         {
             "72fad6a68a624538b034296854491dbe": "autofishe"
+        },
+        
+        /* Alert Autofishe Start */
+
+        {
+            "8b6c04a5a614463ca67a7186f62a9a8c": "alert_autofishe"
+        },
+        {
+            "c830685d23bd462388c0f7b085455183": "alert_autofishe"
+        },
+        {
+            "5ff04a94a37d4e9cb11384f88fc53a8f": "alert_autofishe"
         }
         
         /* Autofishe End */
