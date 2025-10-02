@@ -1,18 +1,21 @@
 {
 
-    "v":"5.3.1",
+    "v":"5.3.2",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v531/hypixelhelper-5.3.1.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v531/hypixelhelper-5.3.1.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v532/hypixelhelper-5.3.2.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v532/hypixelhelper-5.3.2.jar"
     ],
     "a":[
-        "%%hello%% 5.3.1更新公告: ",
-        "1，新增功能密室杀手自动打地鼠拳击球",
-        "2，新增功能B站直播间礼物互动",
-        "3，修复点歌台中从云端同步歌单到本地, 频繁点击同步按钮时会发生歌单结构损坏和崩端问题",
+        "%%hello%% 5.3.2更新公告: ",
+        "1，优化自动钓鱼",
+        "2，优化起床战争战绩查询, 不再尝试在等待大厅中查询玩家",
+        "3，优化自定义背景设置, 增加背景图片数量限制",
+        "4，解决Skyblock Auto Bloodfiend中一些调试代码忘记删除的问题",
+        "5，优化黑名单系统",
+        "6，在陷阱显示中新增锋利保护状态显示",
         "关于作者小沙雕: 小沙雕的闲聊群728972740，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕，其他致谢：Discord somebody_lmfao",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
