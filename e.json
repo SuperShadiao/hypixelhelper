@@ -1,17 +1,22 @@
 {
 
-    "v":"5.3.2-FIX-1",
+    "v":"5.3.3",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v532f1/hypixelhelper-5.3.2-FIX-1.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v532f1/hypixelhelper-5.3.2-FIX-1.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v533/hypixelhelper-5.3.3.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v533/hypixelhelper-5.3.3.jar"
     ],
     "a":[
-        "%%hello%% 5.3.2-FIX-1更新公告: ",
+        "%%hello%% 5.3.3更新公告: ",
+        "1，新增功能床战防止释放剑气",
+        "2，尝试在Mojang服务器连接上打补丁, 尽可能让\"Mojang服务器不可用\"问题减少",
+        "3，尝试解决Mojang的证书问题",
+        "4，修复bug",
+        "5.3.2-FIX-1更新公告: ",
         "1，修复新版本自动钓鱼英文语言下识别不到神话鱼的问题",
-        "%%hello%% 5.3.2更新公告: ",
+        "5.3.2更新公告: ",
         "1，优化自动钓鱼",
         "2，优化起床战争战绩查询, 不再尝试在等待大厅中查询玩家",
         "3，优化自定义背景设置, 增加背景图片数量限制",
