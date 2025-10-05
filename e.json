@@ -1,15 +1,20 @@
 {
 
-    "v":"5.3.3",
+    "v":"5.3.4",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v533/hypixelhelper-5.3.3.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v533/hypixelhelper-5.3.3.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v534/hypixelhelper-5.3.4.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v534/hypixelhelper-5.3.4.jar"
     ],
     "a":[
-        "%%hello%% 5.3.3更新公告: ",
+        "%%hello%% 5.3.4更新公告: ",
+        "1，新增功能无受伤抖动",
+        "2，修复因Mod内部方法调用顺序错误导致依旧无法连接Mojang服务器的问题",
+        "3，优化自动钓鱼",
+        "4，修复客户端初次启动时可能导致的崩端问题",
+        "5.3.3更新公告: ",
         "1，新增功能床战防止释放剑气",
         "2，尝试在Mojang服务器连接上打补丁, 尽可能让\"Mojang服务器不可用\"问题减少",
         "3，尝试解决Mojang的证书问题",
