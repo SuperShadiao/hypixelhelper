@@ -1,0 +1,143 @@
+/* 项目卡片网格布局 */
+.select-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* 项目卡片样式 */
+.select-card {
+    background: linear-gradient(135deg, #A3D9A5, #D9D2E9);
+    border-radius: 15px;
+    padding: 25px;
+    color: black;
+    text-decoration: none;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* 项目卡片悬停效果 */
+.select-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* 项目卡片点击效果 */
+.select-card:active {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 项目卡片内容样式 */
+.select-content {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    padding-right: 20px;
+}
+
+/* 项目卡片标题样式 */
+.select-content h2 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* 文本截断样式 */
+.truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+/* 项目卡片描述样式 */
+.select-content p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* 项目卡片背景装饰 */
+.select-card::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+    transform: rotate(45deg);
+    transition: transform 0.6s ease;
+    z-index: 0;
+}
+
+/* 项目卡片悬停时的背景装饰效果 */
+.select-card:hover::before {
+    transform: translate(40%, 40%) rotate(45deg);
+}
+
+/* 项目图片容器 */
+.select-image {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 80px;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* 项目图片样式 */
+.select-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* 响应式布局 */
+@media (max-width: 1200px) {
+    .select-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 15px;
+    }
+    
+    .select-card {
+        padding: 20px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .select-content {
+        padding-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .select-image {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* 旧的selectbox类保留（如需使用） */
+.selectbox {
+    width: 50%;
+    height: 50px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
