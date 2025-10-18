@@ -8,7 +8,8 @@ const goto = {
 
 export function onRequest(context) {
 
-    return new URL(context.request.url).searchParams.get('id') in goto ? Response.redirect(goto[id]) : Response.json({
+    const id = new URL(context.request.url).searchParams.get('id');
+    return id in goto ? Response.redirect(goto[id]) : Response.json({
         "success": false,
         "msg": "小沙雕翻遍了整个崩坏星穹铁道也找不着东西哇qwq"
     }, { status: 404 });
