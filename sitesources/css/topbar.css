@@ -71,7 +71,7 @@ header {
 
 /* 隐藏WebKit浏览器的滚动条 */
 .nav-container::-webkit-scrollbar {
-    /* display: none; */
+    display: none;
 }
 
 .bararrlist {
