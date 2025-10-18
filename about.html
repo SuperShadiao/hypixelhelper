@@ -9,23 +9,31 @@
     <meta name="description" content="小沙雕正在维护的项目, 例如Minecraft Mod Hypixel Helper, XiaoShadiao Obfuscator(小沙雕混淆器)等">
     <meta name="keywords" content="小沙雕,个人网站,awa,项目,混淆器,Java,混淆器">
 
-    <title>小沙雕 - 项目列表</title>
+    <title>小沙雕 - 关于</title>
 
     <link rel="icon" href="/xsdv2.png" type="image/x-icon">
     <link rel="stylesheet" href="/sitesources/css/topbar.css">
-    <link rel="stylesheet" href="/sitesources/css/projects.css">
+    <link rel="stylesheet" href="/sitesources/css/about.css">
 
     <link rel="stylesheet" href="/sitesources/css/_utils/selectbox.css">
 
     <script src="/sitesources/js/header.js" defer></script>
+
+    <style>
+        /* 直接针对此页面中的所有select-card元素覆写背景渐变 */
+        .select-card {
+            background: linear-gradient(135deg, #80e1ff, #e2fffa) !important;
+        }
+    </style>
+
 </head>
 
 <body>
 
     <div id="header-placeholder"></div>
 
-    <div id="projects-container">
-        <h1>项目列表</h1>
+    <div id="about-container">
+        <h1>关于小沙雕</h1>
 
         <div class="select-grid">
 
@@ -43,26 +51,35 @@
             
             -->
 
-            <a href="https://github.com/SuperShadiao/hypixelhelper" class="select-card">
+            <a href="/qqg" class="select-card">
                 <div class="select-content">
-                    <h2 class="truncate-text">Hypixel Helper</h2>
-                    <p>一个强大的，专门为Hypixel打造的辅助Mod。提供游戏数据查询、自动工具和优化功能。</p>
+                    <h2 class="truncate-text">小沙雕のQQ群</h2>
+                    <p>来加入我们的QQ群, 与小沙雕以及其他群友聊天awa!</p>
                 </div>
                 <div class="select-image">
                     <img src="/xsdv2.png" alt="Hypixel Helper" />
                 </div>
             </a>
 
-            <a href="https://github.com/SuperShadiao/XiaoShadiao-Obfuscator" class="select-card">
+            <a href="/dc" class="select-card">
                 <div class="select-content">
-                    <h2 class="truncate-text">XiaoShadiao Obfuscator</h2>
-                    <p>一个用于混淆Java字节码的工具，帮助保护您的Java代码awa</p>
+                    <h2 class="truncate-text">小沙雕のDiscord</h2>
+                    <p>没有QQ也没关系, 来加入我们的Discord服务器, 照样一起聊天ovo</p>
                 </div>
                 <div class="select-image">
-                    <img src="/xsdv2.png" alt="XiaoShadiao Obfuscator" />
+                    <img src="sitesources/assets/discord_logo.png" alt="Discord" />
                 </div>
             </a>
 
+            <a href="/xsdb" class="select-card">
+                <div class="select-content">
+                    <h2 class="truncate-text">小沙雕のB站</h2>
+                    <p>来关注小沙雕的B站账号awa (想要三连了, 想要了想要了qwq)</p>
+                </div>
+                <div class="select-image">
+                    <img src="sitesources/assets/bilibili_logo.png" alt="Bilibili" />
+                </div>
+            </a>
         </div>
     </div>
 

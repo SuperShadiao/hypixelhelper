@@ -9,23 +9,31 @@
     <meta name="description" content="小沙雕正在维护的项目, 例如Minecraft Mod Hypixel Helper, XiaoShadiao Obfuscator(小沙雕混淆器)等">
     <meta name="keywords" content="小沙雕,个人网站,awa,项目,混淆器,Java,混淆器">
 
-    <title>小沙雕 - 项目列表</title>
+    <title>小沙雕 - 友情链接</title>
 
     <link rel="icon" href="/xsdv2.png" type="image/x-icon">
     <link rel="stylesheet" href="/sitesources/css/topbar.css">
-    <link rel="stylesheet" href="/sitesources/css/projects.css">
+    <link rel="stylesheet" href="/sitesources/css/friendlinks.css">
 
     <link rel="stylesheet" href="/sitesources/css/_utils/selectbox.css">
 
     <script src="/sitesources/js/header.js" defer></script>
+
+    <style>
+        /* 直接针对此页面中的所有select-card元素覆写背景渐变 */
+        .select-card {
+            background: linear-gradient(135deg, #FF9A9E, #FAD0C4) !important;
+        }
+    </style>
+
 </head>
 
 <body>
 
     <div id="header-placeholder"></div>
 
-    <div id="projects-container">
-        <h1>项目列表</h1>
+    <div id="friendlinks-container">
+        <h1>友情链接</h1>
 
         <div class="select-grid">
 
@@ -43,26 +51,35 @@
             
             -->
 
-            <a href="https://github.com/SuperShadiao/hypixelhelper" class="select-card">
+            <a href="/go?id=3" class="select-card">
                 <div class="select-content">
-                    <h2 class="truncate-text">Hypixel Helper</h2>
-                    <p>一个强大的，专门为Hypixel打造的辅助Mod。提供游戏数据查询、自动工具和优化功能。</p>
+                    <h2 class="truncate-text">1块果丹皮</h2>
+                    <p>一只神秘的B站up... (doge)</p>
                 </div>
                 <div class="select-image">
-                    <img src="/xsdv2.png" alt="Hypixel Helper" />
+                    <img src="sitesources/assets/friends/牢果丹皮.png" alt="1块果丹皮" />
                 </div>
             </a>
 
-            <a href="https://github.com/SuperShadiao/XiaoShadiao-Obfuscator" class="select-card">
+            <a href="/go?id=1" class="select-card">
                 <div class="select-content">
-                    <h2 class="truncate-text">XiaoShadiao Obfuscator</h2>
-                    <p>一个用于混淆Java字节码的工具，帮助保护您的Java代码awa</p>
+                    <h2 class="truncate-text">ABCOC</h2>
+                    <p>弄Fork SoarClient的大佬awa</p>
                 </div>
                 <div class="select-image">
-                    <img src="/xsdv2.png" alt="XiaoShadiao Obfuscator" />
+                    <img src="sitesources/assets/friends/abcoc.jpg" alt="ABCOC" />
                 </div>
             </a>
 
+            <a href="/go?id=2" class="select-card">
+                <div class="select-content">
+                    <h2 class="truncate-text">Yqloss</h2>
+                    <p>认识已久的Skyblock大神 (虽然早已退游), 也在一起交流Java. qwq</p>
+                </div>
+                <div class="select-image">
+                    <img src="sitesources/assets/friends/yqloss.jpg" alt="Yqloss" />
+                </div>
+            </a>
         </div>
     </div>
 
