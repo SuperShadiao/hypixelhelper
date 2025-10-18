@@ -1,0 +1,23 @@
+[
+    {
+        "href": "/qqg",
+        "title": "小沙雕のQQ群",
+        "desc": "来加入我们的QQ群, 与小沙雕以及其他群友聊天awa!",
+        "imgSrc": "/xsdv2.png",
+        "alt": "Hypixel Helper"
+    },
+    {
+        "href": "/dc",
+        "title": "小沙雕のDiscord",
+        "desc": "没有QQ也没关系, 来加入我们的Discord服务器, 照样一起聊天ovo",
+        "imgSrc": "sitesources/assets/discord_logo.png",
+        "alt": "Discord"
+    },
+    {
+        "href": "/xsdb",
+        "title": "小沙雕のB站",
+        "desc": "来关注小沙雕的B站账号awa (想要三连了, 想要了想要了qwq)",
+        "imgSrc": "sitesources/assets/bilibili_logo.png",
+        "alt": "Bilibili"
+    }
+]

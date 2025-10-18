@@ -1,0 +1,37 @@
+[
+    {
+        "href": "/go?id=3",
+        "title": "1块果丹皮",
+        "desc": "一只神秘的B站up... (doge)",
+        "imgSrc": "/sitesources/assets/friends/牢果丹皮.png",
+        "alt": "1块果丹皮"
+    },
+    {
+        "href": "/go?id=1",
+        "title": "ABCOC",
+        "desc": "弄Fork SoarClient的大佬awa",
+        "imgSrc": "/sitesources/assets/friends/abcoc.jpg",
+        "alt": "ABCOC"
+    },
+    {
+        "href": "/go?id=2",
+        "title": "Yqloss",
+        "desc": "认识已久的Skyblock大神 (虽然早已退游), 也在一起交流Java. qwq",
+        "imgSrc": "/sitesources/assets/friends/yqloss.jpg",
+        "alt": "Yqloss"
+    },
+    {
+        "href": "/go?id=4",
+        "title": "Mr Mao",
+        "desc": "一只超级前端大佬 (?)",
+        "imgSrc": "/sitesources/assets/friends/mrmao.jpg",
+        "alt": "Mr Mao"
+    },
+    {
+        "href": "/go?id=5",
+        "title": "冰树",
+        "desc": "Sooooooooo R1CH",
+        "imgSrc": "/sitesources/assets/friends/火树.png",
+        "alt": "冰树"
+    }
+]

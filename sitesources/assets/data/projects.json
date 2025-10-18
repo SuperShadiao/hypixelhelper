@@ -1,0 +1,16 @@
+[
+    {
+        "href": "https://github.com/SuperShadiao/hypixelhelper",
+        "title": "Hypixel Helper",
+        "desc": "一个强大的，专门为Hypixel打造的辅助Mod。提供游戏数据查询、自动工具和优化功能。",
+        "imgSrc": "/xsdv2.png",
+        "alt": "Hypixel Helper"
+    },
+    {
+        "href": "https://github.com/SuperShadiao/XiaoShadiao-Obfuscator",
+        "title": "XiaoShadiao Obfuscator",
+        "desc": "一个用于混淆Java字节码的工具，帮助保护您的Java代码awa",
+        "imgSrc": "/xsdv2.png",
+        "alt": "XiaoShadiao Obfuscator"
+    }
+]
