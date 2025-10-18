@@ -12,6 +12,9 @@ export function onRequest(context) {
         case '3':
             response = Response.redirect("https://space.bilibili.com/524241250");
             break;
+        case '4':
+            response = Response.redirect("https://maoyyds.cn");
+            break;
     }
     if (response == null) {
         return Response.json({
