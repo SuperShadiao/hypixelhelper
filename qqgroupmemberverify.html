@@ -3,10 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="https://xiaoshadiao.club/xsdv2.png" type="image/x-icon">
+    <link rel="icon" href="/xsdv2.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>好玩的验证awa</title>
     <!-- 加载 Turnstile JS (推荐放在 <head> 中) -->
+
+    <link rel="stylesheet" href="/sitesources/css/topbar.css">
+    <script src="/sitesources/js/header.js" defer></script>
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <style>
         body {
@@ -38,24 +41,72 @@
         #tip {
             margin: 5px;
         }
+
+        .verifybox h4 {
+            text-align: center;
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .verifybox {
+            background: linear-gradient(135deg, #c9f9ff, #a3efff);
+            border-radius: 15px;
+            padding: 25px;
+            color: black;
+            text-decoration: none;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #turnstile-widget {
+            margin: 20px 0;
+        }
+
+        /* 项目卡片背景装饰 */
+        /* .verifybox::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+            transform: rotate(45deg);
+            transition: transform 0.6s ease;
+            z-index: 0;
+        } */
     </style>
 </head>
 
 <body>
+
+    <div id="header-placeholder"></div>
     <div class="container">
-        <div id="tip">
-            <h4 id="tip">如果一直在转圈, 属正常现象。</h4>
-            <h4 id="tip">但是如果转了5分钟还没过去</h4>
-            <h4 id="tip">尝试更换设备和网络(电脑和手机, Wifi和流量都试一下)</h4>
-            <h4 id="tip">还是过不去请截图或录制视频联系群主!</h4>
-        </div>
-        <form id="demo-form">
-            <!-- Turnstile 挂载点 -->
-            <div id="turnstile-widget" class="cf-turnstile" data-sitekey="0x4AAAAAABghjek4jVecQ-sc"
-                data-callback="handleSuccess" data-error-callback="handleFailed" data-theme="light"></div>
-        </form>
-        <div id="result">
-            <h3> </h3>
+        <h1>入群验证</h1>
+        <div class="verifybox">
+            <div id="tip">
+                <h4 id="tip">如果一直在转圈, 属正常现象。</h4>
+                <h4 id="tip">但是如果转了5分钟还没过去</h4>
+                <h4 id="tip">尝试更换设备和网络(电脑和手机, Wifi和流量都试一下)</h4>
+                <h4 id="tip">还是过不去请截图或录制视频联系群主!</h4>
+
+                <form id="demo-form">
+                    <!-- Turnstile 挂载点 -->
+                    <div id="turnstile-widget" class="cf-turnstile" data-sitekey="0x4AAAAAABghjek4jVecQ-sc"
+                        data-callback="handleSuccess" data-error-callback="handleFailed" data-theme="light"></div>
+                </form>
+
+                <div id="result">
+                    <h3>请稍等...</h3>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -65,7 +116,7 @@
 
         function handleSuccess() {
             console.log("awa!")
-            if(alreadyFlag) return;
+            if (alreadyFlag) return;
             const resultH3 = document.querySelector('#result h3');
             const thisUrl = new URL(window.location.href)
             if (!thisUrl.searchParams.get("code")) {
@@ -78,7 +129,7 @@
                 return;
             }
 
-            resultH3.textContent = "请稍等片刻...";
+            resultH3.textContent = "稍等一下, 马上就好...";
             resultH3.style.color = "black";
             const response = turnstile.getResponse()
 
@@ -97,8 +148,7 @@
                     const json = JSON.parse(requestVerify.responseText)
 
                     if (json.success) {
-
-                        if(false) {
+                        if (false) {
 
                             const requestHook = new XMLHttpRequest()
                             requestHook.open("get", "https://hook." + window.location.hostname + "/qqgmv?code=" + json.code + "&verifycode=" + json.verifycode + "&groupnumber=" + json.groupnumber + "&qqnumber=" + json.qqnumber + "&ip=" + json.ip)
@@ -120,49 +170,45 @@
 
                             requestHook.send()
                         }
-                        resultH3.textContent = "验证成功啦awa, 你可以关闭这个页面了!";
-                        resultH3.style.color = "green";
-
+                        executeVerifySuccess()
                     } else if (requestVerify.status == 404) {
-                        resultH3.textContent = "验证链接不存在或已过期!";
-                        resultH3.style.color = "red";
+                        executeRefresh("验证链接不存在或已过期!", false)
                     } else {
-                        setTimeout(() => window.location.reload(), 5000)
-                        resultH3.textContent = "验证失败了qwq, 等待5s后重试吧 (" + json.msg + ")";
-                        resultH3.style.color = "red";
+                        executeRefresh(json.msg, true)
                     }
 
                 })
             }
             function requestFailed() {
-                handleResult(function () {
-                    console.log("qwq...")
-                    setTimeout(() => window.location.reload(), 5000)
-
-                    const resultH3 = document.querySelector('#result h3');
-                    resultH3.textContent = "请求验证网址失败了qwq, 等待5s后重试吧";
-                    resultH3.style.color = "red";
-                })
+                handleResult(executeRefresh, "请求验证网址失败了qwq", true)
             }
 
         }
 
         function handleFailed() {
-            handleResult(function () {
-                console.log("qwq...")
-                setTimeout(() => window.location.reload(), 5000)
-
-                const resultH3 = document.querySelector('#result h3');
-                resultH3.textContent = "验证失败qwq, 等待5s后重试吧";
-                resultH3.style.color = "red";
-            })
+            handleResult(executeRefresh, "验证失败了qwq", true)
         }
 
-        function handleResult(fun) {
+        function handleResult(fun, reason, shouldReload) {
             if (!alreadyFlag) {
                 alreadyFlag = true;
-                fun()
+                fun(reason, shouldReload)
             }
+        }
+
+        function executeRefresh(reason, shouldReload) {
+            console.log("qwq...")
+            if (shouldReload) setTimeout(() => window.location.reload(), 5000)
+
+            const resultH3 = document.querySelector('#result h3');
+            resultH3.textContent = "验证失败qwq, 等待5s后重试吧 (" + reason + ")";
+            resultH3.style.color = "red";
+        }
+
+        function executeVerifySuccess() {
+            const resultH3 = document.querySelector('#result h3');
+            resultH3.textContent = "验证成功啦awa, 你可以关闭这个页面了!";
+            resultH3.style.color = "green";
         }
 
     </script>
