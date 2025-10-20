@@ -1,0 +1,82 @@
+/* 页脚样式 - 只针对页脚相关元素 */
+footer {
+    background-color: gold;
+    width: 100%;
+    /* 移除固定高度，让页脚根据内容自适应 */
+    position: relative;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    font-family: 'Consolas';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    /* 确保内容完全显示 */
+    margin: 0;
+    /* 添加适当的内边距确保文字有足够空间 */
+    padding: 10px 0;
+    box-sizing: border-box;
+    /* 确保页脚完全填充宽度 */
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#main-mody {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#foot-placeholder {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    /* 移除固定高度，让占位符也根据内容自适应 */
+}
+
+.foot-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.foot-container p {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#main-content {
+    display: flex;
+    min-height: calc(100vh - 39px);
+    flex-direction: column;
+    margin: 0;
+}
+
+/* 默认电脑端样式 - 横向排列 */
+.text-author {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* 手机端样式 - 纵向排列并保持2px空隙 */
+@media screen and (max-width: 768px) {
+    .text-author {
+        flex-direction: column;
+        gap: 2px;
+    }
+}
