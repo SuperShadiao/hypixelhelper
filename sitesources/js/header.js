@@ -19,9 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
             footPlaceholder.innerHTML = footerData;
         }
 
-        setTimeout(() => {
-            getFooterHeight();
-        }, 100);
+        getFooterHeight(true);
     }).catch(error => {
         console.error('Error loading header:', error);
     }).finally(() => {
@@ -31,21 +29,41 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-window.addEventListener('resize', getFooterHeight);
+window.addEventListener('resize', () => getFooterHeight(false));
 
 // ======================================================
 
-function getFooterHeight() {
+function getFooterHeight(checkCSS) {
     const mainContent = document.getElementById('main-content');
     const footer = document.getElementById('foot-placeholder');
 
     if (!mainContent || !footer) return;
 
+    if (checkCSS && !isFooterCSSLoaded()) {
+        try {
+            requestAnimationFrame(() => getFooterHeight(true));
+        } catch (error) {
+            console.error('无法通过调用样式表获取页脚高度 :(', error);
+            setTimeout(() => getFooterHeight(false), 100);
+        }
+        return;
+    }
     // 计算页脚高度
     const footerHeight = footer.offsetHeight;
 
     // 设置main-content的最小高度
     mainContent.style.minHeight = `calc(100vh - ${footerHeight}px)`;
 
+    if(document.styleSheets)
+
     return footerHeight;
+}
+
+function isFooterCSSLoaded() {
+    for (let sheet of document.styleSheets) {
+        if (sheet.href && sheet.href.includes('footer.css')) {
+            return true;
+        }
+    }
+    return false;
 }

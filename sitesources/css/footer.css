@@ -60,7 +60,7 @@ body {
 
 #main-content {
     display: flex;
-    min-height: calc(100vh - 63px);
+    min-height: calc(100vh/* - 63px*/);
     flex-direction: column;
     margin: 0;
 }
