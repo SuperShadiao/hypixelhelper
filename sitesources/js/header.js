@@ -46,4 +46,6 @@ function getFooterHeight() {
 
     // 设置main-content的最小高度
     mainContent.style.minHeight = `calc(100vh - ${footerHeight}px)`;
+
+    return footerHeight;
 }

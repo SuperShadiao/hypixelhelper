@@ -47,6 +47,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     margin: 0;
     padding: 0;
 }
@@ -59,7 +60,7 @@ body {
 
 #main-content {
     display: flex;
-    min-height: calc(100vh - 39px);
+    min-height: calc(100vh - 68px);
     flex-direction: column;
     margin: 0;
 }
@@ -71,6 +72,17 @@ body {
     align-items: center;
     justify-content: center;
     gap: 20px;
+}
+
+.text-author-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-decoration {
+    text-decoration: none;
 }
 
 /* 手机端样式 - 纵向排列并保持2px空隙 */
