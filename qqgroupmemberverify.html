@@ -9,22 +9,34 @@
     <!-- 加载 Turnstile JS (推荐放在 <head> 中) -->
 
     <link rel="stylesheet" href="/sitesources/css/topbar.css">
+    <script>
+        window.headerLoadedCallback = function() {
+            turnstile.render(document.getElementById("turnstile-widget"))
+        }
+    </script>
     <script src="/sitesources/js/header.js" defer></script>
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    
     <style>
         body {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
             margin: 0;
         }
 
         .container {
             text-align: center;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
             padding: 20px;
             border: 0px solid #d9ff00;
+            height: 100vh;
             border-radius: 8px;
         }
 
@@ -86,7 +98,6 @@
 </head>
 
 <body>
-
     <div id="header-placeholder"></div>
     <div class="container">
         <h1>入群验证</h1>
@@ -212,6 +223,7 @@
         }
 
     </script>
+    
 </body>
 
 </html>

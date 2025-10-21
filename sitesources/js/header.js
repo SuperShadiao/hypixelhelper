@@ -24,6 +24,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 100);
     }).catch(error => {
         console.error('Error loading header:', error);
+    }).finally(() => {
+        const funcCallback = window.headerLoadedCallback
+        if (funcCallback && typeof funcCallback === 'function') {
+            funcCallback();
+        }
     });
 });
 window.addEventListener('resize', getFooterHeight);
@@ -38,7 +43,6 @@ function getFooterHeight() {
 
     // 计算页脚高度
     const footerHeight = footer.offsetHeight;
-    console.log(footerHeight);
 
     // 设置main-content的最小高度
     mainContent.style.minHeight = `calc(100vh - ${footerHeight}px)`;
