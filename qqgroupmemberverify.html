@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/sitesources/css/topbar.css">
     <script>
         window.headerLoadedCallback = function() {
-            turnstile.render(document.getElementById("turnstile-widget"))
+            turnstile.render(document.getElementById("turnstile-widget"), {size: window.innerWidth < 400 ? 'compact' : 'flexible'})
         }
     </script>
     <script src="/sitesources/js/header.js" defer></script>
@@ -58,8 +58,17 @@
             text-align: center;
             margin: 0;
             font-size: 16px;
-            line-height: 1.6;
-            opacity: 0.9;
+            line-height: 1.2;
+            opacity: 1;
+        }
+
+        @media (max-width: 400px) {
+            .verifybox h4 {
+                font-size: 12px;
+            }
+            .verifybox #result {
+                font-size: 14px;
+            }
         }
 
         .verifybox {
@@ -105,13 +114,14 @@
             <div id="tip">
                 <h4 id="tip">如果一直在转圈, 属正常现象。</h4>
                 <h4 id="tip">但是如果转了5分钟还没过去</h4>
-                <h4 id="tip">尝试更换设备和网络(电脑和手机, Wifi和流量都试一下)</h4>
+                <h4 id="tip">尝试更换设备和网络</h4>
+                <h4 id="tip">(电脑和手机, Wifi和流量都试一下)</h4>
                 <h4 id="tip">还是过不去请截图或录制视频联系群主!</h4>
 
                 <form id="demo-form">
                     <!-- Turnstile 挂载点 -->
                     <div id="turnstile-widget" class="cf-turnstile" data-sitekey="0x4AAAAAABghjek4jVecQ-sc"
-                        data-callback="handleSuccess" data-error-callback="handleFailed" data-theme="light"></div>
+                        data-callback="handleSuccess" data-error-callback="handleFailed" data-theme="light" data-size="compact"></div>
                 </form>
 
                 <div id="result">
@@ -212,13 +222,13 @@
             if (shouldReload) setTimeout(() => window.location.reload(), 5000)
 
             const resultH3 = document.querySelector('#result h3');
-            resultH3.textContent = "验证失败qwq, 等待5s后重试吧 (" + reason + ")";
+            resultH3.innerHTML = "验证失败qwq, 等待5s后重试吧<br>(" + reason + ")";
             resultH3.style.color = "red";
         }
 
         function executeVerifySuccess() {
             const resultH3 = document.querySelector('#result h3');
-            resultH3.textContent = "验证成功啦awa, 你可以关闭这个页面了!";
+            resultH3.innerHTML = "验证成功啦awa, 你可以关闭这个页面了!";
             resultH3.style.color = "green";
         }
 
