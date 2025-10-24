@@ -1,34 +1,19 @@
 {
 
-    "v":"5.3.4",
+    "v":"5.3.5",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v534/hypixelhelper-5.3.4.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v534/hypixelhelper-5.3.4.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v535/hypixelhelper-5.3.5.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v535/hypixelhelper-5.3.5.jar"
     ],
     "a":[
-        "%%hello%% 5.3.4更新公告: ",
-        "1，新增功能无受伤抖动",
-        "2，修复因Mod内部方法调用顺序错误导致依旧无法连接Mojang服务器的问题",
-        "3，优化自动钓鱼",
-        "4，修复客户端初次启动时可能导致的崩端问题",
-        "5.3.3更新公告: ",
-        "1，新增功能床战防止释放剑气",
-        "2，尝试在Mojang服务器连接上打补丁, 尽可能让\"Mojang服务器不可用\"问题减少",
-        "3，尝试解决Mojang的证书问题",
-        "4，修复bug",
-        "5.3.2-FIX-1更新公告: ",
-        "1，修复新版本自动钓鱼英文语言下识别不到神话鱼的问题",
-        "5.3.2更新公告: ",
-        "1，优化自动钓鱼",
-        "2，优化起床战争战绩查询, 不再尝试在等待大厅中查询玩家",
-        "3，优化自定义背景设置, 增加背景图片数量限制",
-        "4，解决Skyblock Auto Bloodfiend中一些调试代码忘记删除的问题",
-        "5，优化黑名单系统",
-        "6，在陷阱显示中新增锋利保护状态显示",
-        "7，新增功能Skyblock Auto Bloodfiend急停功能 (/hhpf stopabf)",
+        "%%hello%% 5.3.5更新公告: ",
+        "1，修复起床战争中如果背包有铁剑则会导致锋利始终显示无的问题",
+        "2，修正Raw Input兼容性",
+        "3，新增配置云控, 危险或有问题的bug会通过云控被强制关闭无法开启 (如果你执意要开启被禁用的功能而破解mod, 那么造成的任何后果自负)",
+        "4，新增功能大厅自动驾驶高速火车",
         "关于作者小沙雕: 小沙雕的闲聊群728972740，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕，其他致谢：Discord somebody_lmfao",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
