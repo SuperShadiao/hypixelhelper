@@ -9,14 +9,20 @@
     <!-- 加载 Turnstile JS (推荐放在 <head> 中) -->
 
     <link rel="stylesheet" href="/sitesources/css/topbar.css">
-    <script>
-        window.headerLoadedCallback = function() {
-            turnstile.render(document.getElementById("turnstile-widget"), {size: window.innerWidth < 400 ? 'compact' : 'flexible'})
-        }
-    </script>
     <script src="/sitesources/js/header.js" defer></script>
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-    
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
+
+    <script>
+        function setTurnstile() {
+            if (turnstile) {
+                turnstile.render(document.getElementById("turnstile-widget"), { size: window.innerWidth < 400 ? 'compact' : 'flexible' })
+            } else {
+                setTimeout(setTurnstile, 1000);
+            }
+        }
+        window.headerLoadedCallback = setTurnstile;
+    </script>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -66,6 +72,7 @@
             .verifybox h4 {
                 font-size: 12px;
             }
+
             .verifybox #result {
                 font-size: 14px;
             }
@@ -121,7 +128,8 @@
                 <form id="demo-form">
                     <!-- Turnstile 挂载点 -->
                     <div id="turnstile-widget" class="cf-turnstile" data-sitekey="0x4AAAAAABghjek4jVecQ-sc"
-                        data-callback="handleSuccess" data-error-callback="handleFailed" data-theme="light" data-size="compact"></div>
+                        data-callback="handleSuccess" data-error-callback="handleFailed" data-theme="light"
+                        data-size="compact"></div>
                 </form>
 
                 <div id="result">
@@ -233,7 +241,7 @@
         }
 
     </script>
-    
+
 </body>
 
 </html>
