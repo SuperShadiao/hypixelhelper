@@ -5,7 +5,7 @@ const goto = {
     "4": "https://maoyyds.cn",
     "5": "https://space.bilibili.com/1917949964",
     "6": "https://space.bilibili.com/3494361276877525",
-    "7": "http://wt.4d4v.fun/about.html",
+    "7": "https://wt.4d4v.fun/about.html",
     "as": "/antiscamming"
 }
 
