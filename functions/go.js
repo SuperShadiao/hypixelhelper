@@ -4,7 +4,9 @@ const goto = {
     "3": "https://space.bilibili.com/524241250",
     "4": "https://maoyyds.cn",
     "5": "https://space.bilibili.com/1917949964",
-    "6": "https://space.bilibili.com/3494361276877525"
+    "6": "https://space.bilibili.com/3494361276877525",
+    "7": "http://wt.4d4v.fun",
+    "as": "/antiscamming"
 }
 
 export function onRequest(context) {
