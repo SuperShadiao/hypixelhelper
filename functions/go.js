@@ -12,9 +12,18 @@ const goto = {
 export function onRequest(context) {
 
     const id = new URL(context.request.url).searchParams.get('id');
-    return id in goto ? Response.redirect(goto[id]) : Response.json({
+    return id in goto ? redirect(goto[id]) : Response.json({
         "success": false,
         "msg": "小沙雕翻遍了整个崩坏星穹铁道也找不着东西哇qwq"
     }, { status: 404 });
 
+}
+
+function redirect(url) {
+    return new Response(null, {
+        status: 302,
+        headers: {
+            'Location': url
+        }
+    });
 }
