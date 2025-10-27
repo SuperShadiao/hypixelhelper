@@ -1,19 +1,18 @@
 {
 
-    "v":"5.3.5",
+    "v":"5.3.6",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v535/hypixelhelper-5.3.5.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v535/hypixelhelper-5.3.5.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v536/hypixelhelper-5.3.6.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v536/hypixelhelper-5.3.6.jar"
     ],
     "a":[
-        "%%hello%% 5.3.5更新公告: ",
-        "1，修复起床战争中如果背包有铁剑则会导致锋利始终显示无的问题",
-        "2，修正Raw Input兼容性",
-        "3，新增配置云控, 危险或有问题的bug会通过云控被强制关闭无法开启 (如果你执意要开启被禁用的功能而破解mod, 那么造成的任何后果自负)",
-        "4，新增功能大厅自动驾驶高速火车",
+        "%%hello%% 5.3.6更新公告: ",
+        "1，修复自动高速火车的bug并优化性能",
+        "2，新增起床战争游戏开始时音效",
+        "3，优化反诈检测和提示信息",
         "关于作者小沙雕: 小沙雕的闲聊群728972740，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕，其他致谢：Discord somebody_lmfao",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
