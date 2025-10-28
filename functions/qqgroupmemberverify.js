@@ -113,7 +113,7 @@ async function doVerify(context, response) {
     const ip = context.request.headers.get('CF-Connecting-IP');
 
     let formData = new FormData();
-    formData.append("secret", "0x4AAAAAABghjcqHdi_eQ0ZRx-rIpzl4jtg");
+    formData.append("secret", context.env.turnstile_qqgmv);
     formData.append("response", response);
     formData.append('remoteip', ip);
 
