@@ -1,18 +1,19 @@
 {
 
-    "v":"5.3.6",
+    "v":"5.3.7",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v536/hypixelhelper-5.3.6.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v536/hypixelhelper-5.3.6.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v537/hypixelhelper-5.3.7.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v537/hypixelhelper-5.3.7.jar"
     ],
     "a":[
-        "%%hello%% 5.3.6更新公告: ",
-        "1，修复自动高速火车的bug并优化性能",
-        "2，新增起床战争游戏开始时音效",
-        "3，优化反诈检测和提示信息",
+        "%%hello%% 5.3.7更新公告: ",
+        "1，新增功能起床战争自身最终死亡音效",
+        "2，优化了文件md5校验代码",
+        "3，适配最新YqlossClientMixin mod",
+        "4，IRC更新",
         "关于作者小沙雕: 小沙雕的闲聊群728972740，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕，其他致谢：Discord somebody_lmfao",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
@@ -33,9 +34,9 @@
         {"name": "DeepSeek - 银狼", "msgprefix": "@DS{银狼}"}
     ],
     "yqlossmixinclienturls":[
-        "https://xiaoshadiao.club/datagetter?url=https://cdn.modrinth.com/data/jbJKIVzJ/versions/fCOIL9Dk/yqlossclientmixin-1.8.9-forge-2.0.0.jar",
-        "https://cdn.modrinth.com/data/jbJKIVzJ/versions/fCOIL9Dk/yqlossclientmixin-1.8.9-forge-2.0.0.jar"
+        "https://xiaoshadiao.club/datagetter?url=https://cdn.modrinth.com/data/jbJKIVzJ/versions/g0asNZ8J/yqlossclientmixin-1.8.9-forge-2.1.0.jar",
+        "https://cdn.modrinth.com/data/jbJKIVzJ/versions/g0asNZ8J/yqlossclientmixin-1.8.9-forge-2.1.0.jar"
     ],
-    "yqlossmixinclientmd5": "5022ac8c929ff36376c3b2267b2e1aad"
+    "yqlossmixinclientmd5": "214927d6690388448c75aeb31beec773"
 
 }
