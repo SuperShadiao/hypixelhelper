@@ -88,9 +88,14 @@ export async function onRequest(context) {
                 const response = Response.json(obj, { status: 400 })
                 return response
             }
-            const hookresponse = await (await fetch(hookurl)).text()
+            try {
+                const hookresponse = await (await fetch(hookurl)).text()
+            } catch (error) {
+            }
             obj.success = true
             obj.msg = "已尝试请求Hook! 请求是否正确请检查后台"
+
+            return Response.json(obj)
         }
 
         if (await (await fetch("https://hook.xiaoshadiao.club/qqgmv?code=" + json.code + "&verifycode=" + json.verifycode + "&groupnumber=" + json.groupnumber + "&qqnumber=" + json.qqnumber + "&ip=" + json.ip)).text() != "成功啦") {
