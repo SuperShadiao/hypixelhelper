@@ -78,11 +78,11 @@ export async function onRequest(context) {
             let hookurl
             try {
                 hookurl = new URL(hook)
-                hookurl.searchParams.set("code", code)
-                hookurl.searchParams.set("verifycode", verifycode)
-                hookurl.searchParams.set("groupnumber", groupnumber)
-                hookurl.searchParams.set("qqnumber", qqnumber)
-                hookurl.searchParams.set("ip", result.ip)
+                hookurl.searchParams.set("code", json.code)
+                hookurl.searchParams.set("verifycode", json.verifycode)
+                hookurl.searchParams.set("groupnumber", json.groupnumber)
+                hookurl.searchParams.set("qqnumber", json.qqnumber)
+                hookurl.searchParams.set("ip", json.ip)
             } catch (error) {
                 obj.msg = `Hook ${hook} 无效!`
                 const response = Response.json(obj, { status: 400 })
