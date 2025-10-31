@@ -184,7 +184,7 @@
 
             const requestVerify = new XMLHttpRequest()
 
-            requestVerify.open("post", "https://" + window.location.hostname + "/qqgroupmemberverify?action=handle&code=" + thisUrl.searchParams.get("code") + "&response=" + response + (hookurl ? "&hook=" + hookurl.toString() : ""))
+            requestVerify.open("post", "https://" + window.location.hostname + "/qqgroupmemberverify?action=handle&code=" + thisUrl.searchParams.get("code") + "&response=" + response + (hookurl ? "&hook=" + encodeURIComponent(hookurl.toString()) : ""))
 
             requestVerify.onload = requestSuccess
 
