@@ -8,6 +8,7 @@ export async function onRequest(context) {
     const qqnumber = url.searchParams.get("qqnumber")
     const longtime = url.searchParams.get("longtime")
     const response = url.searchParams.get("response")
+    const hook = url.searchParams.get("hook")
 
     if (action == "new") {
 
@@ -37,7 +38,7 @@ export async function onRequest(context) {
 
         const data = await context.env.gv.get(code)
 
-        let obj = {success: false, msg: "未知错误"}
+        let obj = { success: false, msg: "未知错误" }
 
         if (context.request.method !== "POST") {
             // return new Response("请使用POST请求!", { status: 405 })
@@ -72,7 +73,27 @@ export async function onRequest(context) {
 
         const json = obj
 
-        if(await (await fetch("https://hook.xiaoshadiao.club/qqgmv?code=" + json.code + "&verifycode=" + json.verifycode + "&groupnumber=" + json.groupnumber + "&qqnumber=" + json.qqnumber + "&ip=" + json.ip)).text() != "成功啦") {
+        if (hook) {
+
+            let hookurl
+            try {
+                hookurl = new URL(hook)
+                hookurl.searchParams.set("code", code)
+                hookurl.searchParams.set("verifycode", verifycode)
+                hookurl.searchParams.set("groupnumber", groupnumber)
+                hookurl.searchParams.set("qqnumber", qqnumber)
+                hookurl.searchParams.set("ip", result.ip)
+            } catch (error) {
+                obj.msg = `Hook ${hook} 无效!`
+                const response = Response.json(obj, { status: 400 })
+                return response
+            }
+            const hookresponse = await (await fetch(hookurl)).text()
+            obj.success = true
+            obj.msg = "已尝试请求Hook! 请求是否正确请检查后台"
+        }
+
+        if (await (await fetch("https://hook.xiaoshadiao.club/qqgmv?code=" + json.code + "&verifycode=" + json.verifycode + "&groupnumber=" + json.groupnumber + "&qqnumber=" + json.qqnumber + "&ip=" + json.ip)).text() != "成功啦") {
             obj.msg = "验证成功了, 但是请求网络钩子失败了qwq, 等待5s后重试吧"
             const response = Response.json(obj, { status: 500 })
             return response
@@ -125,5 +146,5 @@ async function doVerify(context, response) {
 
     const jsonData = await (result.json())
 
-    return {success: jsonData.success, ip: ip}
+    return { success: jsonData.success, ip: ip }
 }

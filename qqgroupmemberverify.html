@@ -163,13 +163,28 @@
                 return;
             }
 
+            let hookurl
+            if (thisUrl.searchParams.get("hook")) {
+                let hook = thisUrl.searchParams.get("hook")
+                try {
+                    hookurl = new URL(hook)
+                } catch (error) {
+                    handleResult(function () {
+                        resultH3.textContent = "Hook参数无效!";
+                        resultH3.style.color = "red";
+                    })
+                    return;
+                }
+            }
+
             resultH3.textContent = "稍等一下, 马上就好...";
             resultH3.style.color = "black";
+            
             const response = turnstile.getResponse()
 
             const requestVerify = new XMLHttpRequest()
 
-            requestVerify.open("post", "https://" + window.location.hostname + "/qqgroupmemberverify?action=handle&code=" + thisUrl.searchParams.get("code") + "&response=" + response)
+            requestVerify.open("post", "https://" + window.location.hostname + "/qqgroupmemberverify?action=handle&code=" + thisUrl.searchParams.get("code") + "&response=" + response + (hookurl ? "&hook=" + hookurl.toString() : ""))
 
             requestVerify.onload = requestSuccess
 
