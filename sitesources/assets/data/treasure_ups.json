@@ -1,0 +1,37 @@
+[
+    {
+        "href": "/go?id=3",
+        "title": "1块果丹皮",
+        "desc": "一只神秘的B站up... 拥有无数块果丹皮 (物理)<br>\"见过花开就好，何必在意花落谁家\"",
+        "imgSrc": "/sitesources/assets/friends/牢果丹皮.png",
+        "alt": "1块果丹皮"
+    },
+    {
+        "href": "/go?id=5",
+        "title": "冰树",
+        "desc": "Sooooooooo R1CH, 送过舰长, 也送过很多人*一堆*舰长 (",
+        "imgSrc": "/sitesources/assets/friends/火树.png",
+        "alt": "冰树"
+    },
+    {
+        "href": "/go?id=6",
+        "title": "Wormwaker",
+        "desc": "能搓出第二个explorer.exe (JackalClient)的入, 超级会C和美丽渲染, 曾与小沙雕交流过代码, 属于是一只炒鸡大佬了 (bushi). 还有神秘的€$DN Song也被小沙雕收录进Hypixel Helper了哦awa",
+        "imgSrc": "/sitesources/assets/friends/wormwaker.png",
+        "alt": "Wormwaker"
+    },
+    {
+        "href": "/go?id=2",
+        "title": "Yqloss",
+        "desc": "认识已久的Skyblock大神 (虽然早已退游), 也在一起交流Java. 小沙雕引用了他的Mod (Yqloss Client Mixin) 用以制作动态模糊和修复OneConfig中文兼容 :3",
+        "imgSrc": "/sitesources/assets/friends/yqloss.jpg",
+        "alt": "Yqloss"
+    },
+    {
+        "href": "/go?id=8",
+        "title": "一滴苓子",
+        "desc": "喜欢唱歌的女up, 喜欢玩Hypixel, 生存服, 被群友亲切的称为\"猪苓\" (bushi",
+        "imgSrc": "/sitesources/assets/friends/猪苓.png",
+        "alt": "苓"
+    }
+]
