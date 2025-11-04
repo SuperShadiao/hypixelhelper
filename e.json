@@ -1,19 +1,19 @@
 {
 
-    "v":"5.3.7",
+    "v":"5.3.8",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v537/hypixelhelper-5.3.7.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v537/hypixelhelper-5.3.7.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v538/hypixelhelper-5.3.8.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v538/hypixelhelper-5.3.8.jar"
     ],
     "a":[
-        "%%hello%% 5.3.7更新公告: ",
-        "1，新增功能起床战争自身最终死亡音效",
-        "2，优化了文件md5校验代码",
-        "3，适配最新YqlossClientMixin mod",
-        "4，IRC更新",
+        "%%hello%% 5.3.8更新公告: ",
+        "1，新增功能主大厅钓鱼神话鱼显示",
+        "2，优化聊天栏, 改用线程化处理聊天栏内容",
+        "3，修复寻路中存在的发包问题",
+        "4，修复寻路进行长途跑路时, 当路径到达未加载的区块时会卡在未加载区块边缘的问题",
         "关于作者小沙雕: 小沙雕的闲聊群728972740，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕，其他致谢：Discord somebody_lmfao",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
