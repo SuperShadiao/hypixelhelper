@@ -1,19 +1,21 @@
 {
 
-    "v":"5.3.8",
+    "v":"5.3.9",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v538/hypixelhelper-5.3.8.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v538/hypixelhelper-5.3.8.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v539/hypixelhelper-5.3.9.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v539/hypixelhelper-5.3.9.jar"
     ],
     "a":[
-        "%%hello%% 5.3.8更新公告: ",
-        "1，新增功能主大厅钓鱼神话鱼显示",
-        "2，优化聊天栏, 改用线程化处理聊天栏内容",
-        "3，修复寻路中存在的发包问题",
-        "4，修复寻路进行长途跑路时, 当路径到达未加载的区块时会卡在未加载区块边缘的问题",
+        "%%hello%% 5.3.9更新公告: ",
+        "1，修复神话鱼计数器的各种问题 (误判, 概率崩端, Gui配置问题等)",
+        "2，修复了在单方块起床和城池攻防战起床中允许自动后退工作的问题",
+        "3，现在起床战争KD检测器会提示现在Api Key是否有效, 并进行提示",
+        "4，修复起床轮换道具中限时锋利二导致升级锋利一时显示无锋利状态的问题",
+        "5，现在, 如果自动钓鱼被staff tp了, 则解除挂机状态后立即删除提示信息",
+        "6，对自动钓鱼的staff tp, 向IRC发送更多数据 (例如从哪里被tp到哪里)",
         "关于作者小沙雕: 小沙雕的闲聊群728972740，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕，其他致谢：Discord somebody_lmfao",
         "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
