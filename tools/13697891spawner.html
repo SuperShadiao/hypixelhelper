@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>小沙雕 - 暗广生成器</title>
+
+    <meta name="description"
+        content="小沙雕的个人网站, 拥有一些小项目, 正在制作的项目有: Minecraft Hypixel Helper Mod, Java XiaoShadiao Obfuscator等. 欢迎大家来与小沙雕互动! qwq">
+    <meta name="keywords" content="小沙雕,个人网站,awa,Java,Minecraft,Hypixel,Helper,Obfuscator,项目,开发,xiaoshadiao">
+
+    <!-- ICONS -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="icons/favicon-64x64.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="xsdv2.png">
+
+    <script src="/sitesources/js/header.js" defer></script>
+
+    <style>
+        /* 全局重置，防止横向滚动条 */
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            /* 防止页面出现横向滚动条 */
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            /* display: flex; */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 100px;
+            /* 确保在所有设备上居中 */
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            display: flex;
+            margin-bottom: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .rounded-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #ddd;
+            border-radius: 20px 0 0 20px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .rounded-input:focus {
+            border-color: #4CAF50;
+        }
+
+        .generate-btn {
+            padding: 12px 24px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 0 20px 20px 0;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .generate-btn:hover {
+            background-color: #45a049;
+        }
+
+        .output-group {
+            width: 100%;
+            margin-top: 20px;
+            box-sizing: border-box;
+        }
+
+        .readonly-output {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            resize: none;
+            outline: none;
+            min-height: 100px;
+            box-sizing: border-box;
+        }
+
+        /* 响应式设计 */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 15px;
+                max-width: 100%;
+                /* 确保容器不会超出屏幕 */
+            }
+
+            h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            .rounded-input,
+            .generate-btn {
+                font-size: 14px;
+                padding: 10px 12px;
+            }
+
+            .generate-btn {
+                padding: 10px 16px;
+                white-space: nowrap;
+                /* 确保按钮文字不会换行 */
+            }
+
+            .readonly-output {
+                font-size: 14px;
+                min-height: 80px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 10px;
+                width: 100%;
+                /* 确保在手机上完全占满宽度 */
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+
+            .input-group {
+                flex-direction: row;
+                width: 100%;
+            }
+
+            .rounded-input {
+                flex: 1;
+                font-size: 16px;
+                padding: 12px 10px;
+                /* 减少左右内边距 */
+            }
+
+            .generate-btn {
+                font-size: 16px;
+                padding: 12px 14px;
+                /* 减少按钮内边距以适应小屏幕 */
+                min-width: 80px;
+                /* 设置最小宽度确保按钮不会太小 */
+            }
+
+            .readonly-output {
+                font-size: 16px;
+                min-height: 120px;
+                width: 100%;
+            }
+
+            .input-group,
+            .output-group {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header-placeholder"></div>
+    <div class="container">
+        <h1>13697891生成器</h1>
+        <div class="input-group">
+            <input type="number" id="inputField" class="rounded-input" placeholder="请输入数字...">
+            <button id="generateBtn" class="generate-btn">生成</button>
+        </div>
+        <div class="output-group">
+            <textarea id="outputField" class="readonly-output" readonly></textarea>
+        </div>
+    </div>
+
+    <script>
+        window.headerLoadedCallback = function () {
+            document.getElementById('generateBtn').addEventListener('click', function () {
+                const text = document.getElementById('inputField').value;
+                // const number = Number(text);
+
+                const map = {
+                    0: '69-69',
+                    1: '13/13',
+                    2: '78/(13+13+13)',
+                    3: '78/(13+13)',
+                    4: '91/13-78/(13+13)',
+                    5: '(78-13)/13',
+                    6: '78/13',
+                    7: '91/13',
+                    8: '(91+13)/13',
+                    9: '78-69',
+                    10: '13/13+78-69'
+                }
+
+                function generateFormula(text) {
+
+                    text = String(text).trim();
+
+                    const number = Number(text);
+                    let isNegative = number < 0;
+                    if (isNegative) {
+                        text = text.slice(1);
+                    }
+
+                    while (text.startsWith('0')) {
+                        text = text.slice(1);
+                    }
+                    while (text.includes('.') && text.endsWith('0')) {
+                        text = text.slice(0, -1);
+                    }
+
+                    let formula = '';
+                    const [integer, float] = text.split('.');
+                    if (map[integer] && !float) {
+                        formula = `(${map[integer]})`;
+                    } else {
+                        let firstNumber = true;
+                        for (let i = integer.length - 1; i >= 0; i--) {
+                            const digit = integer[integer.length - 1 - i];
+                            if (digit != '0') {
+                                if (firstNumber) {
+                                    firstNumber = false;
+                                } else {
+                                    formula += '+';
+                                }
+                                if (!map[digit]) {
+                                    throw new Error(`Unknown digit ${digit}`);
+                                }
+                                formula += `(${map[digit]})`;
+                                if (i > 0) {
+                                    formula += '*';
+
+                                    formula += i == 1 ? generateFormula(10) : `${generateFormula(10)}^${generateFormula(i)}`;
+                                }
+                            }
+                        }
+                        if (float) {
+                            for (let i = 0; i < float.length; i++) {
+                                const digit = float[i];
+                                if (digit != '0') {
+                                    if (firstNumber) {
+                                        firstNumber = false;
+                                    } else {
+                                        formula += '+';
+                                    }
+                                    if (!map[digit]) {
+                                        throw new Error(`Unknown digit ${digit}`);
+                                    }
+                                    formula += `(${map[digit]})`;
+                                    formula += '*';
+                                    formula += `${generateFormula(10)}^${generateFormula(-i - 1)}`;
+
+                                }
+                            }
+                        }
+                    }
+                    if (isNegative) {
+                        formula = `-(${formula})`;
+                    }
+
+                    return formula;
+                }
+                let integerFormula;
+                try {
+                    integerFormula = generateFormula(text);
+                } catch (error) {
+                    integerFormula = `执行操作时发生错误：${error.message}\n请使用纯数字, 不要使用e等科学计数法`;
+                }
+
+                document.getElementById('outputField').value = integerFormula;
+            });
+        }
+    </script>
+</body>
+
+</html>
