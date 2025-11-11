@@ -1,15 +1,19 @@
 {
 
-    "v":"5.3.9",
+    "v":"5.4.0",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v539/hypixelhelper-5.3.9.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v539/hypixelhelper-5.3.9.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v540/hypixelhelper-5.4.0.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v540/hypixelhelper-5.4.0.jar"
     ],
     "a":[
-        "%%hello%% 5.3.9更新公告: ",
+        "%%hello%% 5.4.0更新公告: ",
+        "1，自动钓鱼新增自动窗口激活, 置顶",
+        "2，修复自动吸血鬼中锁敌会攻击其他煞笔的boss",
+        "3，修复了一些其他的bug",
+        "5.3.9更新公告: ",
         "1，修复神话鱼计数器的各种问题 (误判, 概率崩端, Gui配置问题等)",
         "2，修复了在单方块起床和城池攻防战起床中允许自动后退工作的问题",
         "3，现在起床战争KD检测器会提示现在Api Key是否有效, 并进行提示",
