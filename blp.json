@@ -90,7 +90,7 @@
         {
             "0f558861a5844bf9ab94d03c9809e5f7": "toxic"
         },
-        /* Autofishe Start */
+        /* Autofishe Start (H)*/
         {
             "ee786b3433b74726b9878b869cd48f31": "autofishe"
         },
@@ -100,7 +100,28 @@
         {
             "063626f2c6f244459965a6d4af8ca17a": "autofishe"
         },
-        /* Autofishe Start */
+        {
+            "28440119cb3e46439ca315d0022fd6e1": "autofishe"
+        },
+        {
+            "2ed15ea0e7d64c72afc98e345d73dad3": "autofishe"
+        },
+        {
+            "e3729745468740a289bcccbb5107bb76": "autofishe"
+        },
+        {
+            "3edb212b1f3a4cfba59535bfb35d412b": "autofishe"
+        },
+        {
+            "988efb4aaa144d699f7a80ceb5820887": "autofishe"
+        },
+        {
+            "224d9e26cc264d7fb1ec378fc2d66b02": "autofishe"
+        },
+        {
+            "73034f1a5e7b48599e41ac1acef273dc": "autofishe"
+        },
+        /* Autofishe Start (M)*/
         {
             "4558735a5b1747e1be595372f166f334": "autofishe"
         },
@@ -401,7 +422,7 @@
         {
             "1589244f9f924adba62fd9c50964b947": "autofishe"
         },
-        /* Alert Autofishe Start */
+        /* !! Alert Autofishe Start !! */
         {
             "c830685d23bd462388c0f7b085455183": "alert_autofishe"
         },
