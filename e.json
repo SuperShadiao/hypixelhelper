@@ -1,15 +1,19 @@
 {
 
-    "v":"5.4.0",
+    "v":"5.4.1",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v540/hypixelhelper-5.4.0.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v540/hypixelhelper-5.4.0.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v541/hypixelhelper-5.4.1.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v541/hypixelhelper-5.4.1.jar"
     ],
     "a":[
-        "%%hello%% 5.4.0更新公告: ",
+        "%%hello%% 5.4.1更新公告: ",
+        "1，优化寻路, 现在寻路速度变得更快了",
+        "2，新增功能Freecam和Freelook跟随本体位置和视角 (默认开)",
+        "3，优化并修复一些bug",
+        "5.4.0更新公告: ",
         "1，自动钓鱼新增自动窗口激活, 置顶",
         "2，修复自动吸血鬼中锁敌会攻击其他煞笔的boss",
         "3，修复了一些其他的bug",
