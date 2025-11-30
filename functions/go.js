@@ -18,9 +18,23 @@ const goto = {
 
 export function onRequest(context) {
 
-    const id = new URL(context.request.url).searchParams.get('id');
-    return id in goto ? redirect(goto[id]) : _404();
+    const responseGetters = [
+        function(context) {
+            const id = new URL(context.request.url).searchParams.get('id');
+            if (id in goto) return redirect(goto[id]);
+        },
+        function(context) {
+            const bv = new URL(context.request.url).searchParams.get('bv');
+            return redirect("https://www.bilibili.com/video/BV" + bv);
+        }
+    ]
 
+    for (const responseGetter of responseGetters) {
+        const response = responseGetter(context);
+        if (response) return response;
+    }
+    return _404();
+    
 }
 
 function redirect(url) {
