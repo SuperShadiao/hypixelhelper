@@ -14,6 +14,8 @@ const goto = {
     "100": "https://act.mihoyo.com/sr/event/e20251105return-tb31ya/index.html?utm_source=share&utm_medium=qr&utm_campaign=ingame&inviter=CAM8N2SKXN&mhy_landscape=true&mhy_auth_required=true&mhy_hide_status_bar=true&win_mode=fullscreen",
 
     "91vip": "https://ff66ccff.github.io/",
+
+    "clazz_v_1": "http://www.71.cn/2025/0428/1261801.shtml",
 }
 
 export function onRequest(context) {
@@ -34,7 +36,7 @@ export function onRequest(context) {
         if (response) return response;
     }
     return _404();
-    
+
 }
 
 function redirect(url) {
