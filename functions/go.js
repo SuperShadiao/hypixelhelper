@@ -16,6 +16,7 @@ const goto = {
     "91vip": "https://ff66ccff.github.io/",
 
     "clazz_v_1": "http://www.71.cn/2025/0428/1261801.shtml",
+    "clazz_v_2": "https://finance.ifeng.com/c/7sdSFWZbWym",
 }
 
 export function onRequest(context) {
