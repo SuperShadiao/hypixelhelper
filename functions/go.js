@@ -17,6 +17,7 @@ const goto = {
 
     "clazz_v_1": "http://www.71.cn/2025/0428/1261801.shtml",
     "clazz_v_2": "https://finance.ifeng.com/c/7sdSFWZbWym",
+    "clazz_v_3": "https://tv.cctv.com/2020/11/18/VIDEmfb6H35D3lzid1nBJDga201118.shtml",
 }
 
 export function onRequest(context) {
@@ -28,7 +29,7 @@ export function onRequest(context) {
         },
         function(context) {
             const bv = new URL(context.request.url).searchParams.get('bv');
-            return redirect("https://www.bilibili.com/video/BV" + bv);
+            if (bv) return redirect("https://www.bilibili.com/video/BV" + bv);
         }
     ]
 
