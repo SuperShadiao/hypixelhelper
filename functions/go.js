@@ -33,7 +33,8 @@ export async function onRequest(context) {
         },
         async function(context) {
             const id = new URL(context.request.url).searchParams.get('id');
-            const url = await context.env.shortlink.get(id);
+            let url;
+            if (id) url = await context.env.shortlink.get(id);
             if (url) return redirect(url);
         }
     ]
