@@ -20,7 +20,7 @@ const goto = {
     "clazz_v_3": "https://tv.cctv.com/2020/11/18/VIDEmfb6H35D3lzid1nBJDga201118.shtml",
 }
 
-export function onRequest(context) {
+export async function onRequest(context) {
 
     const responseGetters = [
         function(context) {
@@ -30,11 +30,16 @@ export function onRequest(context) {
         function(context) {
             const bv = new URL(context.request.url).searchParams.get('bv');
             if (bv) return redirect("https://www.bilibili.com/video/BV" + bv);
+        },
+        async function(context) {
+            const id = new URL(context.request.url).searchParams.get('id');
+            const url = await context.env.shortlink.get(id);
+            if (url) return redirect(url);
         }
     ]
 
     for (const responseGetter of responseGetters) {
-        const response = responseGetter(context);
+        const response = await responseGetter(context);
         if (response) return response;
     }
     return _404();
