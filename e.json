@@ -1,15 +1,20 @@
 {
 
-    "v":"5.4.2",
+    "v":"5.4.3",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v542/hypixelhelper-5.4.2.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v542/hypixelhelper-5.4.2.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v543/hypixelhelper-5.4.3.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v543/hypixelhelper-5.4.3.jar"
     ],
     "a":[
-        "%%hello%% 5.4.2更新公告: ",
+        "%%hello%% 5.4.3更新公告: ",
+        "1，新增防卡中文输入法，英文输入法锁定 (默认开)",
+        "2，新增功能主大厅烘焙助手 (默认开)",
+        "3，稍微修改了一下mod",
+        "4，修复Skytils向此mod传入非实体实现Boss接口类导致崩端的问题",
+        "5.4.2更新公告: ",
         "1，修复寻路在雪地中的一些bug",
         "2，删除Feather检测器, 本mod不再尝试兼容feather (一切皆为徒劳)",
         "3，新增自定义背景开关, 原修改背景按钮改为背景开关和修改按钮",
@@ -19,12 +24,6 @@
         "2，新增功能Freecam和Freelook跟随本体位置和视角 (默认开)",
         "3，由于Hypixel神秘模拟移动, 现在自动钓鱼收到原地tp包不会触发警报",
         "4，优化并修复一些bug",
-        "5.4.0更新公告: ",
-        "1，自动钓鱼新增自动窗口激活, 置顶",
-        "2，修复自动吸血鬼中锁敌会攻击其他煞笔的boss",
-        "3，修复了一些其他的bug",
-        "关于作者小沙雕: 小沙雕的闲聊群728972740，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕，其他致谢：Discord somebody_lmfao",
-        "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
     "rpurls": [
         "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/rp2/hypixelhelperpack.xsd",
