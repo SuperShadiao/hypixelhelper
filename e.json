@@ -23,7 +23,7 @@
         "1，优化寻路, 现在寻路速度变得更快了",
         "2，新增功能Freecam和Freelook跟随本体位置和视角 (默认开)",
         "3，由于Hypixel神秘模拟移动, 现在自动钓鱼收到原地tp包不会触发警报",
-        "4，优化并修复一些bug",
+        "4，优化并修复一些bug"
     ],
     "rpurls": [
         "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/rp2/hypixelhelperpack.xsd",
