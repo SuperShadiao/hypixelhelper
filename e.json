@@ -1,15 +1,23 @@
 {
 
-    "v":"5.4.3",
+    "v":"5.4.4",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v543/hypixelhelper-5.4.3.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v543/hypixelhelper-5.4.3.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v544/hypixelhelper-5.4.4.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v544/hypixelhelper-5.4.4.jar"
     ],
     "a":[
-        "%%hello%% 5.4.3更新公告: ",
+        "%%hello%% 5.4.4更新公告: ",
+        "1，新添加主播模式敏感词到词库",
+        "2，新增测Ping指令/hhping",
+        "3，新增Forge版本检测, 旧Forge版本会弹出提示并要求更新",
+        "4，修复一个问题: 当其他人在聊天框发送\"kg\" \"千克\"等词时会提前终止神话鱼状态导致神话鱼逃走",
+        "5，修复神话鱼头颅Base64数据异常导致报错崩端的问题",
+        "6，改进了自动钓鱼警报输出信息",
+        "7，修改了反反自动钓鱼的功能描述",
+        "5.4.3更新公告: ",
         "1，新增防卡中文输入法，英文输入法锁定 (默认开)",
         "2，新增功能主大厅烘焙助手 (默认开)",
         "3，稍微修改了一下mod",
@@ -18,12 +26,7 @@
         "1，修复寻路在雪地中的一些bug",
         "2，删除Feather检测器, 本mod不再尝试兼容feather (一切皆为徒劳)",
         "3，新增自定义背景开关, 原修改背景按钮改为背景开关和修改按钮",
-        "4，修复在多账号环境下, Hyp nick会读窜的问题",
-        "5.4.1更新公告: ",
-        "1，优化寻路, 现在寻路速度变得更快了",
-        "2，新增功能Freecam和Freelook跟随本体位置和视角 (默认开)",
-        "3，由于Hypixel神秘模拟移动, 现在自动钓鱼收到原地tp包不会触发警报",
-        "4，优化并修复一些bug"
+        "4，修复在多账号环境下, Hyp nick会读窜的问题"
     ],
     "rpurls": [
         "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/rp2/hypixelhelperpack.xsd",
