@@ -5,11 +5,14 @@
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v544/hypixelhelper-5.4.4.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v544/hypixelhelper-5.4.4.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v544f1/hypixelhelper-5.4.4-FIX-1.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v544f1/hypixelhelper-5.4.4-FIX-1.jar"
     ],
     "a":[
-        "%%hello%% 5.4.4更新公告: ",
+        "%%hello%%",
+        "5.4.4-FIX-1更新公告: ",
+        "1，尝试修复新版本中概率未能正常退出神话鱼状态的问题，若问题依然存在，请报告给小沙雕",
+        "5.4.4更新公告: ",
         "1，新添加主播模式敏感词到词库",
         "2，新增测Ping指令/hhping",
         "3，新增Forge版本检测, 旧Forge版本会弹出提示并要求更新",
