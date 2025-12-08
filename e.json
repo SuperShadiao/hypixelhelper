@@ -1,15 +1,20 @@
 {
 
-    "v":"5.4.4-FIX-1",
+    "v":"5.4.5",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v544f1/hypixelhelper-5.4.4-FIX-1.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v544f1/hypixelhelper-5.4.4-FIX-1.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v545/hypixelhelper-5.4.5.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v545/hypixelhelper-5.4.5.jar"
     ],
     "a":[
         "%%hello%%",
+        "5.4.5更新公告: ",
+        "1，新增功能小沙雕Mod Pack下载",
+        "2，优化自动钓鱼，现在进一步尝试适配高速Skyblock钓鱼",
+        "3，获取黑名单玩家信息多线程化，扫描黑名单玩家变得更快了",
+        "4，现在烘焙助手箱子标记的更明显了",
         "5.4.4-FIX-1更新公告: ",
         "1，尝试修复新版本中概率未能正常退出神话鱼状态的问题，若问题依然存在，请报告给小沙雕",
         "5.4.4更新公告: ",
@@ -24,12 +29,7 @@
         "1，新增防卡中文输入法，英文输入法锁定 (默认开)",
         "2，新增功能主大厅烘焙助手 (默认开)",
         "3，稍微修改了一下mod",
-        "4，修复Skytils向此mod传入非实体实现Boss接口类导致崩端的问题",
-        "5.4.2更新公告: ",
-        "1，修复寻路在雪地中的一些bug",
-        "2，删除Feather检测器, 本mod不再尝试兼容feather (一切皆为徒劳)",
-        "3，新增自定义背景开关, 原修改背景按钮改为背景开关和修改按钮",
-        "4，修复在多账号环境下, Hyp nick会读窜的问题"
+        "4，修复Skytils向此mod传入非实体实现Boss接口类导致崩端的问题"
     ],
     "rpurls": [
         "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/rp2/hypixelhelperpack.xsd",
