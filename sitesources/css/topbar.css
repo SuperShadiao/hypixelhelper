@@ -146,3 +146,7 @@ header {
         padding: 0 6px;
     }
 }
+
+.header-offset {
+    margin-top: 70px;
+}
