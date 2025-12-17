@@ -4,5 +4,12 @@
         "title": "13697891暗广生成器",
         "desc": "将一个数字变成暗广公式!",
         "alt": "91"
+    },
+    {
+        "href": "/tools/jaron_nfa",
+        "title": "Jaron NFA 解析器",
+        "desc": "将你的NFA解析并可视化呈现!",
+        "imgSrc": "/sitesources/assets/friends/秩荣.jpg",
+        "alt": "Jaron NFA 解析器"
     }
 ]

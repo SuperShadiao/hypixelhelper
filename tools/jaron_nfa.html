@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft NFA 数据解析器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            border: 1px solid #2a2a4a;
+        }
+        
+        h1 {
+            color: #4fc3f7;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle {
+            color: #90a4ae;
+            font-size: 1.1rem;
+        }
+        
+        .input-section {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 1px solid #2a2a4a;
+        }
+        
+        .input-section h2 {
+            color: #81c784;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .input-section h2 i {
+            font-size: 1.5rem;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 200px;
+            background: rgba(10, 15, 30, 0.7);
+            border: 1px solid #3949ab;
+            border-radius: 8px;
+            padding: 15px;
+            color: #e0e0e0;
+            font-size: 14px;
+            font-family: monospace;
+            resize: vertical;
+            margin-bottom: 15px;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #5c6bc0;
+            box-shadow: 0 0 0 2px rgba(92, 107, 192, 0.3);
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #3949ab 0%, #283593 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        button:hover {
+            background: linear-gradient(135deg, #5c6bc0 0%, #3949ab 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        button.secondary {
+            background: linear-gradient(135deg, #455a64 0%, #37474f 100%);
+        }
+        
+        button.secondary:hover {
+            background: linear-gradient(135deg, #607d8b 0%, #455a64 100%);
+        }
+        
+        button.success {
+            background: linear-gradient(135deg, #43a047 0%, #2e7d32 100%);
+        }
+        
+        button.success:hover {
+            background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+        }
+        
+        .results-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 1100px) {
+            .results-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .result-box {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid #2a2a4a;
+            height: fit-content;
+        }
+        
+        .result-box h2 {
+            color: #ffb74d;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ffb74d;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .account-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .account-info {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .info-item {
+            margin-bottom: 15px;
+        }
+        
+        .info-label {
+            color: #90caf9;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .info-value {
+            background: rgba(10, 15, 30, 0.7);
+            padding: 10px 15px;
+            border-radius: 6px;
+            border-left: 4px solid #3949ab;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        
+        .info-value.email {
+            border-left-color: #43a047;
+        }
+        
+        .info-value.password {
+            border-left-color: #f44336;
+        }
+        
+        .info-value.token {
+            border-left-color: #ff9800;
+        }
+        
+        .info-value.username {
+            border-left-color: #9c27b0;
+        }
+        
+        .hypixel-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .stat-item {
+            background: rgba(10, 15, 30, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border-top: 3px solid #3949ab;
+        }
+        
+        .stat-label {
+            color: #90caf9;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #4fc3f7;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .status-unban {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            border: 1px solid #4caf50;
+        }
+        
+        .status-banned {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+            border: 1px solid #f44336;
+        }
+        
+        .status-nobc {
+            background-color: rgba(255, 152, 0, 0.2);
+            color: #ff9800;
+            border: 1px solid #ff9800;
+        }
+        
+        .rank-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        .rank-gray {
+            background-color: rgba(158, 158, 158, 0.2);
+            color: #9e9e9e;
+            border: 1px solid #9e9e9e;
+        }
+
+        .rank-vip {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            border: 1px solid #4caf50;
+        }
+        
+        .rank-vip-plus {
+            background-color: rgba(33, 150, 243, 0.2);
+            color: #4caf50;
+            border: 1px solid #4caf50;
+        }
+        
+        .rank-mvp {
+            background-color: rgba(156, 39, 176, 0.2);
+            color: #00ccff;
+            border: 1px solid #00ccff;
+        }
+        
+        .rank-mvp-plus {
+            background-color: rgba(255, 152, 0, 0.2);
+            color: #00ccff;
+            border: 1px solid #00ccff;
+        }
+
+        .rank-mvp-plus-plus {
+            background-color: rgba(255, 152, 0, 0.2);
+            color: #ff9800;
+            border: 1px solid #ff9800;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #90a4ae;
+            font-size: 0.9rem;
+            border-top: 1px solid #2a2a4a;
+        }
+        
+        .sample-data {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #90a4ae;
+        }
+        
+        .sample-data a {
+            color: #90caf9;
+            text-decoration: none;
+        }
+        
+        .sample-data a:hover {
+            text-decoration: underline;
+        }
+        
+        .batch-info {
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .copy-btn {
+            margin-top: 8px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            background: rgba(57, 73, 171, 0.3);
+        }
+        
+        .copy-btn:hover {
+            background: rgba(57, 73, 171, 0.5);
+        }
+        
+        .icon {
+            font-size: 1.2rem;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-dragon"></i> Minecraft NFA 数据解析器</h1>
+            <p class="subtitle">解析并分类展示Minecraft非正式访问账户数据，支持批量处理</p>
+        </header>
+        
+        <section class="input-section">
+            <h2><i class="fas fa-paste"></i> 输入NFA数据</h2>
+            <textarea id="dataInput" placeholder="将NFA数据粘贴到这里...（支持批量数据，每行一个账户）">
+Minecraft_Name:Austri
+Minecraft_UUID:45435a1a014344e494ab92fdb52f29b9
+Accesstoken:eyJraWQiOiIwNDkxODEiLCJhbGciOiJSUzI1NiJ9.eyJ4dWlkIjoiMjUzNTQ2Mzk3MzU0NDIzNCIsImFnZyI6IkFkdWx0Iiwic3ViIjoiYjEwOGM1MWItMWFiZS00MTIzLTlhMzgtNTU1MmZlZDcyYzQ2IiwiYXV0aCI6IlhCT1giLCJucyI6ImRlZmF1bHQiLCJyb2xlcyI6W10sImlzcyI6ImF1dGhlbnRpY2F0aW9uIiwiZmxhZ3MiOlsibXVsdGlwbGF5ZXIiLCJvcmRlcnNfMjAyMiIsIm1zYW1pZ3JhdGlvbl9zdGFnZTQiLCJ0d29mYWN0b3JhdXRoIl0sInByb2ZpbGVzIjp7Im1jIjoiNDU0MzVhMWEtMDE0My00NGU0LTk0YWItOTJmZGI1MmYyOWI5In0sInBsYXRmb3JtIjoiUENfTEFVTkNIRVIiLCJwZmQiOlt7InR5cGUiOiJtYyIsImlkIjoiNDU0MzVhMWEtMDE0My00NGU0LTk0YWItOTJmZGI1MmYyOWI5IiwibmFtZSI6IkF1c3RyaSJ9XSwibmJmIjoxNzY1ODU3OTQ5LCJleHAiOjE3NjU5NDQzNDksImlhdCI6MTc2NTg1Nzk0OSwiYWlkIjoiMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDRjMTJhZTZmIn0.1P_4MUV--k4iIPw9XJg2IlPUAXecJOqc3Sy3UvN9y30xunkBzqyRYawaRDnnSMh07SKWV2gq_B9VeXyq7uukwAlEo03Wb9wc7PjETDQgKVvfRH6hV8rO2W_2h6SSCRA1P3rCpJ8HQshex26kX7crBcrdehBna9Jg7rYTi-OqP1Us_zt1whSQcJhn-qqxQF20zXz-H-f3m6ls2Ffc7gp8CmMrhwT_qWofVO4QQbVrRJdV_h1TOOzgjpxcELc0KKRD6_BcKSXFL6Xt7Ka425xBM7S8OeYJtcYCDKneckDUoj4NiDKH6jAl9RuObUeEl7np7TJQXMVJxM4C-3wxF2Na_Q|Austri|45435a1a014344e494ab92fdb52f29b9
+--------------------------------------
+[Microsoft_Hit][MC][unban][70][VIP][Skyblock]xaustrix@gmail.com:Actually123! |McName:Austri [Hypixel: BW:7 SW:3 UHC-Coins:15699 MW-Coins:15699 Arcade:606794 SKB-NW:778M SKB-Kills:32782898 SKB-level:145]</textarea>
+            
+            <div class="buttons">
+                <button id="parseBtn" class="success">
+                    <i class="fas fa-cogs"></i> 解析数据
+                </button>
+                <button id="clearBtn" class="secondary">
+                    <i class="fas fa-broom"></i> 清除数据
+                </button>
+                <button id="sampleBtn" class="secondary">
+                    <i class="fas fa-vial"></i> 加载示例数据
+                </button>
+                <button id="batchBtn">
+                    <i class="fas fa-layer-group"></i> 批量解析模式
+                </button>
+            </div>
+            
+            <div class="sample-data">
+                <p>提示：可以一次粘贴多个账户数据，每行一个完整账户信息，系统会自动识别并批量处理。</p>
+            </div>
+        </section>
+        
+        <div class="results-container">
+            <section class="result-box">
+                <h2><i class="fas fa-user-circle"></i> 账户基本信息</h2>
+                <div class="account-info">
+                    <div class="info-item">
+                        <div class="info-label">Minecraft 用户名</div>
+                        <div class="info-value username" id="username">-</div>
+                        <button class="copy-btn" onclick="copyToClipboard('username')"><i class="far fa-copy"></i> 复制</button>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">Minecraft UUID</div>
+                        <div class="info-value" id="uuid">-</div>
+                        <button class="copy-btn" onclick="copyToClipboard('uuid')"><i class="far fa-copy"></i> 复制</button>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">Access Token</div>
+                        <div class="info-value token" id="token">-</div>
+                        <button class="copy-btn" onclick="copyToClipboard('token')"><i class="far fa-copy"></i> 复制</button>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">账户类型</div>
+                        <div class="info-value" id="type">-</div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">Hypixel 状态</div>
+                        <div class="info-value" id="status">-</div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">Hypixel 大厅等级</div>
+                        <div class="info-value" id="lobbyLevel">-</div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">Hypixel Rank</div>
+                        <div class="info-value" id="rank">-</div>
+                    </div>
+                </div>
+                
+                <div class="batch-info" id="batchInfo" style="display: none;">
+                    <h3><i class="fas fa-layer-group"></i> 批量解析结果</h3>
+                    <p>已成功解析 <span id="batchCount">0</span> 个账户</p>
+                    <div id="batchList"></div>
+                </div>
+            </section>
+            
+            <section class="result-box">
+                <h2><i class="fas fa-envelope"></i> 邮箱凭据</h2>
+                <div class="account-info">
+                    <div class="info-item">
+                        <div class="info-label">邮箱地址</div>
+                        <div class="info-value email" id="email">-</div>
+                        <button class="copy-btn" onclick="copyToClipboard('email')"><i class="far fa-copy"></i> 复制</button>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">密码</div>
+                        <div class="info-value password" id="password">-</div>
+                        <button class="copy-btn" onclick="copyToClipboard('password')"><i class="far fa-copy"></i> 复制</button>
+                    </div>
+                </div>
+                
+                <h2 style="margin-top: 30px;"><i class="fas fa-chart-line"></i> Hypixel 游戏统计</h2>
+                <div class="hypixel-stats">
+                    <div class="stat-item">
+                        <div class="stat-label">Bed Wars 等级</div>
+                        <div class="stat-value" id="bwLevel">-</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-label">Sky Wars 等级</div>
+                        <div class="stat-value" id="swLevel">-</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-label">UHC 硬币</div>
+                        <div class="stat-value" id="uhcCoins">-</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-label">Mega Walls 硬币</div>
+                        <div class="stat-value" id="mwCoins">-</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-label">街机硬币</div>
+                        <div class="stat-value" id="arcadeCoins">-</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-label">SkyBlock 净值</div>
+                        <div class="stat-value" id="skbNetworth">-</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-label">SkyBlock 击杀数</div>
+                        <div class="stat-value" id="skbKills">-</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-label">SkyBlock 等级</div>
+                        <div class="stat-value" id="skbLevel">-</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <div class="footer">
+            <p>Minecraft NFA 数据解析器 v1.0 | 数据解析仅供合法用途 | Access Token 有效期为24小时</p>
+            <p><i class="fas fa-exclamation-triangle"></i> 注意：请妥善保管解析出的账户信息，遵守相关服务条款</p>
+            <p><a style="margin: 0 20px; color: #90a4ae" href="https://5ixsd.top/jaroniq" target="_blank">Made by JaronIQ</a><a style="margin: 0 20px; color: #90a4ae" href="https://xiaoshadiao.club" target="_blank">小沙雕の主页</a></p>
+        </div>
+    </div>
+
+    <script>
+        // 示例数据
+        const sampleData = `Minecraft_Name:Austri
+Minecraft_UUID:45435a1a014344e494ab92fdb52f29b9
+Accesstoken:eyJraWQiOiIwNDkxODEiLCJhbGciOiJSUzI1NiJ9.eyJ4dWlkIjoiMjUzNTQ2Mzk3MzU0NDIzNCIsImFnZyI6IkFkdWx0Iiwic3ViIjoiYjEwOGM1MWItMWFiZS00MTIzLTlhMzgtNTU1MmZlZDcyYzQ2IiwiYXV0aCI6IlhCT1giLCJucyI6ImRlZmF1bHQiLCJyb2xlcyI6W10sImlzcyI6ImF1dGhlbnRpY2F0aW9uIiwiZmxhZ3MiOlsibXVsdGlwbGF5ZXIiLCJvcmRlcnNfMjAyMiIsIm1zYW1pZ3JhdGlvbl9zdGFnZTQiLCJ0d29mYWN0b3JhdXRoIl0sInByb2ZpbGVzIjp7Im1jIjoiNDU0MzVhMWEtMDE0My00NGU0LTk0YWItOTJmZGI1MmYyOWI5In0sInBsYXRmb3JtIjoiUENfTEFVTkNIRVIiLCJwZmQiOlt7InR5cGUiOiJtYyIsImlkIjoiNDU0MzVhMWEtMDE0My00NGU0LTk0YWItOTJmZGI1MmYyOWI5IiwibmFtZSI6IkF1c3RyaSJ9XSwibmJmIjoxNzY1ODU3OTQ5LCJleHAiOjE3NjU5NDQzNDksImlhdCI6MTc2NTg1Nzk0OSwiYWlkIjoiMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDRjMTJhZTZmIn0.1P_4MUV--k4iIPw9XJg2IlPUAXecJOqc3Sy3UvN9y30xunkBzqyRYawaRDnnSMh07SKWV2gq_B9VeXyq7uukwAlEo03Wb9wc7PjETDQgKVvfRH6hV8rO2W_2h6SSCRA1P3rCpJ8HQshex26kX7crBcrdehBna9Jg7rYTi-OqP1Us_zt1whSQcJhn-qqxQF20zXz-H-f3m6ls2Ffc7gp8CmMrhwT_qWofVO4QQbVrRJdV_h1TOOzgjpxcELc0KKRD6_BcKSXFL6Xt7Ka425xBM7S8OeYJtcYCDKneckDUoj4NiDKH6jAl9RuObUeEl7np7TJQXMVJxM4C-3wxF2Na_Q|Austri|45435a1a014344e494ab92fdb52f29b9
+--------------------------------------
+[Microsoft_Hit][MC][unban][70][VIP][Skyblock]xaustrix@gmail.com:Actually123! |McName:Austri [Hypixel: BW:7 SW:3 UHC-Coins:15699 MW-Coins:15699 Arcade:606794 SKB-NW:778M SKB-Kills:32782898 SKB-level:145]`;
+
+        // DOM元素
+        const dataInput = document.getElementById('dataInput');
+        const parseBtn = document.getElementById('parseBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const sampleBtn = document.getElementById('sampleBtn');
+        const batchBtn = document.getElementById('batchBtn');
+        const batchInfo = document.getElementById('batchInfo');
+        const batchCount = document.getElementById('batchCount');
+        const batchList = document.getElementById('batchList');
+        
+        // 批量模式状态
+        let batchMode = false;
+        
+        // 加载示例数据
+        sampleBtn.addEventListener('click', () => {
+            dataInput.value = sampleData;
+            parseData();
+        });
+        
+        // 清除数据
+        clearBtn.addEventListener('click', () => {
+            dataInput.value = '';
+            clearResults();
+        });
+        
+        // 切换批量模式
+        batchBtn.addEventListener('click', () => {
+            batchMode = !batchMode;
+            batchBtn.innerHTML = batchMode ? 
+                '<i class="fas fa-layer-group"></i> 退出批量模式' : 
+                '<i class="fas fa-layer-group"></i> 批量解析模式';
+            
+            if (batchMode) {
+                batchBtn.classList.add('success');
+                batchInfo.style.display = 'block';
+            } else {
+                batchBtn.classList.remove('success');
+                batchInfo.style.display = 'none';
+            }
+        });
+        
+        // 解析数据
+        parseBtn.addEventListener('click', parseData);
+        
+        function parseData() {
+            const inputText = dataInput.value.trim();
+            if (!inputText) {
+                alert('请输入NFA数据');
+                return;
+            }
+            
+            // 如果是批量模式，按行分割处理
+            if (batchMode) {
+                const lines = inputText.split('\n');
+                const accounts = [];
+                let currentAccount = [];
+                
+                // 将数据分组为账户
+                for (const line of lines) {
+                    if (line.trim() === '') {
+                        if (currentAccount.length > 0) {
+                            accounts.push(currentAccount.join('\n'));
+                            currentAccount = [];
+                        }
+                    } else {
+                        currentAccount.push(line);
+                    }
+                }
+                
+                // 添加最后一个账户
+                if (currentAccount.length > 0) {
+                    accounts.push(currentAccount.join('\n'));
+                }
+                
+                batchCount.textContent = accounts.length;
+                batchList.innerHTML = '';
+                
+                // 处理每个账户
+                accounts.forEach((accountData, index) => {
+                    try {
+                        const account = parseAccountData(accountData);
+                        const accountElement = document.createElement('div');
+                        accountElement.className = 'batch-account';
+                        accountElement.style.cssText = `
+                            padding: 10px;
+                            margin: 5px 0;
+                            background: rgba(0,0,0,0.2);
+                            border-radius: 5px;
+                            border-left: 3px solid #3949ab;
+                            cursor: pointer;
+                        `;
+                        accountElement.innerHTML = `
+                            <strong>账户 ${index + 1}:</strong> ${account.username} (${account.email})
+                            <div style="font-size: 0.8rem; color: #90a4ae;">等级: ${account.lobbyLevel} | Rank: ${account.rank}</div>
+                        `;
+                        
+                        accountElement.addEventListener('click', () => {
+                            displayAccount(account);
+                        });
+                        
+                        batchList.appendChild(accountElement);
+                        
+                        // 默认显示第一个账户
+                        if (index === 0) {
+                            displayAccount(account);
+                        }
+                    } catch (error) {
+                        console.error(`解析账户 ${index + 1} 时出错:`, error);
+                    }
+                });
+                
+                if (accounts.length === 0) {
+                    alert('未找到有效的账户数据');
+                }
+            } else {
+                // 单个账户模式
+                try {
+                    const account = parseAccountData(inputText);
+                    displayAccount(account);
+                } catch (error) {
+                    alert('解析数据时出错: ' + error.message);
+                }
+            }
+        }
+        
+        function parseAccountData(text) {
+            // 分割token部分和账户部分
+            const parts = text.split('--------------------------------------');
+            if (parts.length < 2) {
+                throw new Error('数据格式不正确，缺少分隔线');
+            }
+            
+            const tokenPart = parts[0].trim();
+            const accountPart = parts[1].trim();
+            
+            // 解析token部分
+            const tokenLines = tokenPart.split('\n');
+            let username = '';
+            let uuid = '';
+            let token = '';
+            
+            for (const line of tokenLines) {
+                if (line.startsWith('Minecraft_Name:')) {
+                    username = line.replace('Minecraft_Name:', '').trim();
+                } else if (line.startsWith('Minecraft_UUID:')) {
+                    uuid = line.replace('Minecraft_UUID:', '').trim();
+                } else if (line.startsWith('Accesstoken:')) {
+                    // 提取第一个|之前的token部分
+                    const tokenWithExtra = line.replace('Accesstoken:', '').trim();
+                    token = tokenWithExtra.split('|')[0].trim();
+                }
+            }
+            
+            // 解析账户部分
+            // 格式: [Microsoft_Hit][MC][unban][70][VIP][Skyblock]xaustrix@gmail.com:Actually123! |McName:Austri [Hypixel: ...]
+            const accountMatch = accountPart.match(/\[([^\]]+)\]\[([^\]]+)\]\[([^\]]+)\]\[([^\]]+)\]\[([^\]]+)\](?:\[[^\]]+\])?([^:]+):([^\s|]+)/);
+            
+            if (!accountMatch) {
+                throw new Error('无法解析账户部分格式');
+            }
+            
+            const type = accountMatch[1];
+            const status = accountMatch[3];
+            const lobbyLevel = accountMatch[4];
+            let rank = accountMatch[5];
+            if (rank === 'Skyblock') {
+                rank = 'No Rank';
+            }
+            const email = accountMatch[6];
+            const password = accountMatch[7];
+            
+            // 提取游戏统计数据
+            const statsMatch = accountPart.match(/\[Hypixel:\s*(.+?)\]/);
+            let bwLevel = '-';
+            let swLevel = '-';
+            let uhcCoins = '-';
+            let mwCoins = '-';
+            let arcadeCoins = '-';
+            let skbNetworth = '-';
+            let skbKills = '-';
+            let skbLevel = '-';
+            
+            if (statsMatch) {
+                const statsText = statsMatch[1];
+                const stats = statsText.split(' ');
+                
+                stats.forEach(stat => {
+                    if (stat.startsWith('BW:')) {
+                        bwLevel = stat.replace('BW:', '');
+                    } else if (stat.startsWith('SW:')) {
+                        swLevel = stat.replace('SW:', '');
+                    } else if (stat.startsWith('UHC-Coins:')) {
+                        uhcCoins = stat.replace('UHC-Coins:', '');
+                    } else if (stat.startsWith('MW-Coins:')) {
+                        mwCoins = stat.replace('MW-Coins:', '');
+                    } else if (stat.startsWith('Arcade:')) {
+                        arcadeCoins = stat.replace('Arcade:', '');
+                    } else if (stat.startsWith('SKB-NW:')) {
+                        skbNetworth = stat.replace('SKB-NW:', '');
+                    } else if (stat.startsWith('SKB-Kills:')) {
+                        skbKills = stat.replace('SKB-Kills:', '');
+                    } else if (stat.startsWith('SKB-level:')) {
+                        skbLevel = stat.replace('SKB-level:', '');
+                    }
+                });
+            }
+            
+            return {
+                username,
+                uuid,
+                token,
+                type,
+                status,
+                lobbyLevel,
+                rank,
+                email,
+                password,
+                bwLevel,
+                swLevel,
+                uhcCoins,
+                mwCoins,
+                arcadeCoins,
+                skbNetworth,
+                skbKills,
+                skbLevel
+            };
+        }
+        
+        function displayAccount(account) {
+            document.getElementById('username').textContent = account.username;
+    document.getElementById('uuid').textContent = account.uuid;
+
+    const tokenElement = document.getElementById('token');
+    
+    tokenElement.setAttribute('data-full-value', account.token);
+    
+    tokenElement.textContent = account.token.length > 50 ? 
+        account.token.substring(0, 50) + '...' : account.token;
+
+    document.getElementById('type').textContent = account.type;
+            
+            // 显示状态并添加样式
+            const statusElement = document.getElementById('status');
+            statusElement.textContent = account.status;
+            statusElement.className = 'info-value';
+            
+            if (account.status === 'unban') {
+                statusElement.innerHTML = `<span class="status-badge status-unban">${account.status}</span>`;
+            } else if (account.status === 'banned') {
+                statusElement.innerHTML = `<span class="status-badge status-banned">${account.status}</span>`;
+            } else if (account.status === 'nobc') {
+                statusElement.innerHTML = `<span class="status-badge status-nobc">${account.status}</span>`;
+            }
+            
+            document.getElementById('lobbyLevel').textContent = account.lobbyLevel;
+            
+            // 显示Rank并添加样式
+            const rankElement = document.getElementById('rank');
+            rankElement.textContent = account.rank;
+            rankElement.className = 'info-value';
+            if (account.rank === 'No Rank') {
+                rankElement.innerHTML = `<span class="rank-badge rank-gray">${account.rank}</span>`;
+            } else if (account.rank === 'VIP') {
+                rankElement.innerHTML = `<span class="rank-badge rank-vip">${account.rank}</span>`;
+            } else if (account.rank === 'VIP+') {
+                rankElement.innerHTML = `<span class="rank-badge rank-vip-plus">${account.rank}</span>`;
+            } else if (account.rank === 'MVP') {
+                rankElement.innerHTML = `<span class="rank-badge rank-mvp">${account.rank}</span>`;
+            } else if (account.rank === 'MVP+') {
+                rankElement.innerHTML = `<span class="rank-badge rank-mvp-plus">${account.rank}</span>`;
+            } else if (account.rank === 'MVP++') {
+                rankElement.innerHTML = `<span class="rank-badge rank-mvp-plus-plus">${account.rank}</span>`;
+            }
+            
+            // 显示邮箱凭据
+            document.getElementById('email').textContent = account.email;
+            document.getElementById('password').textContent = account.password;
+            
+            // 显示游戏统计
+            document.getElementById('bwLevel').textContent = account.bwLevel;
+            document.getElementById('swLevel').textContent = account.swLevel;
+            document.getElementById('uhcCoins').textContent = account.uhcCoins;
+            document.getElementById('mwCoins').textContent = account.mwCoins;
+            document.getElementById('arcadeCoins').textContent = account.arcadeCoins;
+            document.getElementById('skbNetworth').textContent = account.skbNetworth;
+            document.getElementById('skbKills').textContent = account.skbKills;
+            document.getElementById('skbLevel').textContent = account.skbLevel;
+        }
+        
+        function clearResults() {
+            const elements = [
+                'username', 'uuid', 'token', 'type', 'status', 'lobbyLevel', 'rank',
+                'email', 'password', 'bwLevel', 'swLevel', 'uhcCoins', 'mwCoins',
+                'arcadeCoins', 'skbNetworth', 'skbKills', 'skbLevel'
+            ];
+            
+            elements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = '-';
+                    element.className = 'info-value';
+                    
+                    // 移除特殊样式类
+                    if (id === 'email') element.classList.add('email');
+                    if (id === 'password') element.classList.add('password');
+                    if (id === 'token') element.classList.add('token');
+                    if (id === 'username') element.classList.add('username');
+                }
+            });
+            
+            // 清除批量信息
+            batchCount.textContent = '0';
+            batchList.innerHTML = '';
+        }
+        
+function copyToClipboard(elementId) {
+    const element = document.getElementById(elementId);
+    
+    const text = element.getAttribute('data-full-value') || element.textContent;
+    
+    navigator.clipboard.writeText(text).then(() => {
+        const originalText = element.textContent;
+        
+        element.textContent = '已复制!';
+        element.style.color = '#4caf50';
+        
+        setTimeout(() => {
+            element.textContent = originalText;
+            element.style.color = '';
+        }, 1500);
+    }).catch(err => {
+        console.error('复制失败: ', err);
+        alert('复制失败，请手动复制');
+    });
+}
+        
+        // 页面加载时自动解析示例数据
+        window.addEventListener('DOMContentLoaded', () => {
+            parseData();
+        });
+    </script>
+</body>
+</html>
