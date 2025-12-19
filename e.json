@@ -1,15 +1,23 @@
 {
 
-    "v":"5.4.6-FIX-1",
+    "v":"5.4.7",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v546f1/hypixelhelper-5.4.6-FIX-1.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v546f1/hypixelhelper-5.4.6-FIX-1.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v547/hypixelhelper-5.4.7.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v547/hypixelhelper-5.4.7.jar"
     ],
     "a":[
         "%%hello%%",
+        "5.4.7更新公告: ",
+        "1，更新B站主播模式, 现在将会屏蔽新增计分板, 物品栏上方的文字",
+        "2，修复了因使用未预期的防砍动画版本导致mod适配器发生异常而无法加入服务器的问题",
+        "3，修复了药水效果等级显示少一级的问题",
+        "4，优化了IRC的发包与读包",
+        "5，修复了文本转义变量中的一些问题 (果然AI会给我优化出bug)",
+        "6，修复了上次版本的一些修改导致bw拆家告警可能报自己队友拆家的问题",
+        "7，行尸走肉的僵尸标记不再标记生命值小于等于0的僵尸",
         "5.4.6-FIX-1更新公告: ",
         "紧急修复5.4.6中因数据包优化导致的数据包无法订阅, 进而导致大部分功能失效的问题",
         "5.4.6更新公告: ",
@@ -22,17 +30,7 @@
         "1，新增功能小沙雕Mod Pack下载",
         "2，优化自动钓鱼，现在进一步尝试适配高速Skyblock钓鱼",
         "3，获取黑名单玩家信息多线程化，扫描黑名单玩家变得更快了",
-        "4，现在烘焙助手箱子标记的更明显了",
-        "5.4.4-FIX-1更新公告: ",
-        "1，尝试修复新版本中概率未能正常退出神话鱼状态的问题，若问题依然存在，请报告给小沙雕",
-        "5.4.4更新公告: ",
-        "1，新添加主播模式敏感词到词库",
-        "2，新增测Ping指令/hhping",
-        "3，新增Forge版本检测, 旧Forge版本会弹出提示并要求更新",
-        "4，修复一个问题: 当其他人在聊天框发送\"kg\" \"千克\"等词时会提前终止神话鱼状态导致神话鱼逃走",
-        "5，修复神话鱼头颅Base64数据异常导致报错崩端的问题",
-        "6，改进了自动钓鱼警报输出信息",
-        "7，修改了反反自动钓鱼的功能描述"
+        "4，现在烘焙助手箱子标记的更明显了"
     ],
     "rpurls": [
         "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/rp2/hypixelhelperpack.xsd",
