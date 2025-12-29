@@ -1,15 +1,17 @@
 {
 
-    "v":"5.4.9",
+    "v":"5.4.9-FIX-1",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v549/hypixelhelper-5.4.9.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v549/hypixelhelper-5.4.9.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v549f1/hypixelhelper-5.4.9-FIX-1.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v549f1/hypixelhelper-5.4.9-FIX-1.jar"
     ],
     "a":[
         "%%hello%%",
+        "5.4.9-FIX-1更新公告: ",
+        "修复主播模式检查敏感词过度依赖网络线程导致网络线程的过载问题",
         "5.4.9更新公告: ",
         "1，新增功能自定义披风",
         "2，扩充B站主播模式敏感词库, 并将部分检测尽可能从主线程剥离以防止客户端卡顿",
