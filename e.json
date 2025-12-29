@@ -1,15 +1,20 @@
 {
 
-    "v":"5.4.8",
+    "v":"5.4.9",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v548/hypixelhelper-5.4.8.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v548/hypixelhelper-5.4.8.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v549/hypixelhelper-5.4.9.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v549/hypixelhelper-5.4.9.jar"
     ],
     "a":[
         "%%hello%%",
+        "5.4.9更新公告: ",
+        "1，新增功能自定义披风",
+        "2，扩充B站主播模式敏感词库, 并将部分检测尽可能从主线程剥离以防止客户端卡顿",
+        "3，修复文本转义的unicode变量失效的问题",
+        "4，部分功能进一步适配I18n国际化",
         "5.4.8更新公告: ",
         "1，添加B站直播间定时重连防止连接假死",
         "2，重构并新增全新系统: I18n国际化翻译支持, 后期版本将逐步适配I18n",
@@ -23,15 +28,7 @@
         "4，优化了IRC的发包与读包",
         "5，修复了文本转义变量中的一些问题 (果然AI会给我优化出bug)",
         "6，修复了上次版本的一些修改导致bw拆家告警可能报自己队友拆家的问题",
-        "7，行尸走肉的僵尸标记不再标记生命值小于等于0的僵尸",
-        "5.4.6-FIX-1更新公告: ",
-        "紧急修复5.4.6中因数据包优化导致的数据包无法订阅, 进而导致大部分功能失效的问题",
-        "5.4.6更新公告: ",
-        "1，新增关于一些行尸走肉的功能",
-        "2，自动钓鱼不再发出\"鱼钩脱杆\"的警报",
-        "3，优化寻路, 并修复在预寻路未完成的情况下直接引用其错误的路径的问题",
-        "4，优化了客户端数据包处理部分",
-        "5，优化了文本转义部分 (代码是AI改的, 若未来出现变量转义Bug请及时反馈)"
+        "7，行尸走肉的僵尸标记不再标记生命值小于等于0的僵尸"
     ],
     "rpurls": [
         "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/rp2/hypixelhelperpack.xsd",
