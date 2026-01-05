@@ -1,15 +1,22 @@
 {
 
-    "v":"5.4.9-FIX-1",
+    "v":"5.5.0",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v549f1/hypixelhelper-5.4.9-FIX-1.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v549f1/hypixelhelper-5.4.9-FIX-1.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v550/hypixelhelper-5.5.0.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v550/hypixelhelper-5.5.0.jar"
     ],
     "a":[
         "%%hello%%",
+        "5.5.0更新公告:",
+        "1，优化主播模式敏感词检测",
+        "2，优化了一些功能",
+        "3，减慢了设置页中长文本滚动速度",
+        "4，修复特定情况下翻译器会抛出异常的问题",
+        "5，在Overlay位置设置中标注Gui名字方便辨别",
+        "6，自定义背景设置, Overlay位置设置适配I18n支持",
         "5.4.9-FIX-1更新公告: ",
         "修复主播模式检查敏感词过度依赖网络线程导致网络线程的过载问题",
         "5.4.9更新公告: ",
@@ -22,15 +29,7 @@
         "2，重构并新增全新系统: I18n国际化翻译支持, 后期版本将逐步适配I18n",
         "3，修复部分电脑没有wmic指令导致账号配置文件无法加密的问题",
         "4，修复设置页面在特定情况下崩端的问题",
-        "5，修复设置页面搜索功能区分大小写的问题",
-        "5.4.7更新公告: ",
-        "1，更新B站主播模式, 现在将会屏蔽新增计分板, 物品栏上方的文字",
-        "2，修复了因使用未预期的防砍动画版本导致mod适配器发生异常而无法加入服务器的问题",
-        "3，修复了药水效果等级显示少一级的问题",
-        "4，优化了IRC的发包与读包",
-        "5，修复了文本转义变量中的一些问题 (果然AI会给我优化出bug)",
-        "6，修复了上次版本的一些修改导致bw拆家告警可能报自己队友拆家的问题",
-        "7，行尸走肉的僵尸标记不再标记生命值小于等于0的僵尸"
+        "5，修复设置页面搜索功能区分大小写的问题"
     ],
     "rpurls": [
         "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/rp2/hypixelhelperpack.xsd",
