@@ -29,7 +29,14 @@
         "2，重构并新增全新系统: I18n国际化翻译支持, 后期版本将逐步适配I18n",
         "3，修复部分电脑没有wmic指令导致账号配置文件无法加密的问题",
         "4，修复设置页面在特定情况下崩端的问题",
-        "5，修复设置页面搜索功能区分大小写的问题"
+        "5，修复设置页面搜索功能区分大小写的问题",
+
+
+
+
+        
+        "关于作者小沙雕: 小沙雕的闲聊群728972740，皮肤制作: 杀星(原创),HyperEnder(氨锝)(二改),背景制作HyperEnder，代码制作维护：小沙雕，其他致谢：Discord somebody_lmfao",
+        "感谢所有小沙雕好友的一路陪伴!还有，如果你有此mod的建议可以来我的沙雕の窝反馈哦！"
     ],
     "rpurls": [
         "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/rp2/hypixelhelperpack.xsd",
