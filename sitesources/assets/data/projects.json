@@ -12,5 +12,12 @@
         "desc": "一个用于混淆Java字节码的工具，帮助保护您的Java代码awa",
         "imgSrc": "/xsdv2.png",
         "alt": "XiaoShadiao Obfuscator"
+    },
+    {
+        "href": "/hhmt",
+        "title": "Hypixel Helper Translation Project",
+        "desc": "一个帮助Hypixel Helper Mod翻译的Crowdin项目",
+        "imgSrc": "/xsdv2.png",
+        "alt": "Hypixel Helper Translation Project"
     }
 ]
