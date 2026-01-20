@@ -111,6 +111,18 @@
         {
             "e0e80cdfeba0495aa3325018ccccab9c": "skb_toxic"
         },
+        {
+            "38016f454172439090a6b629e86ae191": "toxic|balant"
+        },
+        {
+            "df0457239e8f485f9a58da378fa92263": "toxic|balant"
+        },
+        {
+            "57d2218f72c4432a968a2e0cbc104c8d": "toxic|balant"
+        },
+        {
+            "47d97e5b0cd64588b71401b189fbeb29": "toxic|balant"
+        },
         /* Autofishe Start (H)*/
         {
             "31d53b3678514a2ba4a6233342d9214f": "maybe_autofishe"
