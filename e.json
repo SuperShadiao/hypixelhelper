@@ -1,15 +1,35 @@
 {
 
-    "v":"5.5.1",
+    "v":"5.5.2",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v551/hypixelhelper-5.5.1.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v551/hypixelhelper-5.5.1.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v552/hypixelhelper-5.5.2.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v552/hypixelhelper-5.5.2.jar"
     ],
     "a":[
         "%%hello%%",
+
+        /*
+        公告格式:
+
+        Version更新公告:
+        1，XXX
+        2，XXX
+        3，XXX
+        ...
+        */
+
+        "5.5.2更新公告:",
+        "1，AutoGG兼容街机游戏灾难模拟器",
+        "2，新增特殊的Bossbar",
+        "3，新增功能智能实体渲染",
+        "4，部分功能进一步适配I18n国际化支持",
+        "5，新增功能世界时间锁定",
+        "6，修复不播放声音的提示消息不会传入聊天栏管理的问题",
+        "7，优化敏感词库和匹配",
+        "8，小沙雕终于愿意解决设置页面的输入框输入非数字会崩端的问题了",
         "5.5.1更新公告:",
         "1，1XSD AC新增检查项Scaffold E/F, 新增Invaild A/B, 新增Nofall B, 并对一些检查项进行优化",
         "2，新增功能Antisniper denicker (与战绩检查器绑定在一起)",
@@ -21,13 +41,6 @@
         "4，修复特定情况下翻译器会抛出异常的问题",
         "5，在Overlay位置设置中标注Gui名字方便辨别",
         "6，自定义背景设置, Overlay位置设置适配I18n支持",
-        "5.4.9-FIX-1更新公告: ",
-        "修复主播模式检查敏感词过度依赖网络线程导致网络线程的过载问题",
-        "5.4.9更新公告: ",
-        "1，新增功能自定义披风",
-        "2，扩充B站主播模式敏感词库, 并将部分检测尽可能从主线程剥离以防止客户端卡顿",
-        "3，修复文本转义的unicode变量失效的问题",
-        "4，部分功能进一步适配I18n国际化",
 
 
 
