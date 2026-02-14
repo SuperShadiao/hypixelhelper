@@ -1,12 +1,12 @@
 {
 
-    "v":"5.5.2",
+    "v":"5.5.3",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v552/hypixelhelper-5.5.2.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v552/hypixelhelper-5.5.2.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v553/hypixelhelper-5.5.3.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v553/hypixelhelper-5.5.3.jar"
     ],
     "a":[
         "%%hello%%",
@@ -21,6 +21,14 @@
         ...
         */
 
+        "5.5.3更新公告:",
+        "1，AutoGG适配色盲派对"，
+        "2，新增功能色盲派对助手",
+        "3，优化了XSD AC在起床战争中因为跳跃药水误报Motion E和Motion D的情况",
+        "4，修复智能实体渲染不会渲染被玻璃等透明方块阻挡的实体的问题",
+        "5，处理了一个遗留聊天栏管理的方案, 该方案会导致遇到结尾为\": 你好\"的消息时将其屏蔽并自动发送hi的问题",
+        "6，修复部分设备初始化mod失败的问题",
+        "7，处理了部分聊天栏消息如果包含中文, 会导致百度翻译直接返回原文的问题",
         "5.5.2更新公告:",
         "1，AutoGG兼容街机游戏灾难模拟器",
         "2，新增特殊的Bossbar",
@@ -34,13 +42,6 @@
         "1，1XSD AC新增检查项Scaffold E/F, 新增Invaild A/B, 新增Nofall B, 并对一些检查项进行优化",
         "2，新增功能Antisniper denicker (与战绩检查器绑定在一起)",
         "3，优化敏感词与词库",
-        "5.5.0更新公告:",
-        "1，优化主播模式敏感词检测",
-        "2，优化了一些功能",
-        "3，减慢了设置页中长文本滚动速度",
-        "4，修复特定情况下翻译器会抛出异常的问题",
-        "5，在Overlay位置设置中标注Gui名字方便辨别",
-        "6，自定义背景设置, Overlay位置设置适配I18n支持",
 
 
 
