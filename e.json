@@ -1,12 +1,12 @@
 {
 
-    "v":"5.5.3",
+    "v":"5.5.4",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v553/hypixelhelper-5.5.3.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v553/hypixelhelper-5.5.3.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v554/hypixelhelper-5.5.4.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v554/hypixelhelper-5.5.4.jar"
     ],
     "a":[
         "%%hello%%",
@@ -20,7 +20,11 @@
         3，XXX
         ...
         */
-
+        "5.5.4更新公告:",
+        "1，新增功能起床战争车队检测",
+        "2，现在实体渲染器在非第一人称视角下不会工作",
+        "3，留存Skyblock功能",
+        "4，修复一些bug",
         "5.5.3更新公告:",
         "1，AutoGG适配色盲派对",
         "2，新增功能色盲派对助手",
@@ -38,10 +42,6 @@
         "6，修复不播放声音的提示消息不会传入聊天栏管理的问题",
         "7，优化敏感词库和匹配",
         "8，小沙雕终于愿意解决设置页面的输入框输入非数字会崩端的问题了",
-        "5.5.1更新公告:",
-        "1，1XSD AC新增检查项Scaffold E/F, 新增Invaild A/B, 新增Nofall B, 并对一些检查项进行优化",
-        "2，新增功能Antisniper denicker (与战绩检查器绑定在一起)",
-        "3，优化敏感词与词库",
 
 
 
