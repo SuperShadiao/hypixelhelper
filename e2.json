@@ -1,9 +1,7 @@
 {
-
-    "v":"0.0.1",
-    "u":"https://xiaoshadiao.club/skydiao.jar",
+    "v":"0.0.2",
     "ul":[
         "https://xiaoshadiao.club/skydiao.jar",
-        "https://github.com/SuperShadiao/skydiao/releases/download/v001/skydiao-0.0.1.jar"
+        "https://github.com/SuperShadiao/skydiao/releases/download/v002/skydiao-0.0.2.jar"
     ]
 }
