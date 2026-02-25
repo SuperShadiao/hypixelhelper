@@ -1,12 +1,12 @@
 {
 
-    "v":"5.5.4",
+    "v":"5.5.4-FIX-1",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v554/hypixelhelper-5.5.4.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v554/hypixelhelper-5.5.4.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v554f1/hypixelhelper-5.5.4-FIX-1.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v554f1/hypixelhelper-5.5.4-FIX-1.jar"
     ],
     "a":[
         "%%hello%%",
@@ -20,6 +20,8 @@
         3，XXX
         ...
         */
+        "5.5.4-FIX-1更新公告:",
+        "修复自定义背景资源包载入顺序问题",
         "5.5.4更新公告:",
         "1，新增功能起床战争车队检测",
         "2，现在实体渲染器在非第一人称视角下不会工作",
@@ -55,7 +57,7 @@
         "https://xiaoshadiao.club/hypixelhelperpack.xsd",
         "https://github.com/SuperShadiao/hypixelhelper/releases/download/rp/hypixelhelperpack.xsd"
     ],
-    "rpv": 13,
+    "rpv": 14,
     "aas": [
         {"name": "Cloudflare Artificial Idiot", "msgprefix": "@AI"},
         {"name": "DeepSeek深度思考", "msgprefix": "@DS"},
