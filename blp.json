@@ -111,6 +111,45 @@
         {
             "e0e80cdfeba0495aa3325018ccccab9c": "skb_toxic"
         },
+        {
+            "38016f454172439090a6b629e86ae191": "toxic|balant"
+        },
+        {
+            "df0457239e8f485f9a58da378fa92263": "toxic|balant"
+        },
+        {
+            "57d2218f72c4432a968a2e0cbc104c8d": "toxic|balant"
+        },
+        {
+            "47d97e5b0cd64588b71401b189fbeb29": "toxic|balant"
+        },
+        {
+            "cd3cccce1ad34db4a659a9c2423b3994": "du_li_xuan_yan"
+        },
+        {
+            "f94dfbd3cd2e4ba4bd4ee78c88279902": "safe"
+        },
+        {
+            "ae62a2e290d64f7b817b52711f5bc8b9": "safe"
+        },
+        {
+            "8d031600c3ec4cef9d166bde83980ad6": "boosting"
+        },
+        {
+            "d2fcd28a38494e7b95f7d5a210e4ec74": "toxic"
+        },
+        {
+            "d09d6e0139d8460983ea06c0686ff187": "safe"
+        },
+        {
+            "1b453cef910d49c3bba0ddb6d2905c99": "toxic"
+        },
+        {
+            "479ba3e336d94c64a05092fa4aa899b1": "toxic"
+        },
+        {
+            "1deb8dc4d71f4323a7db392138b3e8e4": "toxic"
+        },
         /* Autofishe Start (H)*/
         {
             "31d53b3678514a2ba4a6233342d9214f": "maybe_autofishe"
