@@ -32,12 +32,14 @@
 
             <div class="content-section fade-in-up scroll-animate">
                 <h2 class="section-title">关于本Mod</h2>
-                <p class="section-content">本Mod专门针对游玩Hypixel服务器开发, 涵盖各种游戏的功能, 例如游戏内的支持中文的AutoGG, 以及关于起床战争, 空岛战争, 密室杀手等热门游戏的功能</p>
+                <p class="section-content">本Mod专门针对游玩Hypixel服务器开发, 涵盖各种游戏的功能, 例如游戏内的支持中文的AutoGG, 以及关于起床战争, 空岛战争,
+                    密室杀手等热门游戏的功能</p>
             </div>
 
             <div class="content-section fade-in-up scroll-animate">
                 <h2 class="section-title">联系与支持</h2>
-                <p class="section-content">只需要加入小沙雕的<a href="https://5ixsd.top/qqg" target="_blank">QQ群</a>即可与小沙雕一起游玩, 闲聊! 顺便还可以反馈建议和Bug!</p>
+                <p class="section-content">只需要加入小沙雕的<a href="https://5ixsd.top/qqg" target="_blank">QQ群</a>即可与小沙雕一起游玩,
+                    闲聊! 顺便还可以反馈建议和Bug!</p>
             </div>
 
             <div class="content-section fade-in-up scroll-animate">
@@ -77,8 +79,18 @@
             </div>
 
             <div class="cta-section fade-in-up scroll-animate">
-                <p class="cta-text"><a href="https://xiaoshadiao.club/release" target="_blank" id="player-count-link">点击这里</a>, 来与我们<span id="player-count">0</span>个人一起游玩吧!</p>
+                <p class="cta-text"><a href="https://xiaoshadiao.club/release" target="_blank"
+                        id="player-count-link">点击这里</a>, 来与我们<span id="player-count">0</span>个人一起游玩吧!</p>
             </div>
+        </div>
+    </div>
+
+    <!-- Image Preview Modal -->
+    <div id="image-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modal-image" src="" alt="Preview">
+            <div id="modal-caption"></div>
         </div>
     </div>
 
@@ -256,9 +268,11 @@
             0% {
                 background-position: 0% 50%;
             }
+
             50% {
                 background-position: 100% 50%;
             }
+
             100% {
                 background-position: 0% 50%;
             }
@@ -269,6 +283,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -351,22 +366,114 @@
             .cta-text {
                 font-size: 1.1em;
             }
+
+            .modal-content {
+                max-width: 90%;
+                max-height: 90vh;
+            }
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            text-align: center;
+            border-radius: 10px;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: #333;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: #667eea;
+        }
+
+        #modal-image {
+            max-width: 100%;
+            max-height: 60vh;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        #modal-caption {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #333;
+            margin-top: 15px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
     </style>
 
     <script>
         function getPlayerCount() {
-            return 0;
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "/xsdwk/hhonline?action=getonly", true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    const playerCount = JSON.parse(xhr.responseText)["onlineplayers"].length;
+                    const playerCountElement = document.getElementById('player-count');
+                    if (playerCountElement) {
+                        playerCountElement.textContent = playerCount;
+                    }
+                }
+            };
+            xhr.send();
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const playerCountElement = document.getElementById('player-count');
-            if (playerCountElement) {
-                playerCountElement.textContent = getPlayerCount();
-            }
+        window.headerLoadedCallback = function () {
+            getPlayerCount();
 
             const scrollAnimateElements = document.querySelectorAll('.scroll-animate');
-            
+
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
@@ -384,7 +491,51 @@
             scrollAnimateElements.forEach(element => {
                 observer.observe(element);
             });
-        });
+
+            // Image modal functionality
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-image');
+            const modalCaption = document.getElementById('modal-caption');
+            const closeBtn = document.querySelector('.close');
+
+            // Get all gallery images
+            const galleryImages = document.querySelectorAll('.gallery-item img');
+
+            // Add click event listeners to images
+            galleryImages.forEach(img => {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', function () {
+                    modal.style.display = 'block';
+                    modalImg.src = this.src;
+                    modalCaption.textContent = this.closest('.gallery-item').querySelector('.gallery-caption').textContent;
+                    document.body.style.overflow = 'hidden'; // Prevent body scroll
+                });
+            });
+
+            // Close modal when close button is clicked
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function () {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Restore body scroll
+                });
+            }
+
+            // Close modal when clicking outside the modal content
+            window.addEventListener('click', function (event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Restore body scroll
+                }
+            });
+
+            // Close modal when Escape key is pressed
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && modal.style.display === 'block') {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Restore body scroll
+                }
+            });
+        };
     </script>
 
 </body>
