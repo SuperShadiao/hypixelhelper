@@ -19,5 +19,12 @@
         "desc": "一个帮助Hypixel Helper Mod翻译的Crowdin项目",
         "imgSrc": "/xsdv2.png",
         "alt": "Hypixel Helper Translation Project"
+    },
+    {
+        "href": "https://5ixsd.top/skydiao",
+        "title": "SkyDiao",
+        "desc": "一个基于MC 1.21.10 Fabric开发的Hypixel Skyblock Mod, 目前正在迁移Hypixel Helper Mod的部分Skyblock功能, 今后就在这里开启新的Skyblock之旅吧!",
+        "imgSrc": "/xsdv2.png",
+        "alt": "SkyDiao"
     }
 ]

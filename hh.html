@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Hypixel Helper Mod官网! 在这里, 发现更多好玩的Hypixel功能! 小沙雕的个人网站, 拥有一些小项目, 正在制作的项目有: Minecraft Hypixel Helper Mod, Java XiaoShadiao Obfuscator等. 欢迎大家来与小沙雕互动! qwq">
+    <meta name="keywords" content="小沙雕,个人网站,awa,Java,Minecraft,Hypixel,Helper,Obfuscator,项目,开发,xiaoshadiao">
+
+    <title>Hypixel Helper Mod | 小沙雕</title>
+
+    <!-- ICONS -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="icons/favicon-64x64.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="xsdv2.png">
+
+    <script src="/sitesources/js/header.js" defer></script>
+</head>
+
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <div class="header-offset">
+        <div class="container">
+            <div class="hero-section fade-in-up">
+                <h1 class="main-title">Hypixel Helper Mod</h1>
+                <p class="subtitle">一个基于MC 1.8.9 Forge开发的Hypixel服务器用Mod</p>
+            </div>
+
+            <div class="content-section fade-in-up scroll-animate">
+                <h2 class="section-title">关于本Mod</h2>
+                <p class="section-content">本Mod专门针对游玩Hypixel服务器开发, 涵盖各种游戏的功能, 例如游戏内的支持中文的AutoGG, 以及关于起床战争, 空岛战争, 密室杀手等热门游戏的功能</p>
+            </div>
+
+            <div class="content-section fade-in-up scroll-animate">
+                <h2 class="section-title">联系与支持</h2>
+                <p class="section-content">只需要加入小沙雕的<a href="https://5ixsd.top/qqg" target="_blank">QQ群</a>即可与小沙雕一起游玩, 闲聊! 顺便还可以反馈建议和Bug!</p>
+            </div>
+
+            <div class="content-section fade-in-up scroll-animate">
+                <h2 class="section-title">图片展示</h2>
+                <div class="image-gallery">
+                    <div class="gallery-item fade-in-up">
+                        <div class="image-wrapper">
+                            <img src="/sitesource/assets/hhstatics/settingsmenu.png" alt="设置页面">
+                        </div>
+                        <p class="gallery-caption">设置页面</p>
+                    </div>
+                    <div class="gallery-item fade-in-up">
+                        <div class="image-wrapper">
+                            <img src="/sitesource/assets/hhstatics/musics.png" alt="点歌台">
+                        </div>
+                        <p class="gallery-caption">点歌台</p>
+                    </div>
+                    <div class="gallery-item fade-in-up">
+                        <div class="image-wrapper">
+                            <img src="/sitesource/assets/hhstatics/overlaysettings.png" alt="HUD设置">
+                        </div>
+                        <p class="gallery-caption">HUD设置</p>
+                    </div>
+                    <div class="gallery-item fade-in-up">
+                        <div class="image-wrapper">
+                            <img src="/sitesource/assets/hhstatics/bilibililistener.png" alt="B站直播间弹幕监听">
+                        </div>
+                        <p class="gallery-caption">B站直播间弹幕监听</p>
+                    </div>
+                    <div class="gallery-item fade-in-up">
+                        <div class="image-wrapper">
+                            <img src="/sitesource/assets/hhstatics/accmng.png" alt="账号管理">
+                        </div>
+                        <p class="gallery-caption">账号管理</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section fade-in-up scroll-animate">
+                <p class="cta-text"><a href="https://xiaoshadiao.club/release" target="_blank" id="player-count-link">点击这里</a>, 来与我们<span id="player-count">0</span>个人一起游玩吧!</p>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-size: 200% 200%;
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            animation: gradientShift 8s ease infinite;
+        }
+
+        .main-title {
+            font-size: 3em;
+            margin: 0 0 20px 0;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            margin: 0;
+            opacity: 0.95;
+        }
+
+        .content-section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            margin: 0 0 20px 0;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .section-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+
+        .section-content a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .section-content a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .image-gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 30px;
+            padding: 20px 0;
+            scroll-behavior: smooth;
+        }
+
+        .gallery-item {
+            flex: 0 0 300px;
+            text-align: center;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .image-wrapper {
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .gallery-caption {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+
+        .image-gallery::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .image-gallery::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .image-gallery::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 4px;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background-size: 200% 200%;
+            border-radius: 15px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.3);
+            animation: gradientShift 6s ease infinite;
+        }
+
+        .cta-text {
+            font-size: 1.3em;
+            color: white;
+            margin: 0;
+        }
+
+        .cta-text a {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 2px solid white;
+            padding-bottom: 2px;
+            transition: all 0.3s;
+        }
+
+        .cta-text a:hover {
+            background: white;
+            color: #f5576c;
+            padding: 5px 15px;
+            border-radius: 5px;
+        }
+
+        #player-count {
+            font-weight: 700;
+            font-size: 1.2em;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .hero-section {
+            animation-delay: 0.1s;
+        }
+
+        .content-section:nth-of-type(1) {
+            animation-delay: 0.2s;
+        }
+
+        .content-section:nth-of-type(2) {
+            animation-delay: 0.4s;
+        }
+
+        .content-section:nth-of-type(3) {
+            animation-delay: 0.6s;
+        }
+
+        .gallery-item:nth-of-type(1) {
+            animation-delay: 0.7s;
+        }
+
+        .gallery-item:nth-of-type(2) {
+            animation-delay: 0.8s;
+        }
+
+        .gallery-item:nth-of-type(3) {
+            animation-delay: 0.9s;
+        }
+
+        .gallery-item:nth-of-type(4) {
+            animation-delay: 1.0s;
+        }
+
+        .gallery-item:nth-of-type(5) {
+            animation-delay: 1.1s;
+        }
+
+        .cta-section {
+            animation-delay: 1.2s;
+        }
+
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2em;
+            }
+
+            .subtitle {
+                font-size: 1.1em;
+            }
+
+            .section-title {
+                font-size: 1.4em;
+            }
+
+            .gallery-item {
+                flex: 0 0 250px;
+            }
+
+            .cta-text {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+
+    <script>
+        function getPlayerCount() {
+            return 0;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const playerCountElement = document.getElementById('player-count');
+            if (playerCountElement) {
+                playerCountElement.textContent = getPlayerCount();
+            }
+
+            const scrollAnimateElements = document.querySelectorAll('.scroll-animate');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            scrollAnimateElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
