@@ -7,7 +7,7 @@ export async function onRequest(context) {
     const text = await response.text();
 
 
-    return new Response(text.replace("{URL}", host), {
+    return new Response(text.replace(/{URL}/g, host), {
         headers: {
             "Content-Type": "application/xml; charset=utf-8"
         }
