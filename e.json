@@ -1,12 +1,12 @@
 {
 
-    "v":"5.5.5",
+    "v":"5.5.6",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v555/hypixelhelper-5.5.5.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v555/hypixelhelper-5.5.5.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v556/hypixelhelper-5.5.6.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v556/hypixelhelper-5.5.6.jar"
     ],
     "a":[
         "%%hello%%",
@@ -20,6 +20,10 @@
         3，XXX
         ...
         */
+    
+        "5.5.6更新公告:",
+        "1，新增功能灾难模拟器助手",
+        "2，修复一些bug",
         "5.5.5更新公告:",
         "1，/hhsc printbanmsg <playername> <msgtype(1~5)> <playernametype(1~4)>",
         "2，修复B站直播间监听器在特定情况下无限重连的问题",
@@ -33,14 +37,6 @@
         "2，现在实体渲染器在非第一人称视角下不会工作",
         "3，留存Skyblock功能",
         "4，修复一些bug",
-        "5.5.3更新公告:",
-        "1，AutoGG适配色盲派对",
-        "2，新增功能色盲派对助手",
-        "3，优化了XSD AC在起床战争中因为跳跃药水误报Motion E和Motion D的情况",
-        "4，修复智能实体渲染不会渲染被玻璃等透明方块阻挡的实体的问题",
-        "5，处理了一个遗留聊天栏管理的方案, 该方案会导致遇到结尾为\": 你好\"的消息时将其屏蔽并自动发送hi的问题",
-        "6，修复部分设备初始化mod失败的问题",
-        "7，处理了部分聊天栏消息如果包含中文, 会导致百度翻译直接返回原文的问题",
 
 
 
