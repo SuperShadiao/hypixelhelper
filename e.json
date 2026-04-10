@@ -1,12 +1,12 @@
 {
 
-    "v":"5.5.6",
+    "v":"5.5.7",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v556/hypixelhelper-5.5.6.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v556/hypixelhelper-5.5.6.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v557/hypixelhelper-5.5.7.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v557/hypixelhelper-5.5.7.jar"
     ],
     "a":[
         "%%hello%%",
@@ -21,6 +21,9 @@
         ...
         */
     
+        "5.5.7更新公告:",
+        "1，新增设置IRC玩家加入与离开消息",
+        "2，提取IRC的Macro check消息到专属分类并做了优化",
         "5.5.6更新公告:",
         "1，新增功能灾难模拟器助手",
         "2，修复一些bug",
@@ -30,13 +33,6 @@
         "3，修复一些渲染动画会因为某些原因忽快忽慢的问题",
         "4，修复获取不存在的系统环境导致崩端的问题",
         "5，更换自定义披风默认文件为小沙雕披风 (by HyperEnder)",
-        "5.5.4-FIX-1更新公告:",
-        "修复自定义背景资源包载入顺序问题",
-        "5.5.4更新公告:",
-        "1，新增功能起床战争车队检测",
-        "2，现在实体渲染器在非第一人称视角下不会工作",
-        "3，留存Skyblock功能",
-        "4，修复一些bug",
 
 
 
