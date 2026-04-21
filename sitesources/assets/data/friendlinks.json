@@ -61,5 +61,12 @@
         "desc": "就是一群可爱的猫猫开发一堆可爱的程序喵!",
         "imgSrc": "/sitesources/assets/friends/necron_dev.png",
         "alt": "Necron-Dev"
+    },
+    {
+        "href": "https://5ixsd.top/ench",
+        "title": "Ench喵",
+        "desc": "一只ench蛋喵~",
+        "imgSrc": "/sitesources/assets/friends/ench.jpg",
+        "alt": "Ench喵"
     }
 ]
