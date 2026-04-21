@@ -54,5 +54,12 @@
         "desc": "没话说, 富哥什么都能做到.jpg",
         "imgSrc": "/sitesources/assets/friends/秩荣.jpg",
         "alt": "秩荣"
+    },
+    {
+        "href": " https://5ixsd.top/necron_dev",
+        "title": "Necron-Dev",
+        "desc": "就是一群可爱的猫猫开发一堆可爱的程序喵!",
+        "imgSrc": "/sitesources/assets/friends/necron_dev.png",
+        "alt": "Necron-Dev"
     }
 ]
