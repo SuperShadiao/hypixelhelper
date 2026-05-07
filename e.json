@@ -48,14 +48,12 @@
     ],
     "rpv": 14,
     "aas": [
-        {"name": "Cloudflare Artificial Idiot", "msgprefix": "@AI"},
+        {"name": "Cloudflare托管Qwen AI", "msgprefix": "@AI"},
+        {"name": "CF Qwen AI - 猫猫", "msgprefix": "@AI{猫猫}"},
+        {"name": "CF Qwen AI - 盟主", "msgprefix": "@AI{盟主}"},
         {"name": "DeepSeek深度思考", "msgprefix": "@DS"},
-        {"name": "DeepSeek - 流萤", "msgprefix": "@DS{流萤}"},
-        {"name": "DeepSeek - 芙宁娜", "msgprefix": "@DS{芙宁娜}"},
         {"name": "DeepSeek - 猫猫", "msgprefix": "@DS{猫猫}"},
-        {"name": "DeepSeek - 盟主", "msgprefix": "@DS{盟主}"},
-        {"name": "DeepSeek - 温迪", "msgprefix": "@DS{温迪}"},
-        {"name": "DeepSeek - 银狼", "msgprefix": "@DS{银狼}"}
+        {"name": "DeepSeek - 盟主", "msgprefix": "@DS{盟主}"}
     ],
     "yqlossmixinclienturls":[
         "https://xiaoshadiao.club/datagetter?url=https://cdn.modrinth.com/data/jbJKIVzJ/versions/g0asNZ8J/yqlossclientmixin-1.8.9-forge-2.1.0.jar",
