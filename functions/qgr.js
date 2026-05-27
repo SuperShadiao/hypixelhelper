@@ -16,7 +16,7 @@ export async function onRequest(context) {
         return fetch("https://xiaoshadiao.club/sitesources/mds/404.md");
     } else {
         return new Response(buffer, {
-            headers: /* Object.fromEntries( */response.headers/*.entries())*/
+            headers: response.headers
         });
     }
 }
