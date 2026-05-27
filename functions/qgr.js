@@ -15,6 +15,6 @@ export async function onRequest(context) {
     if(!text.startsWith("<")) {
         return await fetch("https://xiaoshadiao.club/sitesources/mds/404.md");
     } else {
-        return response;
+        return response.clone();
     }
 }
