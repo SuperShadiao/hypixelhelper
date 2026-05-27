@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <!-- 1. 引入 marked.js 用于解析 Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- 2. 引入 DOMPurify 用于过滤危险的 HTML 标签（保障安全） -->
+    <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+    <!-- 3. 引入 highlight.js 的默认配色主题 (这里用了 github 风格) -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 4. 引入 highlight.js 的核心库 -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="小沙雕正在维护的项目, 例如Minecraft Mod Hypixel Helper, XiaoShadiao Obfuscator(小沙雕混淆器)等. 小沙雕的个人网站, 拥有一些小项目, 正在制作的项目有: Minecraft Hypixel Helper Mod, Java XiaoShadiao Obfuscator等. 欢迎大家来与小沙雕互动! qwq">
+    <meta name="keywords" content="小沙雕,个人网站,awa,Java,Minecraft,Hypixel,Helper,Obfuscator,项目,开发,xiaoshadiao">
+
+    <title>群聊规则</title>
+
+    <!-- ICONS -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="icons/favicon-64x64.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="xsdv2.png">
+
+    <link rel="stylesheet" href="/sitesources/css/qgr.css">
+
+    <script src="/sitesources/js/header.js" defer></script>
+    <script src="/sitesources/js/markdownhelper.js"></script>
+</head>
+
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <div id="markdown-content" class="header-offset"></div>
+
+    <script>
+        console.log(hljs.getLanguage('javascript'));
+        marked.setOptions({
+            highlight(code) {
+                return hljs.highlightAuto(code).value;
+            }
+        });
+
+        let url = new URL(window.location.href);
+        let qqgroup = url.searchParams.get("g");
+
+        // 4. 准备你的 Markdown 文本（实际开发中可能是从后台接口获取的）
+        fetch("/qgr?g=" + qqgroup + "&file=rules.md")
+            .then(response => response.text())
+            .then(markdownText => xsdMarkdown.attachToElement('markdown-content', markdownText));
+        
+        // 5. 核心步骤：解析 Markdown 并进行安全净化，最后渲染到页面
+        // const rawHtml = marked.parse(markdownText); // 将 Markdown 转换为 HTML 字符串
+        // const cleanHtml = DOMPurify.sanitize(rawHtml); // 过滤掉潜在的 XSS 攻击代码
+
+        // document.getElementById('markdown-content').innerHTML = cleanHtml;
+        // document.querySelectorAll('code').forEach(block => {
+        //     block.innerHTML = hljs.highlight(block.innerHTML, { language: block.className.replace('language-', '') }).value;
+        // });
+
+    </script>
+</body>
+
+</html>
