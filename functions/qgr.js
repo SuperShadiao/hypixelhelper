@@ -12,7 +12,7 @@ export async function onRequest(context) {
 
     let response = await fetch(filePath);
     let text = await response.text();
-    if(text.startsWith("<")) {
+    if(text.startsWith("<!")) {
         return fetch("https://xiaoshadiao.club/sitesources/mds/404.md");
     } else {
         return new Response(text, {
