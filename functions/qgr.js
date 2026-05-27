@@ -11,11 +11,11 @@ export async function onRequest(context) {
     let filePath = "https://xiaoshadiao.club/sitesources/mds/qgr/" + qqgroup + "/" + file;
 
     let response = await fetch(filePath);
-    let text = await response.text();
-    if(text.startsWith("<!")) {
+    let buffer = await response.arrayBuffer();
+    if(String.fromCharCode.apply(null, new Uint8Array(buffer, 0, 2)).startsWith("<!")) {
         return fetch("https://xiaoshadiao.club/sitesources/mds/404.md");
     } else {
-        return new Response(text, {
+        return new Response(buffer, {
             headers: /* Object.fromEntries( */response.headers/*.entries())*/
         });
     }
