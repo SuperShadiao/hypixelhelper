@@ -114,7 +114,7 @@
 ![p](https://xiaoshadiao.club/qgr?g=728972740&file=mp2.jpg)
 ![p](https://xiaoshadiao.club/qgr?g=728972740&file=mp1.jpg)
 
-> 注意：如果崩溃报告是has_err_pid形式的, 请不要把文件直接丢群里, 私发给小沙雕
+> 警告：如果崩溃报告是has_err_pid形式的, 请不要把文件直接丢群里, 私发给小沙雕. 务必注意你的崩溃日志中是否包含has_err_pid的文件日志, 若直接发到群内造成的任何后果自负!
 
 > Hypixel Helper翻译项目：https://xiaoshadiao.club/hhmt, 有兴趣的一起来awa
 
