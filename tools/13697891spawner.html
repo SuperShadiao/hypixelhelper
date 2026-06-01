@@ -269,7 +269,7 @@
                                 if (i > 0) {
                                     formula += '*';
 
-                                    formula += i == 1 ? generateFormula(10) : `${generateFormula(10)}^${generateFormula(i)}`;
+                                    formula += i == 1 ? generateFormula(10) : `${generateFormula(10)}^${i >= 10 ? `(${generateFormula(i)})` : generateFormula(i)}`;
                                 }
                             }
                         }
