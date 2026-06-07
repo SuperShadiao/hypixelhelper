@@ -234,8 +234,15 @@
 
         }
 
+        let tries = 0;
+
         function handleFailed() {
-            handleResult(executeRefresh, "验证失败了qwq", true)
+            tries++;
+            if(tries >= 3) {
+                handleResult(executeRefresh, "验证失败了qwq", true)
+            } else {
+                turnstile.reset()
+            }
         }
 
         function handleResult(fun, reason, shouldReload) {
