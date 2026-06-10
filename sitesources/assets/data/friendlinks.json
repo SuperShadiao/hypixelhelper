@@ -35,27 +35,6 @@
         "alt": "冰树"
     },
     {
-        "href": "https://5ixsd.top/6",
-        "title": "Wormwaker",
-        "desc": "能搓出第二个explorer.exe (JackalClient)的入, 超级会C和美丽渲染, 曾与小沙雕交流过代码, 属于是一只炒鸡大佬了 (bushi). 还有神秘的€$DN Song也被小沙雕收录进Hypixel Helper了哦awa",
-        "imgSrc": "/sitesources/assets/friends/wormwaker.png",
-        "alt": "Wormwaker"
-    },
-    {
-        "href": "https://5ixsd.top/7",
-        "title": "Dengmini",
-        "desc": "一个神秘入, 送过舰长, 自称是一个傻子 =w=",
-        "imgSrc": "/sitesources/assets/friends/dengmini.gif",
-        "alt": "Dengmini"
-    },
-    {
-        "href": "https://5ixsd.top/jaroniq",
-        "title": "秩荣",
-        "desc": "没话说, 富哥什么都能做到.jpg",
-        "imgSrc": "/sitesources/assets/friends/秩荣.jpg",
-        "alt": "秩荣"
-    },
-    {
         "href": " https://5ixsd.top/necron_dev",
         "title": "Necron-Dev",
         "desc": "就是一群可爱的猫猫开发一堆可爱的程序喵!",
@@ -68,5 +47,19 @@
         "desc": "一只ench蛋喵~",
         "imgSrc": "/sitesources/assets/friends/ench.jpg",
         "alt": "Ench喵"
+    },
+    {
+        "href": "https://5ixsd.top/6",
+        "title": "Wormwaker",
+        "desc": "能搓出第二个explorer.exe (JackalClient)的入, 超级会C和美丽渲染, 曾与小沙雕交流过代码, 属于是一只炒鸡大佬了 (bushi). 还有神秘的€$DN Song也被小沙雕收录进Hypixel Helper了哦awa",
+        "imgSrc": "/sitesources/assets/friends/wormwaker.png",
+        "alt": "Wormwaker"
+    },
+    {
+        "href": "https://5ixsd.top/7",
+        "title": "Dengmini",
+        "desc": "一个神秘入, 送过舰长, 自称是一个傻子 =w=",
+        "imgSrc": "/sitesources/assets/friends/dengmini.gif",
+        "alt": "Dengmini"
     }
 ]
