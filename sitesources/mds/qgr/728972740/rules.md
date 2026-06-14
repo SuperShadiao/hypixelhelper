@@ -106,6 +106,8 @@
 3. 本Mod注意事项
     - 本Mod比较灵活, 可以在多种设备/系统上 (包括手机) 使用.
 
+> 该Mod对MC Token有严格限制, 所以对Essential和可能大部分脚本Mod (例如Tau啥的Mod) 有冲突. (有获取Token的行为, 尽管可能不是干坏事的, 但我还是比较讨厌)
+
 ## HHMod / Skydiao Mod崩溃
 
 使用Hypixel Helper/Skydiao Mod崩溃的, 如果你的mod是非最新版本, 更新新版本看看bug是否消失, 若没有请发送崩溃报告!
