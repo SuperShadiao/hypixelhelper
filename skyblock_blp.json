@@ -1,0 +1,17 @@
+{
+    "scammers": [
+        {
+            "uuid": "2ae5367089d64d8098fcd14a6bea5d2a",
+            "reason": "Carry ES没付钱跑路了"
+        }
+    ],
+    "monkeys": [
+        {
+            "uuid": "0f7ab20f8f844dc8adf056c7647eeb31",
+            "reason": "纯猴子 (爆破水晶矿洞)"
+        }
+    ],
+    "dungeon": [
+        // 备用
+    ]
+}
