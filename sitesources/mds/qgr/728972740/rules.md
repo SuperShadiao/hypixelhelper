@@ -141,5 +141,7 @@
 <br>
 <br>
 <div style="text-align:center;">
-<iframe src="//player.bilibili.com/player.html?isOutside=true&bvid=BV1dyXqBaEE5&page=1&high_quality=1&danmaku=1&autoplay=0" allowfullscreen="allowfullscreen" width="100%" height="500" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
+<div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+<iframe src="//player.bilibili.com/player.html?isOutside=true&bvid=BV1dyXqBaEE5&page=1&high_quality=1&danmaku=1&autoplay=0&t=0" allowfullscreen="allowfullscreen" style="position:absolute;top:0;left:0;width:100%;height:100%;" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
+</div>
 </div>
