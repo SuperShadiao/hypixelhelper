@@ -1,4 +1,4 @@
-<div align="center"><h1>小沙雕の基本群规</h1></div>
+<div style="text-align:center"><h1>小沙雕の基本群规</h1></div>
 
 小沙雕の小窝是一个非常友好的群聊, 大家可以一起聊天, 组队一起玩游戏等. 为了维护本群良好的氛围, 群内规则如下:
 
@@ -70,7 +70,7 @@
 ---
 
 
-<div align="center"><h1>以下是对你的一些可能有用的帮助</h1></div>
+<div style="text-align:center"><h1>以下是对你的一些可能有用的帮助</h1></div>
 
 # 小沙雕的Mod帮助
 
@@ -137,4 +137,9 @@
 
 <br>
 <br>
-<div align="center"><h3>好啦, 最后, 祝你在本群玩的开心awa</h3></div>
+<div style="text-align:center"><h3>好啦, 最后, 祝你在本群玩的开心awa</h3></div>
+<br>
+<br>
+<div style="text-align:center;">
+<iframe src="//player.bilibili.com/player.html?isOutside=true&bvid=BV1dyXqBaEE5&page=1&high_quality=1&danmaku=1&autoplay=0" allowfullscreen="allowfullscreen" width="100%" height="500" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
+</div>

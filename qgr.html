@@ -50,7 +50,7 @@
         let qqgroup = url.searchParams.get("g");
 
         // 4. 准备你的 Markdown 文本（实际开发中可能是从后台接口获取的）
-        fetch("/qgr?g=" + qqgroup + "&file=rules.md")
+        fetch(url.host.includes("localhost") ? "/sitesources/mds/qgr/728972740/rules.md" : "/qgr?g=" + qqgroup + "&file=rules.md")
             .then(response => response.text())
             .then(markdownText => xsdMarkdown.attachToElement('markdown-content', markdownText));
         

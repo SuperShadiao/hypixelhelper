@@ -1,8 +1,22 @@
 window.xsdMarkdown = {
     parse: function (markdownText) {
         const rawHtml = marked.parse(markdownText); // 将 Markdown 转换为 HTML 字符串
-        const cleanHtml = DOMPurify.sanitize(rawHtml); // 过滤掉潜在的 XSS 攻击代码
-
+        // const cleanHtml = DOMPurify.sanitize(rawHtml); // 过滤掉潜在的 XSS 攻击代码
+        // const cleanHtml = DOMPurify.sanitize(rawHtml, {
+        //     ADD_TAGS: ['iframe'],
+        //     ADD_ATTR: [
+        //         'src',
+        //         'scrolling',
+        //         'border',
+        //         'width',
+        //         'height',
+        //         'frameborder',
+        //         'framespacing',
+        //         'allowfullscreen'
+        //     ],
+        //     ALLOWED_URI_REGEXP: /^(https?:)?\/\/player\.bilibili\.com\//i
+        // });
+        const cleanHtml = rawHtml;
         const temp = document.createElement('div');
         temp.innerHTML = cleanHtml;
 
@@ -20,7 +34,7 @@ window.xsdMarkdown = {
     },
 
     attachToElement: function (element, markdownText) {
-        if(typeof(element) === 'string' || element instanceof String) {
+        if (typeof (element) === 'string' || element instanceof String) {
             element = document.getElementById(element);
         }
         const html = xsdMarkdown.parse(markdownText);
