@@ -1,12 +1,12 @@
 {
 
-    "v":"5.5.8",
+    "v":"5.5.9",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v558/hypixelhelper-5.5.8.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v558/hypixelhelper-5.5.8.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v559/hypixelhelper-5.5.9.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v559/hypixelhelper-5.5.9.jar"
     ],
     "a":[
         "%%hello%%",
@@ -21,6 +21,9 @@
         ...
         */
     
+        "5.5.9更新公告:",
+        "1，新增IRC一些开关",
+        "2，修复一些语言问题导致的bug",
         "5.5.8更新公告:",
         "1，XSDAC现在不会在街机, 密室, TNTGame等游戏工作",
         "2，修复B站直播间监听的连接问题",
@@ -30,12 +33,6 @@
         "5.5.6更新公告:",
         "1，新增功能灾难模拟器助手",
         "2，修复一些bug",
-        "5.5.5更新公告:",
-        "1，/hhsc printbanmsg <playername> <msgtype(1~5)> <playernametype(1~4)>",
-        "2，修复B站直播间监听器在特定情况下无限重连的问题",
-        "3，修复一些渲染动画会因为某些原因忽快忽慢的问题",
-        "4，修复获取不存在的系统环境导致崩端的问题",
-        "5，更换自定义披风默认文件为小沙雕披风 (by HyperEnder)",
 
 
 
