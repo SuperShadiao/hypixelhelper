@@ -1,12 +1,12 @@
 {
 
-    "v":"5.5.9",
+    "v":"5.5.9-FIX-1",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
         "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v559/hypixelhelper-5.5.9.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v559/hypixelhelper-5.5.9.jar"
+        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v559f1/hypixelhelper-5.5.9-FIX-1.jar",
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v559f1/hypixelhelper-5.5.9-FIX-1.jar"
     ],
     "a":[
         "%%hello%%",
@@ -21,6 +21,8 @@
         ...
         */
     
+        "5.5.9-FIX-1更新公告:",
+        "修复在关闭起床战争战绩查询功能时, 无限/pl的问题",
         "5.5.9更新公告:",
         "1，新增IRC一些开关",
         "2，修复一些语言问题导致的bug",
