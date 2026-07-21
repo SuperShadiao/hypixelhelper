@@ -10,5 +10,5 @@ export async function onRequest(context) {
 
     const randomBV = BVs[Math.floor(Math.random() * BVs.length)];
 
-    return Response.redirect("//player.bilibili.com/player.html?isOutside=true&bvid=" + randomBV + "&page=1&high_quality=1&danmaku=1&autoplay=0&t=0");
+    return Response.redirect("https://player.bilibili.com/player.html?isOutside=true&bvid=" + randomBV + "&page=1&high_quality=1&danmaku=1&autoplay=0&t=0");
 }
