@@ -37,7 +37,6 @@
         });
 
         let url = new URL(window.location.href);
-        let qqgroup = url.searchParams.get("g");
 
         fetch("/sitesources/mds/404.md")
             .then(response => response.text())
