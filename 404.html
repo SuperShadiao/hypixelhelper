@@ -36,8 +36,6 @@
             }
         });
 
-        let url = new URL(window.location.href);
-
         fetch("/sitesources/mds/404.md")
             .then(response => response.text())
             .then(markdownText => xsdMarkdown.attachToElement('markdown-content', markdownText));
