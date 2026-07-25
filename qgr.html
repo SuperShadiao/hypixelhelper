@@ -208,7 +208,7 @@
             if (alreadyFlag) return;
             const resultH3 = document.querySelector('#result h3');
             const thisUrl = new URL(window.location.href)
-            if (!thisUrl.searchParams.get("code")) {
+            if (!thisUrl.searchParams.get("qgvc")) {
                 handleResult(function () {
                     setTimeout(() => window.location.replace("/"), 5000)
 
@@ -237,7 +237,7 @@
 
             const requestVerify = new XMLHttpRequest()
 
-            requestVerify.open("post", "https://" + window.location.hostname + "/qqgroupmemberverify?action=handle&code=" + thisUrl.searchParams.get("code") + "&response=" + response + (hookurl ? "&hook=" + encodeURIComponent(hookurl.toString()) : ""))
+            requestVerify.open("post", "https://" + window.location.hostname + "/qqgroupmemberverify?action=handle&code=" + thisUrl.searchParams.get("qgvc") + "&response=" + response + (hookurl ? "&hook=" + encodeURIComponent(hookurl.toString()) : ""))
 
             requestVerify.onload = requestSuccess
 
