@@ -12,6 +12,11 @@
     <!-- 4. 引入 highlight.js 的核心库 -->
     <script
         src="/datagetter?url=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <!-- 5. 引入 Toastify-js 通知库 -->
+    <link rel="stylesheet"
+        href="/datagetter?url=https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="/datagetter?url=https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="/sitesources/js/toasthelper.js"></script>
 
     <title>群聊规则</title>
 
@@ -29,6 +34,7 @@
         function setTurnstile() {
             if (!code) return;
             if (turnstile) {
+                xsdToast.info("阅读群公告后在页面底部完成验证。");
                 const btn = document.getElementById("verifyButton");
                 btn.style.display = "block";
                 btn.addEventListener("click", function () {
@@ -167,6 +173,41 @@
                 width: 320px;
                 height: 320px;
                 opacity: 0;
+            }
+        }
+
+        .Toastify__toast {
+            border-radius: 12px;
+            font-family: inherit;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .Toastify__toast--animated {
+            animation: toastSlideIn 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) both;
+        }
+
+        .Toastify__toast-icon {
+            margin-inline-end: 10px;
+        }
+
+        .Toastify__close-button {
+            color: #fff;
+            opacity: 0.8;
+        }
+
+        .Toastify__close-button:hover {
+            opacity: 1;
+        }
+
+        @keyframes toastSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(400px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
             }
         }
     </style>
@@ -335,12 +376,14 @@
 
             const resultH3 = document.querySelector('#result h3');
             resultH3.innerHTML = "验证失败qwq: " + reason;
+            xsdToast.error("验证失败: " + reason);
             resultH3.style.color = "red";
         }
 
         function executeVerifySuccess() {
             const resultH3 = document.querySelector('#result h3');
             resultH3.innerHTML = "验证成功啦awa, 你可以关闭这个页面了!";
+            xsdToast.success("验证已完成");
             resultH3.style.color = "green";
         }
 
