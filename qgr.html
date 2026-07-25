@@ -7,9 +7,11 @@
     <!-- 2. 引入 DOMPurify 用于过滤危险的 HTML 标签（保障安全） -->
     <script src="/datagetter?url=https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
     <!-- 3. 引入 highlight.js 的默认配色主题 (这里用了 github 风格) -->
-    <link rel="stylesheet" href="/datagetter?url=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <link rel="stylesheet"
+        href="/datagetter?url=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
     <!-- 4. 引入 highlight.js 的核心库 -->
-    <script src="/datagetter?url=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script
+        src="/datagetter?url=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 
     <title>群聊规则</title>
 
@@ -260,14 +262,14 @@
 
             function requestSuccess() {
                 handleResult(function () {
-                    if(requestVerify.status != 200) {
-                        executeRefresh("验证返回了错误码: " + requestVerify.status, true)
-                        return;
-                    }
                     let json
                     try {
                         json = JSON.parse(requestVerify.responseText)
                     } catch (error) {
+                        if (requestVerify.status != 200) {
+                            executeRefresh("验证返回了错误码: " + requestVerify.status, true)
+                            return;
+                        }
                         console.log(error)
                         executeRefresh("验证返回了错误的JSON数据 :(", true)
                         return;
