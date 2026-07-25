@@ -115,7 +115,7 @@ export async function onRequest(context) {
             const json = JSON.parse(data)
             const rules = await context.env.ASSETS.fetch(new URL("https://xiaoshadiao.club/sitesources/mds/qgr/" + json.groupnumber + "/rules.md"));
             if(rules.status == 200) {
-                return Response.redirect(new URL("/qgr?g=" + json.groupnumber + "qgvc=" + code))
+                return Response.redirect(new URL("/qgr?g=" + json.groupnumber + "&qgvc=" + code))
             }
         }
         
