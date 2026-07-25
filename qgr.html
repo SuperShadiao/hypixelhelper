@@ -260,7 +260,18 @@
 
             function requestSuccess() {
                 handleResult(function () {
-                    const json = JSON.parse(requestVerify.responseText)
+                    if(requestVerify.status != 200) {
+                        executeRefresh("验证返回了错误码: " + requestVerify.status, true)
+                        return;
+                    }
+                    let json
+                    try {
+                        json = JSON.parse(requestVerify.responseText)
+                    } catch (error) {
+                        console.log(error)
+                        executeRefresh("验证返回了错误的JSON数据 :(", true)
+                        return;
+                    }
 
                     if (json.success) {
                         if (false) {
