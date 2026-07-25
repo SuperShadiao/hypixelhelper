@@ -3,20 +3,17 @@
 
 <head>
     <!-- 1. 引入 marked.js 用于解析 Markdown -->
-    <script src="https://xiaoshadiao.club/datagetter?url=https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/datagetter?url=https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <!-- 2. 引入 DOMPurify 用于过滤危险的 HTML 标签（保障安全） -->
-    <script
-        src="https://xiaoshadiao.club/datagetter?url=https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+    <script src="/datagetter?url=https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
     <!-- 3. 引入 highlight.js 的默认配色主题 (这里用了 github 风格) -->
-    <link rel="stylesheet"
-        href="https://xiaoshadiao.club/datagetter?url=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <link rel="stylesheet" href="/datagetter?url=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
     <!-- 4. 引入 highlight.js 的核心库 -->
-    <script
-        src="https://xiaoshadiao.club/datagetter?url=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script src="/datagetter?url=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 
     <title>群聊规则</title>
 
-    <metareplacement/>
+    <!-- metareplacement -->
 
     <link rel="stylesheet" href="/sitesources/css/qgr.css">
 
@@ -70,10 +67,19 @@
         #qqgroupmemberverify-content {
             max-width: 600px;
             margin: 0 auto;
+            width: calc(100vw - 40px);
         }
 
         #result {
             text-align: center;
+        }
+
+        #result h3 {
+            margin: 20px auto;
+            max-width: 90%;
+            word-wrap: break-word;
+            word-break: break-all;
+            overflow-wrap: break-word;
         }
 
         .verify-btn {
@@ -122,6 +128,13 @@
 
         .verify-btn.click-anim::after {
             animation: ripple 0.25s ease-out forwards;
+        }
+
+        #turnstile-widget {
+            margin: 0 auto;
+            display: block;
+            text-align: center;
+            max-width: 400px;
         }
 
         @keyframes clickFade {
@@ -183,7 +196,7 @@
         let qqgroup = url.searchParams.get("g");
 
         // 4. 准备你的 Markdown 文本（实际开发中可能是从后台接口获取的）
-        fetch(url.host.includes("localhost") ? "/sitesources/mds/qgr/728972740/rules.md" : "/qgr?g=" + qqgroup + "&file=rules.md")
+        fetch("/qgr?g=" + qqgroup + "&file=rules.md")
             .then(response => response.text())
             .then(markdownText => xsdMarkdown.attachToElement('markdown-content', markdownText));
 

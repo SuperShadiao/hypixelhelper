@@ -17,7 +17,10 @@ export async function onRequest(context) {
     const contentType = res.headers.get('content-type');
     if (contentType && contentType.includes('text/html')) {
       const body = await res.text();
-      const modifiedBody = body.replace('<metareplacement/>', META_REPLACEMENT_CONTENT);
+      
+      console.log(body);
+      const modifiedBody = body.replace('<!-- metareplacement -->', META_REPLACEMENT_CONTENT);
+      console.log(modifiedBody);
       
       const newHeaders = new Headers(res.headers);
       newHeaders.delete('content-length');
