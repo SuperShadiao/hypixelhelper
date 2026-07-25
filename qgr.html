@@ -5,21 +5,156 @@
     <!-- 1. 引入 marked.js 用于解析 Markdown -->
     <script src="https://xiaoshadiao.club/datagetter?url=https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <!-- 2. 引入 DOMPurify 用于过滤危险的 HTML 标签（保障安全） -->
-    <script src="https://xiaoshadiao.club/datagetter?url=https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+    <script
+        src="https://xiaoshadiao.club/datagetter?url=https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
     <!-- 3. 引入 highlight.js 的默认配色主题 (这里用了 github 风格) -->
     <link rel="stylesheet"
         href="https://xiaoshadiao.club/datagetter?url=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
     <!-- 4. 引入 highlight.js 的核心库 -->
-    <script src="https://xiaoshadiao.club/datagetter?url=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script
+        src="https://xiaoshadiao.club/datagetter?url=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 
     <title>群聊规则</title>
 
-    <metareplacement/>
+    <metareplacement />
 
     <link rel="stylesheet" href="/sitesources/css/qgr.css">
 
     <script src="/sitesources/js/header.js" defer></script>
     <script src="/sitesources/js/markdownhelper.js"></script>
+
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
+    <script>
+        let url0 = new URL(window.location.href);
+        let code = url0.searchParams.get("qgvc");
+        function setTurnstile() {
+            if (!code) return;
+            if (turnstile) {
+                const btn = document.getElementById("verifyButton");
+                btn.style.display = "block";
+                btn.addEventListener("click", function () {
+                    this.classList.remove("click-anim");
+                    void this.offsetWidth;
+                    this.classList.add("click-anim");
+                    const self = this;
+                    setTimeout(() => {
+                        self.remove()
+
+                        const resultH3 = document.querySelector('#result h3');
+                        resultH3.textContent = "请稍等...";
+                        resultH3.style.color = "black";
+                    }, 250);
+
+                    setTimeout(() => {
+                        turnstile.execute("#turnstile-widget");
+                    }, 2000);
+                });
+                turnstile.render(document.getElementById("turnstile-widget"), {
+                    size: window.innerWidth < 400 ? 'compact' : 'flexible',
+                    sitekey: '0x4AAAAAABghjek4jVecQ-sc',
+                    'callback': handleSuccess,
+                    'error-callback': handleFailed,
+                    'expired-callback': handleFailed,
+                    'timeout-callback': handleFailed,
+                    execution: "execute",
+                    theme: "light"
+                })
+            } else {
+                setTimeout(setTurnstile, 1000);
+            }
+        }
+        window.headerLoadedCallback = setTurnstile;
+    </script>
+
+    <style>
+        #qqgroupmemberverify-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #result {
+            text-align: center;
+        }
+
+        .verify-btn {
+            margin-bottom: 15px;
+            display: block;
+            margin: 0 auto;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #FFE34F 0%, #FFB300 100%);
+            color: #3a2a00;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            transition: box-shadow 0.3s, transform 0.2s, filter 0.3s;
+            box-sizing: border-box;
+            box-shadow: 0 4px 18px rgba(255, 179, 0, 0.45), 0 1px 3px rgba(255, 179, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .verify-btn:hover {
+            filter: brightness(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 179, 0, 0.55), 0 2px 6px rgba(255, 179, 0, 0.35);
+        }
+
+        .verify-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.55);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .verify-btn.click-anim {
+            animation: clickFade 0.25s ease-out forwards;
+        }
+
+        .verify-btn.click-anim::after {
+            animation: ripple 0.25s ease-out forwards;
+        }
+
+        @keyframes clickFade {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            30% {
+                transform: translateY(2px) scale(0.95);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-6px) scale(0.92);
+                opacity: 0;
+            }
+        }
+
+        @keyframes ripple {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+
+            100% {
+                width: 320px;
+                height: 320px;
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -27,6 +162,14 @@
     <div id="header-placeholder"></div>
 
     <div id="markdown-content" class="header-offset"></div>
+
+    <div id="qqgroupmemberverify-content">
+        <button style="display: none;" id="verifyButton" class="verify-btn">点击完成验证</button>
+        <div id="turnstile-widget"></div>
+        <div id="result">
+            <h3></h3>
+        </div>
+    </div>
 
     <script>
         console.log(hljs.getLanguage('javascript'));
@@ -43,7 +186,7 @@
         fetch(url.host.includes("localhost") ? "/sitesources/mds/qgr/728972740/rules.md" : "/qgr?g=" + qqgroup + "&file=rules.md")
             .then(response => response.text())
             .then(markdownText => xsdMarkdown.attachToElement('markdown-content', markdownText));
-        
+
         // 5. 核心步骤：解析 Markdown 并进行安全净化，最后渲染到页面
         // const rawHtml = marked.parse(markdownText); // 将 Markdown 转换为 HTML 字符串
         // const cleanHtml = DOMPurify.sanitize(rawHtml); // 过滤掉潜在的 XSS 攻击代码
@@ -54,6 +197,129 @@
         // });
 
     </script>
+
+    <script>
+
+        let alreadyFlag = false;
+
+        function handleSuccess(response) {
+            console.log("awa!")
+            turnstile.remove()
+            if (alreadyFlag) return;
+            const resultH3 = document.querySelector('#result h3');
+            const thisUrl = new URL(window.location.href)
+            if (!thisUrl.searchParams.get("code")) {
+                handleResult(function () {
+                    setTimeout(() => window.location.replace("/"), 5000)
+
+                    resultH3.textContent = "Hmmm, 好像缺少了什么东西验证不了呢qwq";
+                    resultH3.style.color = "red";
+                })
+                return;
+            }
+
+            let hookurl
+            if (thisUrl.searchParams.get("hook")) {
+                let hook = thisUrl.searchParams.get("hook")
+                try {
+                    hookurl = new URL(hook)
+                } catch (error) {
+                    handleResult(function () {
+                        resultH3.textContent = "Hook参数无效!";
+                        resultH3.style.color = "red";
+                    })
+                    return;
+                }
+            }
+
+            resultH3.textContent = "稍等一下, 马上就好...";
+            resultH3.style.color = "black";
+
+            const requestVerify = new XMLHttpRequest()
+
+            requestVerify.open("post", "https://" + window.location.hostname + "/qqgroupmemberverify?action=handle&code=" + thisUrl.searchParams.get("code") + "&response=" + response + (hookurl ? "&hook=" + encodeURIComponent(hookurl.toString()) : ""))
+
+            requestVerify.onload = requestSuccess
+
+            requestVerify.ontimeout = requestVerify.onerror = requestVerify.onabort = requestFailed
+
+            requestVerify.send()
+
+            function requestSuccess() {
+                handleResult(function () {
+                    const json = JSON.parse(requestVerify.responseText)
+
+                    if (json.success) {
+                        if (false) {
+
+                            const requestHook = new XMLHttpRequest()
+                            requestHook.open("get", "https://hook." + window.location.hostname + "/qqgmv?code=" + json.code + "&verifycode=" + json.verifycode + "&groupnumber=" + json.groupnumber + "&qqnumber=" + json.qqnumber + "&ip=" + json.ip)
+
+                            requestHook.onload = function () {
+                                if (requestHook.responseText == "成功啦") {
+                                    resultH3.textContent = "验证成功啦awa, 你可以关闭这个页面了!";
+                                    resultH3.style.color = "green";
+                                } else {
+                                    requestHookFailed();
+                                }
+                            }
+                            function requestHookFailed() {
+                                setTimeout(() => window.location.reload(), 5000)
+                                resultH3.textContent = "验证成功了qwq, 但是请求网络钩子失败了, 等待5s后重试吧";
+                                resultH3.style.color = "red";
+                            }
+                            requestHook.ontimeout = requestHook.onerror = requestHook.onabort = requestHookFailed
+
+                            requestHook.send()
+                        }
+                        executeVerifySuccess()
+                    } else if (requestVerify.status == 404) {
+                        executeRefresh("验证链接不存在或已过期!", false)
+                    } else {
+                        executeRefresh(json.msg, true)
+                    }
+
+                })
+            }
+            function requestFailed() {
+                handleResult(executeRefresh, "请求验证网址失败了qwq", true)
+            }
+
+        }
+
+        let tries = 0;
+
+        function handleFailed(info) {
+            tries++;
+            console.log("验证失败: " + info + ", 第" + tries + "次重试。")
+            turnstile.reset()
+            turnstile.execute("#turnstile-widget");
+        }
+
+        function handleResult(fun, reason, shouldReload) {
+            if (!alreadyFlag) {
+                alreadyFlag = true;
+                fun(reason, shouldReload)
+            }
+        }
+
+        function executeRefresh(reason, shouldReload) {
+            console.log("qwq...")
+            if (shouldReload) setTimeout(() => window.location.reload(), 5000)
+
+            const resultH3 = document.querySelector('#result h3');
+            resultH3.innerHTML = "验证失败qwq: " + reason;
+            resultH3.style.color = "red";
+        }
+
+        function executeVerifySuccess() {
+            const resultH3 = document.querySelector('#result h3');
+            resultH3.innerHTML = "验证成功啦awa, 你可以关闭这个页面了!";
+            resultH3.style.color = "green";
+        }
+
+    </script>
+
 </body>
 
 </html>
