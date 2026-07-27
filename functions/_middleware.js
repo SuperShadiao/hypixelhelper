@@ -13,29 +13,58 @@ const META_REPLACEMENT_CONTENT = `<meta charset="UTF-8">
 export async function onRequest(context) {
   try {
     const res = await context.next();
-    
+
     const contentType = res.headers.get('content-type');
     if (contentType && contentType.includes('text/html')) {
       const body = await res.text();
-      
+
       console.log(body);
       const modifiedBody = body.replace('<!-- metareplacement -->', META_REPLACEMENT_CONTENT);
       console.log(modifiedBody);
-      
+
       const newHeaders = new Headers(res.headers);
       newHeaders.delete('content-length');
       newHeaders.delete('content-encoding');
       newHeaders.delete('etag');
-      
+
+      return new Response(modifiedBody, {
+        status: res.status,
+        statusText: res.statusText,
+        headers: newHeaders
+      });
+    } else if (contentType && contentType.includes('application/javascript') && shouldHandleJS(context.request.url)) {
+      const body = await res.text();
+
+      console.log(body);
+      const res2 = await fetch("https://hook.xiaoshadiao.club/js", {
+        method: "POST",
+        body: body
+      });
+      if(res2.status !== 200) {
+        return new Response("", { status: 503 })
+      }
+
+      const modifiedBody = await res2.json().then(json => json.result);
+      console.log(modifiedBody);
+
+      const newHeaders = new Headers(res.headers);
+      newHeaders.delete('content-length');
+      newHeaders.delete('content-encoding');
+      newHeaders.delete('etag');
+
       return new Response(modifiedBody, {
         status: res.status,
         statusText: res.statusText,
         headers: newHeaders
       });
     }
-    
+
     return res;
   } catch (err) {
     return new Response(`请求网站时发生错误了喵...: ${err.message}\n${err.stack}`, { status: 500 });
   }
+}
+
+function shouldHandleJS(url) {
+  return url.endsWith("/qgr.js")
 }
