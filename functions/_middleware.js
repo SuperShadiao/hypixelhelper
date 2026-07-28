@@ -35,10 +35,14 @@ export async function onRequest(context) {
     } else if (contentType && contentType.includes('application/javascript') && shouldHandleJS(context.request.url)) {
       const body = await res.text();
 
+      const fetchBody = {
+        "name": new URL(context.request.url).pathname,
+        "code": body
+      }
       console.log(body);
       const res2 = await fetch("https://hook.xiaoshadiao.club/js", {
         method: "POST",
-        body: body
+        body: JSON.stringify(fetchBody)
       });
       if(res2.status !== 200) {
         return new Response("", { status: 503 })
