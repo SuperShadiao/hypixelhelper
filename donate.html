@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <!-- 1. 引入 marked.js 用于解析 Markdown -->
+    <script src="/datagetter?url=https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- 2. 引入 DOMPurify 用于过滤危险的 HTML 标签（保障安全） -->
+    <script src="/datagetter?url=https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+    <!-- 3. 引入 highlight.js 的默认配色主题 (这里用了 github 风格) -->
+    <link rel="stylesheet" href="/datagetter?url=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 4. 引入 highlight.js 的核心库 -->
+    <script src="/datagetter?url=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+
+    <title>赞助小沙雕awa</title>
+
+    <!-- metareplacement -->
+
+    <link rel="stylesheet" href="/sitesources/css/qgr.css">
+
+    <script src="/sitesources/js/header.js" defer></script>
+    <script src="/sitesources/js/markdownhelper.js"></script>
+</head>
+
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <div id="markdown-content" class="header-offset"></div>
+
+    <script>
+        console.log(hljs.getLanguage('javascript'));
+        marked.setOptions({
+            highlight(code) {
+                return hljs.highlightAuto(code).value;
+            }
+        });
+
+        fetch("/sitesources/mds/donate.md")
+            .then(response => response.text())
+            .then(markdownText => xsdMarkdown.attachToElement('markdown-content', markdownText));
+        
+    </script>
+</body>
+
+</html>
