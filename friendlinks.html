@@ -16,9 +16,10 @@
     <script src="/sitesources/js/_utils/selectboxgenerator.js" defer></script>
 
     <style>
-        /* 直接针对此页面中的所有select-card元素覆写背景渐变 */
-        .select-card {
-            background: linear-gradient(135deg, #FF9A9E, #FAD0C4) !important;
+        /* 覆写此页面的 select-card focus 颜色 */
+        .select-card:hover,
+        .select-card:focus {
+            --hover-border: #FF9A9E !important;
         }
     </style>
 

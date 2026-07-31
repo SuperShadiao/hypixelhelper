@@ -10,13 +10,14 @@
 
 /* 项目卡片样式 */
 .select-card {
-    background: linear-gradient(135deg, #A3D9A5, #D9D2E9);
+    background: #FFF8E1;
+    border: 2px solid #FFE082;
     border-radius: 15px;
     padding: 25px;
     color: black;
     text-decoration: none;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 179, 0, 0.1);
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -24,10 +25,15 @@
     justify-content: space-between;
 }
 
-/* 项目卡片悬停效果 */
-.select-card:hover {
+/* 项目卡片悬停和聚焦效果 */
+.select-card:hover,
+.select-card:focus {
     transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    --hover-border: #A3D9A5;
+    border-color: var(--hover-border);
+    background: color-mix(in srgb, var(--hover-border) 15%, white);
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--hover-border) 20%, transparent), 0 0 0 2px color-mix(in srgb, var(--hover-border) 20%, transparent);
+    outline: none;
 }
 
 /* 项目卡片点击效果 */
@@ -67,24 +73,7 @@
     opacity: 0.9;
 }
 
-/* 项目卡片背景装饰 */
-.select-card::before {
-    content: '';
-    position: absolute;
-    top: -100%;
-    left: -100%;
-    width: 300%;
-    height: 300%;
-    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
-    transform: rotate(45deg);
-    transition: transform 0.6s ease;
-    z-index: 0;
-}
-
-/* 项目卡片悬停时的背景装饰效果 */
-.select-card:hover::before {
-    transform: translate(40%, 40%) rotate(45deg);
-}
+/* 项目卡片悬停时的背景装饰效果 - 已移除 */
 
 /* 项目图片容器 */
 .select-image {

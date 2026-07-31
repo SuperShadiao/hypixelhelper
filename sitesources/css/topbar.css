@@ -1,19 +1,30 @@
+/* 黄色系配色变量 */
+:root {
+    --yellow-primary: #FFB300;
+    --yellow-dark: #FF8F00;
+    --yellow-light: #FFF8E1;
+    --yellow-border: #FFE082;
+    --ink: #3a2a00;
+    --soft-ink: #6d5d00;
+}
+
 header {
-    color: rgb(255, 255, 0);
-    background-color: gold;
+    color: var(--ink);
+    background: #FFF8E1;
     width: 100%;
     height: 70px;
     position: fixed;
     top: 0;
     left: 0;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    font-family: 'Consolas';
+    box-shadow: 0 2px 12px rgba(255, 224, 130, 0.3), 0 1px 3px rgba(255, 224, 130, 0.2);
+    font-family: 'Segoe UI', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
     display: flex;
     align-items: center;
-    z-index: 1000; /* 确保导航栏在最上层 */
+    z-index: 1000;
     overflow: hidden;
     padding: 0 1rem;
     box-sizing: border-box;
+    border-bottom: 1px solid #FFE082;
 }
 
 .header-container {
@@ -28,19 +39,25 @@ header {
     align-items: center;
     height: 100%;
     white-space: nowrap;
-    flex-shrink: 0; /* 防止Logo缩小 */
+    flex-shrink: 0;
 }
 
 .logo a {
     display: flex;
     align-items: center;
     height: 100%;
+    transition: transform 0.2s ease;
+}
+
+.logo a:hover {
+    transform: scale(1.02);
 }
 
 .logo2 {
     width: 50px;
     height: 50px;
     object-fit: contain;
+    border-radius: 8px;
 }
 
 .remove-decoration {
@@ -49,9 +66,10 @@ header {
 
 .logo-text {
     font-size: 1.5rem;
-    color: rgb(0, 0, 0);
+    color: var(--ink);
     padding-left: 10px;
-    font-weight: bold;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .nav-container {
@@ -62,20 +80,17 @@ header {
     height: 100%;
     display: flex;
     align-items: center;
-    /* 隐藏滚动条但保持功能 */
     -ms-overflow-style: none;
     scrollbar-width: none;
-    /* 添加左右阴影效果，提示可以滑动 */
     position: relative;
 }
 
-/* 隐藏WebKit浏览器的滚动条 */
 .nav-container::-webkit-scrollbar {
     display: none;
 }
 
 .bararrlist {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     display: flex;
     align-items: center;
     padding: 0;
@@ -93,18 +108,27 @@ header {
 }
 
 .bararrlistelements {
-    color: rgb(0, 0, 0);
-    margin: 0 15px;
-    padding: 0 10px;
-    height: 100%;
+    color: var(--ink);
+    margin: 0 12px;
+    padding: 8px 16px;
+    height: auto;
     display: flex;
     align-items: center;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
 }
 
 .bararrlistelements:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 179, 0, 0.2);
+}
+
+.bararrlistelements:active {
+    transform: translateY(0);
+    background-color: rgba(255, 255, 255, 0.25);
 }
 
 /* 响应式调整 */
@@ -123,12 +147,12 @@ header {
     }
     
     .bararrlist {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
     
     .bararrlistelements {
-        margin: 0 10px;
-        padding: 0 8px;
+        margin: 0 8px;
+        padding: 6px 12px;
     }
 }
 
@@ -142,8 +166,8 @@ header {
     }
     
     .bararrlistelements {
-        margin: 0 8px;
-        padding: 0 6px;
+        margin: 0 6px;
+        padding: 5px 10px;
     }
 }
 
