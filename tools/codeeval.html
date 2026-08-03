@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>小沙雕 - JS Eval</title>
+
+    <meta name="description"
+        content="小沙雕的个人网站, 拥有一些小项目, 正在制作的项目有: Minecraft Hypixel Helper Mod, Java XiaoShadiao Obfuscator等. 欢迎大家来与小沙雕互动! qwq">
+    <meta name="keywords" content="小沙雕,个人网站,awa,Java,Minecraft,Hypixel,Helper,Obfuscator,项目,开发,xiaoshadiao">
+
+    <!-- ICONS -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="icons/favicon-64x64.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="xsdv2.png">
+
+    <script src="/sitesources/js/header.js" defer></script>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .editor-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #7a6a00;
+            margin-bottom: 6px;
+        }
+
+        .code-input {
+            width: 100%;
+            min-height: 280px;
+            padding: 14px 16px;
+            border: 2px solid #FFB300;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #fffdf5;
+            color: #333;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            tab-size: 4;
+        }
+
+        .code-input:focus {
+            border-color: #FF8F00;
+            box-shadow: 0 0 0 3px rgba(255, 179, 0, 0.2);
+        }
+
+        .eval-btn {
+            display: block;
+            margin: 16px auto;
+            padding: 10px 36px;
+            background: linear-gradient(135deg, #FFE34F, #FFB300);
+            color: #3a2a00;
+            border: 2px solid #FFB300;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .eval-btn:hover {
+            background: linear-gradient(135deg, #FFB300, #FF8F00);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 179, 0, 0.35);
+        }
+
+        .eval-btn:active {
+            transform: translateY(0);
+        }
+
+        .code-output {
+            width: 100%;
+            min-height: 120px;
+            padding: 14px 16px;
+            border: 2px solid #FFB300;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #fffdf5;
+            color: #333;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .code-output.error {
+            border-color: #e53935;
+            color: #c62828;
+            background: #fff5f5;
+        }
+
+        .output-section {
+            margin-top: 20px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container { padding: 15px; max-width: 100%; }
+            h1 { font-size: 24px; }
+            .code-input { min-height: 200px; font-size: 13px; }
+            .code-output { min-height: 80px; font-size: 13px; }
+        }
+
+        @media screen and (max-width: 480px) {
+            .container { padding: 10px; }
+            h1 { font-size: 20px; }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header-placeholder"></div>
+    <div class="container">
+        <h1>JS Eval</h1>
+
+        <div class="editor-label">JavaScript 代码输入</div>
+        <textarea id="codeInput" class="code-input" placeholder="在此输入 JavaScript 代码...&#10;例如: console.log('Hello!')&#10;或: 1 + 2 * 3"></textarea>
+
+        <button id="evalBtn" class="eval-btn">执行 ▶</button>
+
+        <div class="output-section">
+            <div class="editor-label">输出结果</div>
+            <textarea id="codeOutput" class="code-output" readonly placeholder="执行结果将显示在这里..."></textarea>
+        </div>
+    </div>
+
+    <script>
+        window.headerLoadedCallback = function () {
+            const codeInput = document.getElementById('codeInput');
+            const codeOutput = document.getElementById('codeOutput');
+            const evalBtn = document.getElementById('evalBtn');
+
+            evalBtn.addEventListener('click', function () {
+                const code = codeInput.value.trim();
+                if (!code) {
+                    codeOutput.value = '';
+                    codeOutput.classList.remove('error');
+                    return;
+                }
+
+                // 捕获 console.log 输出
+                const logs = [];
+                const originalLog = console.log;
+                console.log = function (...args) {
+                    logs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a, null, 2) : String(a)).join(' '));
+                    originalLog.apply(console, args);
+                };
+
+                try {
+                    const result = eval(code);
+                    codeOutput.classList.remove('error');
+                    let output = '';
+                    if (logs.length > 0) output += logs.join('\n') + '\n';
+                    if (result !== undefined) output += '=> ' + (typeof result === 'object' ? JSON.stringify(result, null, 2) : String(result));
+                    codeOutput.value = output || '(无输出)';
+                } catch (e) {
+                    codeOutput.classList.add('error');
+                    let output = '';
+                    if (logs.length > 0) output += logs.join('\n') + '\n';
+                    output += 'Error: ' + e.message;
+                    codeOutput.value = output;
+                } finally {
+                    console.log = originalLog;
+                }
+            });
+
+            // Ctrl+Enter 快捷执行
+            codeInput.addEventListener('keydown', function (e) {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    evalBtn.click();
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

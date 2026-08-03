@@ -68,33 +68,42 @@
         .rounded-input {
             flex: 1;
             padding: 12px 16px;
-            border: 2px solid #ddd;
+            border: 2px solid #FFB300;
             border-radius: 20px 0 0 20px;
             font-size: 16px;
             outline: none;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s, box-shadow 0.3s;
             box-sizing: border-box;
+            background: #fffdf5;
         }
 
         .rounded-input:focus {
-            border-color: #4CAF50;
+            border-color: #FF8F00;
+            box-shadow: 0 0 0 3px rgba(255, 179, 0, 0.2);
         }
 
         .generate-btn {
             padding: 12px 24px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
+            background: linear-gradient(135deg, #FFE34F, #FFB300);
+            color: #3a2a00;
+            border: 2px solid #FFB300;
             border-radius: 0 20px 20px 0;
             font-size: 16px;
+            font-weight: 700;
             cursor: pointer;
             outline: none;
-            transition: background-color 0.3s;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
             box-sizing: border-box;
         }
 
         .generate-btn:hover {
-            background-color: #45a049;
+            background: linear-gradient(135deg, #FFB300, #FF8F00);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 179, 0, 0.35);
+        }
+
+        .generate-btn:active {
+            transform: translateY(0);
         }
 
         .output-group {
@@ -106,14 +115,15 @@
         .readonly-output {
             width: 100%;
             padding: 12px 16px;
-            border: 2px solid #ddd;
+            border: 2px solid #FFB300;
             border-radius: 5px;
             font-size: 16px;
-            background-color: #f9f9f9;
+            background-color: #fffdf5;
             resize: none;
             outline: none;
             min-height: 100px;
             box-sizing: border-box;
+            transition: border-color 0.3s;
         }
 
         /* 响应式设计 */

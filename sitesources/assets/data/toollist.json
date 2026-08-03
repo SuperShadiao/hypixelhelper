@@ -4,5 +4,11 @@
         "title": "13697891暗广生成器",
         "desc": "将一个数字变成暗广公式!",
         "alt": "91"
+    },
+    {
+        "href": "/tools/codeeval.html",
+        "title": "JS Eval",
+        "desc": "在浏览器中不打开F12控制台页面执行JS代码",
+        "alt": "evaljs"
     }
 ]
