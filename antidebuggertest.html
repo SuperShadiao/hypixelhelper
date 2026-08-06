@@ -1,0 +1,162 @@
+<script>
+
+    const ___j___ = console.log;
+    const ___k___ = console.debug;
+    const ___l___ = console.info;
+    const ___m___ = console.warn;
+    const ___n___ = console.error;
+
+    const ___c___ = console.clear;
+
+    const ___i___ = setInterval;
+    const ___O___ = setTimeout;
+    const ___t___ = console.table;
+
+    const ___a___ = createLargeObjectArray();
+
+    const ___b___ = Set.prototype.add;
+
+    let ___count___ = 0;
+
+    ___i___(() => {
+
+        function calculateTime(func) {
+            const start = Date.now();
+            func();
+            return Date.now() - start;
+        }
+        const testers = [Set.prototype.add, Map.prototype.set, WeakMap.prototype.set, WeakSet.prototype.add];
+
+        function is_proxy(obj) {
+            try {
+                for (let item of testers) {
+                    item.call(obj);
+                }
+            } catch (e) {
+                return e.stack.includes('Proxy');
+            }
+            return false;
+        }
+
+        if (calculateTime(() => []["at"]["constructor"]("debugger")()) > 100) {
+            alert("Debugger A")
+        }
+        new Promise((resolve, reject) => {
+            try {
+                null[0] = "ovo";
+            } catch (___e2___) {
+                Object.defineProperty(___e2___, "message", {
+                    configurable: false, enumerable: false, get: function () {
+                        alert("Debugger B")
+                        return "a"
+                    }
+                });
+
+                reject(___e2___);
+            }
+        })
+
+        const noModify = [...testers, Function.prototype.toString, Function.prototype.toString.toString, console.log, console.clear, console.table, ___j___, ___c___];
+
+        for (let item of noModify) {
+            if (!item.toString().includes("[native code]") || is_proxy(item)) {
+                alert("Debugger C")
+            }
+        }
+
+        const tablePrintTime = calculateTime(() => { ___t___(___a___); });
+        const logPrintTime = calculateTime(() => { ___j___(___a___); });
+        let ___maxPrintTime___ = Math.max(tablePrintTime, logPrintTime);
+
+        if (tablePrintTime === 0 || ___maxPrintTime___ === 0) return false;
+
+        if (tablePrintTime > ___maxPrintTime___ * 10) {
+            if (___count___ >= 2) {
+                alert("Debugger D")
+            } else {
+                ___count___++;
+            }
+        } else {
+            ___count___--;
+        }
+        ___c___();
+    }, 500)
+    ___i___(() => {
+        (function () {
+            const startTime = Date.now()
+            let endTime;
+            const code = `
+        self.onmessage = function(e) {
+            try { Function("debugger")(); self.postMessage(Date.now()) } catch(err) { console.log(err) } ;
+        };
+        `;
+            const blob = new Blob([code], { type: 'application/javascript' });
+            const url = URL.createObjectURL(blob);
+            const worker = new Worker(url);
+            worker.onmessage = (e) => {
+                endTime = e.data;
+            };
+            worker.onerror = (e) => {
+            };
+            worker.postMessage(0);
+
+            setTimeout(() => {
+                worker.terminate();
+                URL.revokeObjectURL(url);
+                if (!(endTime - startTime < 1000)) {
+                    alert("Debugger E")
+                }
+            }, 500)
+        })()
+    }, 2000)
+
+    function createLargeObject() {
+        const largeObject = {};
+        for (let i = 0; i < 500; i++) {
+            largeObject[`${i}`] = `${i}`;
+        }
+        return largeObject;
+    }
+
+    function createLargeObjectArray() {
+        const largeObject = createLargeObject();
+        const largeObjectArray = [];
+
+        for (let i = 0; i < 50; i++) {
+            largeObjectArray.push(largeObject);
+        }
+
+        return largeObjectArray;
+    }
+
+    !async function () {
+
+        for (let item of [Set.prototype.add, Map.prototype.set, WeakMap.prototype.set, WeakSet.prototype.add]) {
+            for (let item2 of [___i___, ___O___]) {
+                try {
+                    item.call(item2);
+                } catch (e) {
+                    if (e.stack.includes('Proxy')) {
+                        alert("Debugger G")
+                    };
+                }
+                if (!item2.toString().includes("[native code]") || !item.toString().includes("[native code]") || !item2.toString.toString().includes("[native code]") || !item.toString.toString().includes("[native code]")) {
+                    alert("Debugger F")
+                }
+            }
+        }
+
+
+        const ___Q___ = [0]
+        ___i___(() => { ___Q___[0]++; }, 100)
+        await new Promise((resolve, reject) => {
+            ___O___(resolve, 3000)
+        }).then(() => {
+            if (___Q___[0] <= 0) {
+                alert("Debugger H")
+            }
+        })
+    }()
+
+
+</script>
