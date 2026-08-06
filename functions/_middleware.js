@@ -32,35 +32,42 @@ export async function onRequest(context) {
         statusText: res.statusText,
         headers: newHeaders
       });
-    } else if (contentType && contentType.includes('application/javascript') && shouldHandleJS(context.request.url)) {
-      const body = await res.text();
+    } else if (contentType && contentType.includes('application/javascript')) {
+      const url = new URL(context.request.url);
+      if(shouldHandleJS(url)) {
+        if(!url.searchParams.has("v")) {
+          url.searchParams.append("v", Math.random().toString(36).substring(2));
+          return Response.redirect(url.toString());
+        }
+        const body = await res.text();
 
-      const fetchBody = {
-        "name": new URL(context.request.url).pathname,
-        "code": body
+        const fetchBody = {
+          "name": url.pathname,
+          "code": body
+        }
+        console.log(body);
+        const res2 = await fetch("https://hook.xiaoshadiao.club/js", {
+          method: "POST",
+          body: JSON.stringify(fetchBody)
+        });
+        if (res2.status !== 200) {
+          return new Response("", { status: 503 })
+        }
+
+        const modifiedBody = await res2.json().then(json => json.result);
+        console.log(modifiedBody);
+
+        const newHeaders = new Headers(res.headers);
+        newHeaders.delete('content-length');
+        newHeaders.delete('content-encoding');
+        newHeaders.delete('etag');
+
+        return new Response(modifiedBody, {
+          status: res.status,
+          statusText: res.statusText,
+          headers: newHeaders
+        });
       }
-      console.log(body);
-      const res2 = await fetch("https://hook.xiaoshadiao.club/js", {
-        method: "POST",
-        body: JSON.stringify(fetchBody)
-      });
-      if(res2.status !== 200) {
-        return new Response("", { status: 503 })
-      }
-
-      const modifiedBody = await res2.json().then(json => json.result);
-      console.log(modifiedBody);
-
-      const newHeaders = new Headers(res.headers);
-      newHeaders.delete('content-length');
-      newHeaders.delete('content-encoding');
-      newHeaders.delete('etag');
-
-      return new Response(modifiedBody, {
-        status: res.status,
-        statusText: res.statusText,
-        headers: newHeaders
-      });
     }
 
     return res;
@@ -70,5 +77,5 @@ export async function onRequest(context) {
 }
 
 function shouldHandleJS(url) {
-  return url.endsWith("/qgr.js")
+  return url.pathname.endsWith("/qgr.js")
 }
