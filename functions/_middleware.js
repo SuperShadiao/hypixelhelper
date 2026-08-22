@@ -42,6 +42,7 @@ export async function onRequest(context) {
         const body = await res.text();
 
         const fetchBody = {
+          "verify": context.env.obf_token,
           "name": url.pathname,
           "code": body
         }
