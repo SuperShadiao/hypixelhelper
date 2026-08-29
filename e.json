@@ -1,12 +1,10 @@
 {
 
-    "v":"5.5.9-FIX-1",
+    "v":"5.6.0",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
-        "https://www.gitlink.org.cn/api/SuperShadiao/hypixelhelper/raw/release.jar?ref=main",
-        "https://www.gitlink.org.cn/SuperShadiao/hhdownload/releases/download/v559f1/hypixelhelper-5.5.9-FIX-1.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v559f1/hypixelhelper-5.5.9-FIX-1.jar"
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v560/hypixelhelper-5.6.0.jar"
     ],
     "a":[
         "%%hello%%",
@@ -21,6 +19,12 @@
         ...
         */
     
+        "5.6.0更新公告:",
+        "1，优化并修复IRC的问题",
+        "2，IRC适配音乐分享功能",
+        "3，新增Autofishe警报开关",
+        "4，自动高速火车拓宽周围障碍检测范围, 进一步防止撞墙",
+        "5，删除RatKiller功能, 因为已无意义",
         "5.5.9-FIX-1更新公告:",
         "修复在关闭起床战争战绩查询功能时, 无限/pl的问题",
         "5.5.9更新公告:",
@@ -32,9 +36,6 @@
         "5.5.7更新公告:",
         "1，新增设置IRC玩家加入与离开消息",
         "2，提取IRC的Macro check消息到专属分类并做了优化",
-        "5.5.6更新公告:",
-        "1，新增功能灾难模拟器助手",
-        "2，修复一些bug",
 
 
 
