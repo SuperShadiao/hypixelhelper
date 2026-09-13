@@ -16,6 +16,17 @@
         }
     ],
     "dungeon": [
-        // 备用
+        {
+            "uuid": "2ea6fc4a85f24478ad0b53422c7650e4",
+            "reason": "组团骂人老外"
+        },
+        {
+            "uuid": "48057f2a0eaa4b71b0f4f24aa36dbd0d",
+            "reason": "组团骂人老外"
+        },
+        {
+            "uuid": "7214cc30f5114bfaafd60eb6afb85757",
+            "reason": "组团骂人老外"
+        }
     ]
 }
