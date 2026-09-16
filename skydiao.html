@@ -539,7 +539,7 @@
     <script>
         function getPlayerCount() {
             const xhr = new XMLHttpRequest();
-            xhr.open("GET", "https://irci.xiaoshadiao.club/playerlist", true);
+            xhr.open("GET", "/datagetter?url=https://irci.xiaoshadiao.club/playerlist", true);
             xhr.onload = function () {
                 if (xhr.status === 200) {
                     const playerCount = JSON.parse(xhr.responseText)["players"].length;
