@@ -7,6 +7,9 @@
     <loc>https://{URL}/about</loc>
   </url>
   <url>
+    <loc>https://{URL}/skydiao</loc>
+   </url>
+  <url>
     <loc>https://{URL}/hh</loc>
   </url>
   <url>
