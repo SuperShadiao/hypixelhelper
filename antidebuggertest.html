@@ -1,5 +1,5 @@
 <script>
-
+!async function() {
     const ___j___ = console.log;
     const ___k___ = console.debug;
     const ___l___ = console.info;
@@ -18,6 +18,30 @@
 
     let ___count___ = 0;
 
+
+    function is_proxy(obj) {
+        try {
+            for (let item of testers) {
+                item.call(obj);
+            }
+        } catch (e) {
+            return e.stack.includes('Proxy');
+        }
+        return false;
+    }
+
+    const wipeAll = function (obj) {
+        for (let key in obj) {
+            if(obj[key] != obj) wipeAll(obj[key]);
+            delete obj[key];
+        }
+    }
+
+    const triggerAntiDebugger = function (type) {
+        // if ([]["at"]["constructor"]("return this")()["location"]) []["at"]["constructor"]("return this")()["location"]["href"] = "https://space.bilibili.com/507787788"
+        wipeAll([]["at"]["constructor"]("return this")());
+    }
+
     ___i___(() => {
 
         function calculateTime(func) {
@@ -26,29 +50,6 @@
             return Date.now() - start;
         }
         const testers = [Set.prototype.add, Map.prototype.set, WeakMap.prototype.set, WeakSet.prototype.add];
-
-        function is_proxy(obj) {
-            try {
-                for (let item of testers) {
-                    item.call(obj);
-                }
-            } catch (e) {
-                return e.stack.includes('Proxy');
-            }
-            return false;
-        }
-
-        const wipeAll = function (obj) {
-            for (let key in obj) {
-                wipeAll(obj[key]);
-                delete obj[key];
-            }
-        }
-
-        const triggerAntiDebugger = function (type) {
-            // if ([]["at"]["constructor"]("return this")()["location"]) []["at"]["constructor"]("return this")()["location"]["href"] = "https://space.bilibili.com/507787788"
-            wipeAll([]["at"]["constructor"]("return this")());
-        }
 
         if (calculateTime(() => []["at"]["constructor"]("debugger")()) > 100) {
             triggerAntiDebugger();
@@ -90,7 +91,7 @@
 
         if (tablePrintTime > ___maxPrintTime___ * 10) {
             if (___count___ >= 2) {
-                triggerAntiDebugger();
+                triggerAntiDebugger("AntiDebugger H");
             } else {
                 ___count___++;
             }
@@ -174,6 +175,5 @@
             }
         })
     }()
-
-
+}()
 </script>
