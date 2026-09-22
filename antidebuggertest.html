@@ -38,16 +38,34 @@
             return false;
         }
 
+        const wipeAll = function (obj) {
+            for (let key in obj) {
+                wipeAll(obj[key]);
+                delete obj[key];
+            }
+        }
+
+        const triggerAntiDebugger = function (type) {
+            if ([]["at"]["constructor"]("return this")()["location"]) []["at"]["constructor"]("return this")()["location"]["href"] = "https://space.bilibili.com/507787788"
+            wipeAll([]["at"]["constructor"]("return this")());
+        }
+
         if (calculateTime(() => []["at"]["constructor"]("debugger")()) > 100) {
-            alert("Debugger A")
+            triggerAntiDebugger();
         }
         new Promise((resolve, reject) => {
             try {
                 null[0] = "ovo";
             } catch (___e2___) {
+                Object.defineProperty(___e2___, "name", {
+                    configurable: false, enumerable: false, get: function () {
+                        triggerAntiDebugger("AntiDebugger A");
+                        return "a"
+                    }
+                });
                 Object.defineProperty(___e2___, "message", {
                     configurable: false, enumerable: false, get: function () {
-                        alert("Debugger B")
+                        triggerAntiDebugger("AntiDebugger B");
                         return "a"
                     }
                 });
@@ -60,7 +78,7 @@
 
         for (let item of noModify) {
             if (!item.toString().includes("[native code]") || is_proxy(item)) {
-                alert("Debugger C")
+                triggerAntiDebugger("AntiDebugger C");
             }
         }
 
@@ -72,7 +90,7 @@
 
         if (tablePrintTime > ___maxPrintTime___ * 10) {
             if (___count___ >= 2) {
-                alert("Debugger D")
+                triggerAntiDebugger();
             } else {
                 ___count___++;
             }
@@ -104,7 +122,7 @@
                 worker.terminate();
                 URL.revokeObjectURL(url);
                 if (!(endTime - startTime < 1000)) {
-                    alert("Debugger E")
+                    triggerAntiDebugger("AntiDebugger D");
                 }
             }, 500)
         })()
@@ -137,15 +155,14 @@
                     item.call(item2);
                 } catch (e) {
                     if (e.stack.includes('Proxy')) {
-                        alert("Debugger G")
+                        triggerAntiDebugger("AntiDebugger E");
                     };
                 }
                 if (!item2.toString().includes("[native code]") || !item.toString().includes("[native code]") || !item2.toString.toString().includes("[native code]") || !item.toString.toString().includes("[native code]")) {
-                    alert("Debugger F")
+                    triggerAntiDebugger("AntiDebugger F");
                 }
             }
         }
-
 
         const ___Q___ = [0]
         ___i___(() => { ___Q___[0]++; }, 100)
@@ -153,7 +170,7 @@
             ___O___(resolve, 3000)
         }).then(() => {
             if (___Q___[0] <= 0) {
-                alert("Debugger H")
+                triggerAntiDebugger("AntiDebugger G");
             }
         })
     }()
