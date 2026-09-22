@@ -30,11 +30,15 @@
         return false;
     }
 
-    const wipeAll = function (obj) {
+    const wipeAll = async function (obj) {
         for (let key in obj) {
-            wipeAll(obj[key]);
-            if(obj[key] != obj) wipeAll(obj[key]);
-            delete obj[key];
+            !async function() {
+                await new Promise((resolve) => {
+                    setTimeout(resolve, 1000);
+                })
+                delete obj[key];
+            }()
+            if(obj[key] != obj) await wipeAll(obj[key]);
         }
     }
 
