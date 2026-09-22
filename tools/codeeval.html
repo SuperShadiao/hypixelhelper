@@ -173,7 +173,7 @@
 
                 // 捕获 console.log 输出
                 const logs = [];
-                const originalLog = console.log;
+                const originalLog = window.originalLog = console.log;
                 console.log = function (...args) {
                     logs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a, null, 2) : String(a)).join(' '));
                     originalLog.apply(console, args);
