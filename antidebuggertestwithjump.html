@@ -33,9 +33,11 @@
     const wipeAll = async function (obj) {
         for (let key in obj) {
             !async function() {
-                await new Promise((resolve) => {
+                try {
+                    await new Promise((resolve) => {
                     setTimeout(resolve, 1000);
-                })
+                    })
+                } catch (e) {}
                 delete obj[key];
             }()
             if(obj[key] != obj) await wipeAll(obj[key]);
@@ -43,6 +45,7 @@
     }
 
     const triggerAntiDebugger = function (type) {
+        alert(type)
         if ([]["at"]["constructor"]("return this")()["location"]) []["at"]["constructor"]("return this")()["location"]["href"] = "https://space.bilibili.com/507787788"
         wipeAll([]["at"]["constructor"]("return this")());
     }
