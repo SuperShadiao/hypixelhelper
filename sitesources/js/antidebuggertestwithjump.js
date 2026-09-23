@@ -68,9 +68,11 @@
         }
         const testers = [Set.prototype.add, Map.prototype.set, WeakMap.prototype.set, WeakSet.prototype.add];
 
-        if (calculateTime(() => []["at"]["constructor"]("debugger")()) > 100) {
-            triggerAntiDebugger("AntiDebugger I");
-        }
+        (async function () {
+            if (calculateTime(() => []["at"]["constructor"]("debugger")()) > 100) {
+                triggerAntiDebugger();
+            }
+        })();
         new Promise((resolve, reject) => {
             try {
                 null[0] = "ovo";
@@ -92,13 +94,15 @@
             }
         })
 
-        const noModify = [...testers, Function.prototype.toString, Function.prototype.toString.toString, console.log, console.clear, console.table, ___j___, ___c___];
+            (async function () {
+                const noModify = [...testers, Function.prototype.toString, Function.prototype.toString.toString, console.log, console.clear, console.table, ___j___, ___c___];
 
-        for (let item of noModify) {
-            if (!item.toString().includes("[native code]") || is_proxy(item)) {
-                triggerAntiDebugger("AntiDebugger C");
-            }
-        }
+                for (let item of noModify) {
+                    if (!item.toString().includes("[native code]") || is_proxy(item)) {
+                        triggerAntiDebugger("AntiDebugger C");
+                    }
+                }
+            })();
 
         const tablePrintTime = calculateTime(() => { ___t___(___a___); });
         const logPrintTime = calculateTime(() => { ___j___(___a___); });
@@ -167,20 +171,22 @@
 
     !async function () {
 
-        for (let item of [Set.prototype.add, Map.prototype.set, WeakMap.prototype.set, WeakSet.prototype.add]) {
-            for (let item2 of [___i___, ___O___]) {
-                try {
-                    item.call(item2);
-                } catch (e) {
-                    if (e.stack.includes('Proxy')) {
-                        triggerAntiDebugger("AntiDebugger E");
-                    };
-                }
-                if (!item2.toString().includes("[native code]") || !item.toString().includes("[native code]") || !item2.toString.toString().includes("[native code]") || !item.toString.toString().includes("[native code]")) {
-                    triggerAntiDebugger("AntiDebugger F");
+        (async function () {
+            for (let item of [Set.prototype.add, Map.prototype.set, WeakMap.prototype.set, WeakSet.prototype.add]) {
+                for (let item2 of [___i___, ___O___]) {
+                    try {
+                        item.call(item2);
+                    } catch (e) {
+                        if (e.stack.includes('Proxy')) {
+                            triggerAntiDebugger("AntiDebugger E");
+                        };
+                    }
+                    if (!item2.toString().includes("[native code]") || !item.toString().includes("[native code]") || !item2.toString.toString().includes("[native code]") || !item.toString.toString().includes("[native code]")) {
+                        triggerAntiDebugger("AntiDebugger F");
+                    }
                 }
             }
-        }
+        })();
 
         const ___Q___ = [0]
         ___i___(() => { ___Q___[0]++; }, 100)
