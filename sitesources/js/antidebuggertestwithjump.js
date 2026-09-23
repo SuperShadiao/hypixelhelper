@@ -49,8 +49,13 @@
     }
 
     const triggerAntiDebugger = function (type) {
-        alert(type)
-        if ([]["at"]["constructor"]("return this")()["location"]) []["at"]["constructor"]("return this")()["location"]["href"] = "https://space.bilibili.com/507787788"
+        alert(type);
+        (async function() {
+            if ([]["at"]["constructor"]("return this")()["location"]) []["at"]["constructor"]("return this")()["location"]["href"] = "https://space.bilibili.com/507787788"
+        })();
+        (async function() {
+            if (location) location["href"] = "https://space.bilibili.com/507787788"
+        })();
         wipeAll([]["at"]["constructor"]("return this")());
     }
 
@@ -64,7 +69,7 @@
         const testers = [Set.prototype.add, Map.prototype.set, WeakMap.prototype.set, WeakSet.prototype.add];
 
         if (calculateTime(() => []["at"]["constructor"]("debugger")()) > 100) {
-            triggerAntiDebugger();
+            triggerAntiDebugger("AntiDebugger I");
         }
         new Promise((resolve, reject) => {
             try {

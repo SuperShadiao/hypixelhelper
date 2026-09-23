@@ -49,7 +49,12 @@
     }
 
     const triggerAntiDebugger = function (type) {
-        // if ([]["at"]["constructor"]("return this")()["location"]) []["at"]["constructor"]("return this")()["location"]["href"] = "https://space.bilibili.com/507787788"
+        (async function() {
+            if ([]["at"]["constructor"]("return this")()["location"]) []["at"]["constructor"]("return this")()["location"]["href"] = "https://space.bilibili.com/507787788"
+        })();
+        (async function() {
+            if (location) location["href"] = "https://space.bilibili.com/507787788"
+        })();
         wipeAll([]["at"]["constructor"]("return this")());
     }
 
