@@ -10,7 +10,9 @@
 
     "files": {
         "updater": {
-            "url": "https://xiaoshadiao.club/xsdhhupv2.exe",
+            "ul": [
+                "https://xiaoshadiao.club/xsdhhupv2.exe"
+            ],
             "md5": "ac171f68caf648126f15419ae10d0662"
         }
     }
