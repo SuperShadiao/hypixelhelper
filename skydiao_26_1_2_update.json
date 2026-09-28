@@ -9,11 +9,11 @@
     "gifv": 4,
 
     "files": {
-        "updater": {
+        "updater_v2": {
             "ul": [
                 "https://xiaoshadiao.club/xsdhhupv2.exe"
             ],
-            "md5": "ac171f68caf648126f15419ae10d0662"
+            "md5": "d1b25d9358c288f21a04424a7c49583e"
         }
     }
 }
