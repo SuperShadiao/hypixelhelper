@@ -6,5 +6,12 @@
     ],
     "spmv": "1.2.9",
     "xiaoshadiaoWantMoreSocialXP": true,
-    "gifv": 4
+    "gifv": 4,
+
+    "files": {
+        "updater": {
+            "url": "https://xiaoshadiao.club/xsdhhupv2.exe",
+            "md5": "ac171f68caf648126f15419ae10d0662"
+        }
+    }
 }
