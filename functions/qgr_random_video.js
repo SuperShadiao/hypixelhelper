@@ -11,7 +11,8 @@ export async function onRequest(context) {
         "BV1sV3xzfEXP",
         "BV1tUycYNEo5",
         "BV11UBfBMEfQ",
-        "BV1oyhM6AETw"
+        "BV1oyhM6AETw",
+        "BV1sjen6QEQ7"
     ]
 
     const randomBV = BVs[Math.floor(Math.random() * BVs.length)];
