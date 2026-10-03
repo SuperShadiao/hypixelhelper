@@ -163,6 +163,17 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Warning Section -->
+            <section class="warning-section">
+                <div class="wrap warning-inner">
+                    <p class="warning-title">警告: 小沙雕仅有以下几个页面</p>
+                    <p><a href="https://xiaoshadiao.club" target="_blank">https://xiaoshadiao.club</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://xiaoshadiao.cn" target="_blank">https://xiaoshadiao.cn</a></p>
+                    <p><a href="https://5ixsd.top" target="_blank">https://5ixsd.top</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://4d4v.tech" target="_blank">https://4d4v.tech</a></p>
+                    <p>Github: <a href="https://github.com/SuperShadiao" target="_blank">https://github.com/SuperShadiao</a></p>
+                    <p class="warning-bottom">除此以外的链接均为假冒且可能包含恶意代码。</p>
+                </div>
+            </section>
         </div>
     </div>
 
@@ -464,6 +475,42 @@
         }
         .cta-section .actions { 
             justify-content: center; 
+        }
+
+        /* Warning Section */
+        .warning-section {
+            padding: 60px 0;
+            text-align: center;
+            background: var(--cream);
+            border-top: 1px solid var(--line);
+        }
+        .warning-inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .warning-inner p {
+            margin: 12px 0;
+            color: var(--soft-ink);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .warning-inner a {
+            color: var(--yellow-dark);
+            text-decoration: underline;
+        }
+        .warning-inner a:hover {
+            color: var(--yellow);
+        }
+        .warning-title {
+            font-weight: 700;
+            color: var(--ink) !important;
+            font-size: 1.1rem !important;
+            margin-bottom: 20px !important;
+        }
+        .warning-bottom {
+            font-weight: 600;
+            color: #c62828 !important;
+            margin-top: 20px !important;
         }
 
         /* Modal */
