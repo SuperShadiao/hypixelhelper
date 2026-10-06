@@ -1,10 +1,10 @@
 {
-    "v":"0.9.8",
+    "v":"0.9.9",
     "ul":[
         "https://xiaoshadiao.club/skydiao_26_1_2.jar",
-        "https://github.com/SuperShadiao/skydiao/releases/download/v098/skydiao-0.9.8.jar"
+        "https://github.com/SuperShadiao/skydiao/releases/download/v099/skydiao-0.9.9.jar"
     ],
-    "spmv": "1.2.9",
+    "spmv": "2.0.0",
     "xiaoshadiaoWantMoreSocialXP": true,
     "gifv": 4,
 
