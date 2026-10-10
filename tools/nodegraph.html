@@ -1,0 +1,2062 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>小沙雕 - 节点图编辑器</title>
+
+    <meta name="description"
+        content="小沙雕的个人网站, 拥有一些小项目, 正在制作的项目有: Minecraft Hypixel Helper Mod, Java XiaoShadiao Obfuscator等. 欢迎大家来与小沙雕互动! qwq">
+    <meta name="keywords" content="小沙雕,个人网站,awa,Java,Minecraft,Hypixel,Helper,Obfuscator,项目,开发,xiaoshadiao,节点图,可视化编程">
+
+    <!-- ICONS -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="icons/favicon-64x64.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="xsdv2.png">
+
+    <script src="/sitesources/js/header.js" defer></script>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        /* ---------- 全窗口布局 ---------- */
+        .ng-app {
+            position: fixed;
+            top: 70px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            background: #f5f5f5;
+            z-index: 500;
+        }
+
+        /* ---------- 工具栏 ---------- */
+        .ng-toolbar {
+            flex: none;
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 8px;
+            align-items: center;
+            padding: 10px 14px;
+            background: #fffdf5;
+            border-bottom: 2px solid #FFB300;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        .ng-toolbar .spacer { flex: 1 0 12px; }
+
+        .tbtn {
+            flex: 0 0 auto;
+            white-space: nowrap;
+            padding: 8px 14px;
+            border: 2px solid #FFB300;
+            border-radius: 8px;
+            background: #fff;
+            color: #3a2a00;
+            font-weight: 700;
+            font-size: 13px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background .2s, transform .2s;
+        }
+
+        .tbtn:hover { background: #FFF8E1; }
+        .tbtn:active { transform: translateY(1px); }
+        .tbtn:disabled { opacity: .5; cursor: not-allowed; }
+
+        .tbtn.primary {
+            background: linear-gradient(135deg, #FFE34F, #FFB300);
+        }
+
+        .tbtn.primary:hover { background: linear-gradient(135deg, #FFB300, #FF8F00); }
+        .tbtn.danger { border-color: #e57373; color: #c62828; }
+        .tbtn.danger:hover { background: #ffebee; }
+
+        /* ---------- 文件名 + 保存状态 ---------- */
+        .file-status {
+            flex: 0 0 auto;
+            margin-left: 8px;
+            padding: 3px 9px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .file-status.saved { color: #2e7d32; background: #e8f5e9; }
+        .file-status.dirty { color: #c62828; background: #ffebee; }
+
+        /* ---------- 主体布局 ---------- */
+        .ng-body {
+            position: relative;
+            flex: 1;
+            display: flex;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        /* ---------- 左侧节点列表（可收起） ---------- */
+        .ng-palette {
+            flex: none;
+            display: flex;
+            align-items: stretch;
+            background: #fffdf5;
+            border-right: 2px solid #FFB300;
+            z-index: 4;
+        }
+
+        .pal-toggle {
+            flex: none;
+            width: 40px;
+            border: none;
+            border-right: 1px solid #FFE082;
+            background: #FFF8E1;
+            color: #7a6a00;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .2s;
+        }
+
+        .pal-toggle:hover { background: #FFE082; }
+
+        .pal-inner {
+            width: 158px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            transition: width .25s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 10px 0;
+            scrollbar-width: thin;
+            scrollbar-color: #FFE082 transparent;
+        }
+
+        .pal-inner::-webkit-scrollbar { width: 8px; }
+        .pal-inner::-webkit-scrollbar-track { background: transparent; }
+        .pal-inner::-webkit-scrollbar-thumb { background: #FFE082; border-radius: 4px; }
+
+        /* 让目录项保持自身高度，超出时由 .pal-inner 滚动而不是被压缩 */
+        .pal-inner > * { flex: none; }
+
+        .ng-palette.collapsed .pal-inner { width: 0; }
+
+        .pal-title {
+            padding: 0 12px 6px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #7a6a00;
+            white-space: nowrap;
+        }
+
+        .pal-tip {
+            margin: 0 12px 10px;
+            font-size: 11px;
+            color: #aaa;
+            white-space: nowrap;
+        }
+
+        .pal-cat {
+            padding: 8px 12px 2px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #aaa;
+            white-space: nowrap;
+        }
+
+        .pal-item {
+            margin: 4px 12px;
+            padding: 10px 12px;
+            border: 2px solid var(--pal-color, #FFB300);
+            border-radius: 8px;
+            background: #fff;
+            color: #333;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+            cursor: grab;
+            user-select: none;
+            transition: transform .15s, box-shadow .15s;
+        }
+
+        .pal-item::before {
+            content: "";
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            margin-right: 8px;
+            border-radius: 50%;
+            background: var(--pal-color, #FFB300);
+            vertical-align: middle;
+        }
+
+        .pal-item:hover {
+            transform: translateX(2px);
+            box-shadow: 0 4px 12px rgba(255, 179, 0, .25);
+        }
+
+        .pal-item:active { cursor: grabbing; }
+
+        /* ---------- 画布（填满剩余区域） ---------- */
+        .ng-canvas {
+            position: relative;
+            flex: 1;
+            min-width: 0;
+            min-height: 0;
+            overflow: hidden;
+            cursor: grab;
+            touch-action: none;
+            /* 网格画在视口层上, 由 applyTransform() 同步 background-position/size,
+               这样无论平移到哪里都铺满整个视口 */
+            background-color: #fafafa;
+            background-image:
+                linear-gradient(#ececec 1px, transparent 1px),
+                linear-gradient(90deg, #ececec 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .ng-canvas:active { cursor: grabbing; }
+
+        .ng-canvas.drop-active { box-shadow: inset 0 0 0 3px rgba(255, 179, 0, .65); }
+
+        .ng-world {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 8000px;
+            height: 6000px;
+            transform-origin: 0 0;
+        }
+
+        .ng-edges {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 8000px;
+            height: 6000px;
+            overflow: visible;
+            pointer-events: none;
+        }
+
+        .edge {
+            fill: none;
+            stroke: #888;
+            stroke-width: 2;
+            pointer-events: none;
+        }
+
+        .edge-value { stroke-dasharray: 5 4; }
+
+        .edge.temp { stroke: #FFB300; stroke-dasharray: 6 5; }
+
+        .edge-hit {
+            fill: none;
+            stroke: transparent;
+            stroke-width: 18;
+            pointer-events: stroke;
+            cursor: pointer;
+        }
+
+        .edge-hit:hover + .edge { stroke: #ef5350; stroke-width: 3; }
+
+        /* ---------- 节点 ---------- */
+        .node {
+            position: absolute;
+            width: 220px;
+            background: #fff;
+            border: 2px solid var(--node-color, #FFB300);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+            user-select: none;
+        }
+
+        .node.selected {
+            box-shadow: 0 0 0 3px rgba(255, 179, 0, .45), 0 10px 22px rgba(0, 0, 0, .14);
+        }
+
+        .node.running {
+            box-shadow: 0 0 0 4px rgba(46, 125, 50, .35), 0 0 18px rgba(46, 125, 50, .45);
+        }
+
+        /* 执行轨迹：走过的节点用黄绿色高亮 */
+        .node.traced {
+            box-shadow: 0 0 0 2px rgba(163, 217, 26, .9), 0 0 14px rgba(163, 217, 26, .4);
+        }
+
+        /* 出错节点：红色 */
+        .node.failed {
+            box-shadow: 0 0 0 4px rgba(229, 57, 53, .8), 0 0 22px rgba(229, 57, 53, .6);
+        }
+
+        .node-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 34px;
+            padding: 0 10px;
+            background: var(--node-color, #FFB300);
+            color: #fff;
+            border-radius: 8px 8px 0 0;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: move;
+        }
+
+        .node-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .node-del {
+            font-size: 16px;
+            line-height: 1;
+            opacity: .85;
+            cursor: pointer;
+            padding: 0 2px;
+        }
+
+        .node-del:hover { opacity: 1; }
+
+        .node-rows { padding-bottom: 6px; }
+
+        .node-row {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .node-row .lit { margin-left: 6px; }
+
+        .row-label {
+            font-size: 12px;
+            color: #555;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 152px;
+        }
+
+        .row-label.connected { color: #bdbdbd; font-style: italic; }
+
+        .row-type { color: #aaa; font-size: 11px; margin-left: 4px; }
+
+        .lit {
+            width: 120px;
+            max-width: 72%;
+            padding: 2px 6px;
+            border: 1.5px solid #ddd;
+            border-radius: 5px;
+            font-size: 12px;
+            font-family: inherit;
+            color: #333;
+            background: #fff;
+            outline: none;
+            text-align: center;
+        }
+
+        .lit:focus { border-color: #FFB300; }
+        select.lit { padding: 1px 4px; text-align: left; }
+
+        /* ---------- 端口 ---------- */
+        .port {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            z-index: 3;
+            cursor: crosshair;
+            border: 2px solid #fff;
+        }
+
+        .port-exec { border-radius: 2px; background: #9e9e9e; }
+        .port-value { border-radius: 50%; background: #00838f; }
+        .port:hover { box-shadow: 0 0 0 3px rgba(255, 179, 0, .55); }
+
+        /* ---------- 空状态提示 ---------- */
+        .ng-hint {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: #bdbdbd;
+            font-size: 14px;
+            text-align: center;
+            pointer-events: none;
+            line-height: 1.9;
+        }
+
+        /* ---------- 右侧面板（覆盖在画布右侧） ---------- */
+        .ng-side {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 340px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255, 253, 245, .97);
+            border-left: 2px solid #FFB300;
+            box-shadow: -8px 0 22px rgba(0, 0, 0, .07);
+            overflow-y: auto;
+            z-index: 5;
+        }
+
+        .ng-panel {
+            background: #fffdf5;
+            border: 2px solid #FFB300;
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .ng-panel h3 {
+            margin: 0 0 10px;
+            font-size: 14px;
+            color: #7a6a00;
+        }
+
+        .ng-empty { color: #aaa; font-size: 13px; line-height: 1.8; }
+
+        .ng-field { margin-bottom: 10px; }
+
+        .ng-field label {
+            display: block;
+            font-size: 12px;
+            color: #7a6a00;
+            margin-bottom: 4px;
+        }
+
+        .ng-field input,
+        .ng-field textarea {
+            width: 100%;
+            padding: 7px 9px;
+            border: 1.5px solid #eee;
+            border-radius: 6px;
+            font-size: 13px;
+            font-family: inherit;
+            color: #333;
+            background: #fff;
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .ng-field textarea {
+            min-height: 168px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            line-height: 1.6;
+            resize: vertical;
+        }
+
+        .ng-field input:focus,
+        .ng-field textarea:focus { border-color: #FFB300; }
+
+        .ng-kind {
+            display: inline-block;
+            padding: 2px 9px;
+            border-radius: 20px;
+            background: #FFF3CD;
+            color: #7a6a00;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .ng-hintline {
+            font-size: 11px;
+            color: #999;
+            line-height: 1.6;
+            margin: 0 0 10px;
+        }
+
+        .ng-console {
+            flex: 1;
+            min-height: 170px;
+            max-height: 320px;
+            overflow: auto;
+            background: #2b2b2b;
+            border-radius: 10px;
+            padding: 9px 11px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+
+        .log-line { white-space: pre-wrap; word-break: break-all; }
+        .log-line.node { color: #FFD54F; font-weight: 700; }
+        .log-line.out { color: #b0bec5; }
+        .log-line.ok { color: #81c784; }
+        .log-line.warn { color: #FFB74D; }
+        .log-line.err { color: #ef9a9a; }
+
+        @media screen and (max-width: 1000px) {
+            .ng-side { width: 300px; }
+        }
+
+        @media screen and (max-width: 768px) {
+            .ng-app { top: 60px; }
+            .ng-side { width: 270px; }
+            .pal-inner { width: 140px; }
+            .tbtn { padding: 7px 11px; font-size: 12px; }
+        }
+
+        @media screen and (max-width: 600px) {
+            .ng-side { width: 230px; padding: 10px; }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header-placeholder"></div>
+
+    <div class="ng-app">
+        <div class="ng-toolbar">
+            <input class="tbtn" id="graphName" type="text" value="" placeholder="文件名" style="width:110px;text-align:left" title="节点图文件名：回车则从模组读取该名字的节点图；保存时写入 &lt;名字&gt;.json 并热载入 Java 层">
+            <span class="file-status dirty" id="fileStatus" title="节点图相对上次保存是否有改动">未保存 ●</span>
+            <span class="spacer"></span>
+            <button class="tbtn primary" id="runBtn">运行 ▶</button>
+            <button class="tbtn" id="stopBtn" disabled>停止 ■</button>
+            <button class="tbtn" id="exampleBtn">示例</button>
+            <button class="tbtn" id="importExtBtn" title="导入第三方节点扩展（.json），导入后会保存在本地，刷新仍生效">导入扩展</button>
+            <input type="file" id="extFile" accept=".json,application/json" style="display:none">
+            <button class="tbtn" id="importErrBtn" title="导入外部程序序列化出来的错误 JSON，在图上标出出错节点（红）与执行轨迹（黄绿）">导入错误</button>
+            <input type="file" id="errFile" accept=".json,application/json" style="display:none">
+            <button class="tbtn" id="resetViewBtn">重置视图</button>
+            <button class="tbtn" id="saveBtn">保存</button>
+            <button class="tbtn danger" id="clearBtn">清空</button>
+            <button class="tbtn danger" id="deleteBtn" title="双击生效：清空左上角文件名与中间画布，并删除模组中的同名节点图文件">删除</button>
+        </div>
+
+        <div class="ng-body">
+            <div class="ng-palette" id="palette">
+                <button class="pal-toggle" id="palToggle" title="收起 / 展开节点列表">☰</button>
+                <div class="pal-inner">
+                    <div class="pal-title">节点列表</div>
+                    <p class="pal-tip">拖拽到画布即可添加</p>
+                    <div id="palGroups"></div>
+                </div>
+            </div>
+
+            <div class="ng-canvas" id="canvas">
+                <div class="ng-world" id="world">
+                    <svg class="ng-edges" id="edges" xmlns="http://www.w3.org/2000/svg"></svg>
+                </div>
+                <div class="ng-hint" id="hint">
+                    画布是空的<br>从左侧节点列表拖拽节点到此处添加
+                </div>
+            </div>
+
+            <aside class="ng-side">
+                <div class="ng-panel">
+                    <h3>节点属性</h3>
+                    <div class="ng-empty" id="insEmpty">选中一个节点以编辑它的标题与代码。</div>
+                    <div id="insForm" style="display:none;">
+                        <span class="ng-kind" id="insKind"></span>
+                        <p class="ng-hintline"><b>分类：</b><span id="insCat"></span></p>
+                        <p class="ng-hintline"><b>说明：</b><span id="insDesc"></span></p>
+                        <div id="insParams"></div>
+                        <button class="tbtn danger" id="insDelete">删除该节点</button>
+                    </div>
+                </div>
+
+                <div class="ng-panel" style="display:flex;flex-direction:column;">
+                    <h3>运行日志</h3>
+                    <div class="ng-console" id="console"></div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            var SVGNS = 'http://www.w3.org/2000/svg';
+
+            // 几何常量：端口坐标完全由公式决定，不依赖 DOM 测量
+            var NODE_W = 220, HEAD_H = 34, ROW_H = 30, BODY_PAD = 6;
+
+            var PORT_COLOR = {
+                number: '#1565c0', int: '#1565c0', string: '#7b1fa2',
+                bool: '#ef6c00', any: '#00838f'
+            };
+            // 分类名称由扩展包提供，这里做一次查表
+            function catLabel(id) {
+                for (var i = 0; i < CATS.length; i++) if (CATS[i].id === id) return CATS[i].label;
+                return id || '';
+            }
+
+            // ---------- 内置预览逻辑（type -> 执行逻辑，仅供网页预览）----------
+            // 节点的端口、外观与文案全部由扩展包提供（tools/nodegraph_extensions/default.json）；
+            // 这里只保留按 type 对应的执行逻辑，因为扩展包无法携带函数。
+            // 字符串节点公用：把输入转成字符串（未填 / null 都当空串）
+            function str(v) {
+                return v === undefined || v === null ? '' : String(v);
+            }
+
+            // 变量操作公用：变量名不得为空（未填 / 空串都算空）
+            function requireVarName(inputs) {
+                var name = inputs.name;
+                if (name === undefined || name === null || String(name).trim() === '') {
+                    throw nodeError('E_EMPTY_VAR_NAME', '变量名不得为空', { port: 'name' });
+                }
+            }
+
+            var RUN = {
+                /* ---- 入口节点（没有 exec 输入口）---- */
+                start: function (inputs, ctx) { return { next: 'out' }; },
+                /* ---- 控制流 ---- */
+                'if': function (inputs, ctx) { return { next: inputs.cond ? 'true' : 'false' }; },
+                /* ---- 变量操作 ---- */
+                get_var: function (inputs, ctx) {
+                    requireVarName(inputs);
+                    return { next: 'out', set: { value: ctx.vars[inputs.name] } };
+                },
+                set_var: function (inputs, ctx) {
+                    requireVarName(inputs);
+                    ctx.vars[inputs.name] = inputs.value;
+                    return { next: 'out' };
+                },
+                inc_var: function (inputs, ctx) {
+                    requireVarName(inputs);
+                    var n = Number(ctx.vars[inputs.name] || 0) + 1;
+                    ctx.vars[inputs.name] = n;
+                    return { next: 'out', set: { value: n } };
+                },
+                dec_var: function (inputs, ctx) {
+                    requireVarName(inputs);
+                    var n = Number(ctx.vars[inputs.name] || 0) - 1;
+                    ctx.vars[inputs.name] = n;
+                    return { next: 'out', set: { value: n } };
+                },
+                /* ---- 数学运算 ---- */
+                math_add: function (inputs, ctx) {
+                    return { next: 'out', set: { value: inputs.a + inputs.b } };
+                },
+                math_sub: function (inputs, ctx) {
+                    return { next: 'out', set: { value: inputs.a - inputs.b } };
+                },
+                math_mul: function (inputs, ctx) {
+                    return { next: 'out', set: { value: inputs.a * inputs.b } };
+                },
+                math_div: function (inputs, ctx) {
+                    return { next: 'out', set: { value: inputs.a / inputs.b } };
+                },
+                math_mod: function (inputs, ctx) {
+                    return { next: 'out', set: { value: inputs.a % inputs.b } };
+                },
+                math_cmp: function (inputs, ctx) {
+                    var a = inputs.a, b = inputs.b, op = String(inputs.op);
+                    var r;
+                    if (op === '>') r = a > b;
+                    else if (op === '<') r = a < b;
+                    else if (op === '>=') r = a >= b;
+                    else if (op === '<=') r = a <= b;
+                    else if (op === '==') r = a == b;
+                    else if (op === '!=') r = a != b;
+                    else throw nodeError('E_BAD_OPERATOR',
+                        '运算符不合法：「' + op + '」，只支持 > < >= <= == !=',
+                        { port: 'op', value: op, allowed: ['>', '<', '>=', '<=', '==', '!='] });
+                    return { next: 'out', set: { value: r } };
+                },
+                /* ---- 逻辑运算 ---- */
+                logic_not: function (inputs, ctx) {
+                    return { next: 'out', set: { value: !inputs.cond } };
+                },
+                /* ---- 字符串 ---- */
+                str_trim: function (inputs, ctx) {
+                    return { next: 'out', set: { value: str(inputs.text).trim() } };
+                },
+                str_concat: function (inputs, ctx) {
+                    return { next: 'out', set: { value: str(inputs.a) + str(inputs.b) } };
+                },
+                str_contains: function (inputs, ctx) {
+                    return { next: 'out', set: { value: str(inputs.text).indexOf(str(inputs.sub)) >= 0 } };
+                },
+                str_replace: function (inputs, ctx) {
+                    var text = str(inputs.text), from = str(inputs.from), to = str(inputs.to);
+                    // 全部替换（与 Java 的 String.replace 一致；JS 原生 replace 只换第一处）
+                    return { next: 'out', set: { value: from === '' ? text : text.split(from).join(to) } };
+                },
+                /* ---- IO ---- */
+                print: function (inputs, ctx) { log('输出: ' + fmt(inputs.text), 'out'); return { next: 'out' }; }
+            };
+
+            // ---------- 运行时注册表（由扩展包填充） ----------
+            var DEFS = {};      // type -> {cat,label,color,execIn,execInLabel,execOut,in,out,desc,ext}
+            var CATS = [];      // [{id,label}] 分类顺序
+            var EXTS = [];      // 已加载的扩展清单
+            var EXT_DATA = [];  // 已加载扩展的原始数据（用于持久化到 localStorage）
+
+            // ---------- 状态 ----------
+            var nodes = [];      // {id, type, x, y, literals:{portId: 原始字符串}}
+            var edges = [];      // {id, kind:'exec'|'value', from:{node, port}, to:{node, port}}
+            var nodeEls = {};    // id -> DOM
+            var seq = 1;
+            var selectedId = null;
+            var pan = { x: 40, y: 40 };
+            var scale = 1;
+            var running = false;
+            var initialized = false;
+            var ctx = null;      // 当前执行上下文
+            var lastError = null;   // 最近一次运行错误（纯 JSON，可序列化）
+
+            // ---------- DOM ----------
+            // 注意: header.js 会通过 document.body.innerHTML 重建整个 body,
+            // 届时原有的元素引用与事件监听都会失效。因此这里只声明变量,
+            // 真正的获取与绑定放到 headerLoadedCallback 里(重建完成之后)执行。
+            var app, canvas, world, edgesSvg, hint, consoleEl;
+            var insEmpty, insForm, insKind, insCat, insDesc, insParams;
+            var runBtn, stopBtn;
+            var importExtBtn, extFile, importErrBtn, errFile;
+            var exampleBtn, resetViewBtn, saveBtn, clearBtn, deleteBtn, insDeleteBtn, graphNameEl, fileStatusEl;
+            var palette, palToggle, palItems;
+
+            function initDom() {
+                app = document.querySelector('.ng-app');
+                canvas = document.getElementById('canvas');
+                world = document.getElementById('world');
+                edgesSvg = document.getElementById('edges');
+                hint = document.getElementById('hint');
+                consoleEl = document.getElementById('console');
+                insEmpty = document.getElementById('insEmpty');
+                insForm = document.getElementById('insForm');
+                insKind = document.getElementById('insKind');
+                insCat = document.getElementById('insCat');
+                insDesc = document.getElementById('insDesc');
+                insParams = document.getElementById('insParams');
+                runBtn = document.getElementById('runBtn');
+                stopBtn = document.getElementById('stopBtn');
+                exampleBtn = document.getElementById('exampleBtn');
+                importExtBtn = document.getElementById('importExtBtn');
+                extFile = document.getElementById('extFile');
+                importErrBtn = document.getElementById('importErrBtn');
+                errFile = document.getElementById('errFile');
+                resetViewBtn = document.getElementById('resetViewBtn');
+                saveBtn = document.getElementById('saveBtn');
+                graphNameEl = document.getElementById('graphName');
+                fileStatusEl = document.getElementById('fileStatus');
+                graphNameEl.addEventListener('input', updateFileStatus);
+                graphNameEl.addEventListener('change', onGraphNameChange);   // 失焦并改名后：向模组请求该文件
+                graphNameEl.addEventListener('keydown', function (e) {       // 回车立即请求（change 只在失焦时触发）
+                    if (e.key === 'Enter') { e.preventDefault(); onGraphNameChange(); }
+                });
+                clearBtn = document.getElementById('clearBtn');
+                deleteBtn = document.getElementById('deleteBtn');
+                insDeleteBtn = document.getElementById('insDelete');
+                palette = document.getElementById('palette');
+                palToggle = document.getElementById('palToggle');
+                // palItems 在 renderPalette() 里按扩展内容生成后再赋值
+                palItems = [];
+            }
+
+            // ---------- 工具函数 ----------
+            function uid(prefix) { return prefix + (seq++); }
+
+            function findNode(id) {
+                for (var i = 0; i < nodes.length; i++) if (nodes[i].id === id) return nodes[i];
+                return null;
+            }
+
+            function fmt(a) {
+                if (a === null) return 'null';
+                if (a === undefined) return 'undefined';
+                if (typeof a === 'object') {
+                    try { return JSON.stringify(a); } catch (e) { return String(a); }
+                }
+                return String(a);
+            }
+
+            // ---------- 行模型（端口坐标完全由公式决定） ----------
+            function buildRows(node) {
+                var def = DEFS[node.type];
+                var rows = [];
+                if (!def) return rows;
+                if (def.execIn) rows.push({ kind: 'exec', side: 'in', id: 'in', label: def.execInLabel || '进入' });
+                (def.in || []).forEach(function (p) {
+                    rows.push({ kind: 'value', side: 'in', id: p.id, label: p.label, type: p.type, port: p });
+                });
+                (def.execOut || []).forEach(function (p) {
+                    rows.push({ kind: 'exec', side: 'out', id: p.id, label: p.label });
+                });
+                (def.out || []).forEach(function (p) {
+                    rows.push({ kind: 'value', side: 'out', id: p.id, label: p.label, type: p.type, port: p });
+                });
+                return rows;
+            }
+
+            function nodeHeight(node) {
+                // +4 = 节点上下各 2px 边框（box-sizing: border-box）
+                return HEAD_H + buildRows(node).length * ROW_H + BODY_PAD + 4;
+            }
+
+            function portExists(node, portId, side, kind) {
+                var rows = buildRows(node);
+                for (var i = 0; i < rows.length; i++) {
+                    if (rows[i].side === side && rows[i].id === portId && rows[i].kind === kind) return true;
+                }
+                return false;
+            }
+
+            function hasValueEdge(nodeId, portId) {
+                for (var i = 0; i < edges.length; i++) {
+                    var e = edges[i];
+                    if (e.kind === 'value' && e.to.node === nodeId && e.to.port === portId) return true;
+                }
+                return false;
+            }
+
+            function findValueEdgeInto(nodeId, portId) {
+                for (var i = 0; i < edges.length; i++) {
+                    var e = edges[i];
+                    if (e.kind === 'value' && e.to.node === nodeId && e.to.port === portId) return e;
+                }
+                return null;
+            }
+
+            function outPortType(nodeId, portId) {
+                var node = findNode(nodeId);
+                if (!node) return 'any';
+                var outs = DEFS[node.type].out || [];
+                for (var i = 0; i < outs.length; i++) if (outs[i].id === portId) return outs[i].type;
+                return 'any';
+            }
+
+            // ---------- 视图 ----------
+            function applyTransform() {
+                world.style.transform = 'translate(' + pan.x + 'px,' + pan.y + 'px) scale(' + scale + ')';
+                // 网格跟着平移/缩放走; 画在视口层上, 所以永远不会露出空白
+                canvas.style.backgroundSize = (24 * scale) + 'px ' + (24 * scale) + 'px';
+                canvas.style.backgroundPosition = pan.x + 'px ' + pan.y + 'px';
+            }
+
+            function toWorld(clientX, clientY) {
+                var r = canvas.getBoundingClientRect();
+                return {
+                    x: (clientX - r.left - pan.x) / scale,
+                    y: (clientY - r.top - pan.y) / scale
+                };
+            }
+
+            function viewCenterWorld() {
+                var r = canvas.getBoundingClientRect();
+                return toWorld(r.left + r.width / 2, r.top + r.height / 2);
+            }
+
+            // ---------- 字面量输入部件 ----------
+            function stopLitEvents(el) {
+                ['mousedown', 'click', 'dblclick'].forEach(function (ev) {
+                    el.addEventListener(ev, function (e) { e.stopPropagation(); });
+                });
+            }
+
+            function makeLiteralWidget(node, portId, type, def, disabled) {
+                var el;
+                var cur = (node.literals && node.literals[portId] !== undefined) ? node.literals[portId] : def;
+                if (type === 'bool') {
+                    el = document.createElement('select');
+                    el.className = 'lit';
+                    ['true', 'false'].forEach(function (o) {
+                        var op = document.createElement('option');
+                        op.value = o; op.textContent = o;
+                        el.appendChild(op);
+                    });
+                    el.value = (cur === true || cur === 'true') ? 'true' : 'false';
+                    el.addEventListener('change', function () { setLiteral(node.id, portId, el.value, el); });
+                } else {
+                    el = document.createElement('input');
+                    el.type = 'text';
+                    el.className = 'lit';
+                    el.value = (cur === undefined || cur === null) ? '' : String(cur);
+                    el.addEventListener('input', function () { setLiteral(node.id, portId, el.value, el); });
+                }
+                el.setAttribute('data-lit-node', node.id);
+                el.setAttribute('data-lit-port', portId);
+                if (disabled) el.disabled = true;
+                stopLitEvents(el);
+                return el;
+            }
+
+            function setLiteral(nodeId, portId, value, srcEl) {
+                var node = findNode(nodeId);
+                if (!node) return;
+                if (!node.literals) node.literals = {};
+                node.literals[portId] = value;
+                var els = document.querySelectorAll('[data-lit-node="' + nodeId + '"][data-lit-port="' + portId + '"]');
+                Array.prototype.forEach.call(els, function (el) { if (el !== srcEl) el.value = value; });
+            }
+
+            // ---------- 节点 ----------
+            function makePortDot(node, row) {
+                var dot = document.createElement('span');
+                dot.className = 'port ' + (row.kind === 'exec' ? 'port-exec' : 'port-value');
+                dot.setAttribute('data-port', row.id);
+                dot.setAttribute('data-side', row.side);
+                dot.setAttribute('data-kind', row.kind);
+                if (row.kind === 'value') dot.setAttribute('data-type', row.type);
+                dot.style.top = (ROW_H / 2 - 6) + 'px';
+                if (row.side === 'in') dot.style.left = '-8px';
+                else dot.style.right = '-8px';
+                if (row.kind === 'value') dot.style.background = PORT_COLOR[row.type] || '#00838f';
+                return dot;
+            }
+
+            function renderRows(node, container) {
+                container.innerHTML = '';
+                buildRows(node).forEach(function (row) {
+                    var r = document.createElement('div');
+                    r.className = 'node-row';
+                    r.style.height = ROW_H + 'px';
+                    if (row.kind === 'exec') {
+                        var lbl = document.createElement('span');
+                        lbl.className = 'row-label';
+                        lbl.textContent = row.label;
+                        r.appendChild(lbl);
+                    } else if (row.side === 'out') {
+                        var lo = document.createElement('span');
+                        lo.className = 'row-label';
+                        lo.textContent = row.label;
+                        var t = document.createElement('span');
+                        t.className = 'row-type';
+                        t.textContent = '(' + row.type + ')';
+                        lo.appendChild(t);
+                        r.appendChild(lo);
+                    } else if (hasValueEdge(node.id, row.id)) {
+                        var lc = document.createElement('span');
+                        lc.className = 'row-label connected';
+                        lc.textContent = row.label + ' · 已连接';
+                        r.appendChild(lc);
+                    } else {
+                        var li = document.createElement('span');
+                        li.className = 'row-label';
+                        li.textContent = row.label;
+                        r.appendChild(li);
+                        r.appendChild(makeLiteralWidget(node, row.id, row.type, row.port.default, false));
+                    }
+                    r.appendChild(makePortDot(node, row));
+                    container.appendChild(r);
+                });
+            }
+
+            function createNodeEl(node) {
+                var def = DEFS[node.type];
+                var el = document.createElement('div');
+                el.className = 'node';
+                el.setAttribute('data-id', node.id);
+                el.style.left = node.x + 'px';
+                el.style.top = node.y + 'px';
+                el.style.height = nodeHeight(node) + 'px';
+                el.style.setProperty('--node-color', def.color);
+
+                var head = document.createElement('div');
+                head.className = 'node-head';
+                var name = document.createElement('span');
+                name.className = 'node-name';
+                name.textContent = def.label;
+                var del = document.createElement('span');
+                del.className = 'node-del';
+                del.textContent = '×';
+                del.title = '删除节点';
+                head.appendChild(name);
+                head.appendChild(del);
+                el.appendChild(head);
+
+                var rows = document.createElement('div');
+                rows.className = 'node-rows';
+                el.appendChild(rows);
+                renderRows(node, rows);
+                return el;
+            }
+
+            function refreshNode(id) {
+                var node = findNode(id);
+                var el = nodeEls[id];
+                if (!node || !el) return;
+                el.style.height = nodeHeight(node) + 'px';
+                var rows = el.querySelector('.node-rows');
+                if (rows) renderRows(node, rows);
+            }
+
+            function addNode(type, x, y) {
+                var node = { id: uid('n'), type: type, x: x, y: y, literals: {} };
+                nodes.push(node);
+                var el = createNodeEl(node);
+                nodeEls[node.id] = el;
+                world.appendChild(el);
+                updateHint();
+                return node;
+            }
+
+            function deleteNode(id) {
+                var el = nodeEls[id];
+                if (el) { el.remove(); delete nodeEls[id]; }
+                nodes = nodes.filter(function (n) { return n.id !== id; });
+                var affected = {};
+                edges.forEach(function (e) {
+                    if (e.from.node === id || e.to.node === id) { affected[e.from.node] = 1; affected[e.to.node] = 1; }
+                });
+                edges = edges.filter(function (e) { return e.from.node !== id && e.to.node !== id; });
+                if (selectedId === id) selectNode(null);
+                Object.keys(affected).forEach(function (k) { refreshNode(k); });
+                rebuildEdges();
+                updateHint();
+            }
+
+            // ---------- 连线 ----------
+            function getPortPos(nodeId, side, portId) {
+                var node = findNode(nodeId);
+                if (!node) return null;
+                var rows = buildRows(node);
+                for (var i = 0; i < rows.length; i++) {
+                    if (rows[i].side === side && rows[i].id === portId) {
+                        return {
+                            x: side === 'in' ? node.x : node.x + NODE_W,
+                            // +2 = 节点上边框，行内容实际从 边框+HEAD_H 处开始
+                            y: node.y + 2 + HEAD_H + i * ROW_H + ROW_H / 2
+                        };
+                    }
+                }
+                return null;
+            }
+
+            function curveD(a, b) {
+                var dx = Math.max(50, Math.abs(b.x - a.x) * 0.5);
+                return 'M ' + a.x + ',' + a.y +
+                    ' C ' + (a.x + dx) + ',' + a.y + ' ' + (b.x - dx) + ',' + b.y + ' ' + b.x + ',' + b.y;
+            }
+
+            function makeSvgPath(cls) {
+                var p = document.createElementNS(SVGNS, 'path');
+                p.setAttribute('class', cls);
+                return p;
+            }
+
+            function rebuildEdges() {
+                while (edgesSvg.firstChild) edgesSvg.removeChild(edgesSvg.firstChild);
+                edges.forEach(function (edge) {
+                    var a = getPortPos(edge.from.node, 'out', edge.from.port);
+                    var b = getPortPos(edge.to.node, 'in', edge.to.port);
+                    if (!a || !b) return;
+                    var d = curveD(a, b);
+                    var hit = makeSvgPath('edge-hit');
+                    hit.setAttribute('d', d);
+                    hit.setAttribute('data-edge', edge.id);
+                    edgesSvg.appendChild(hit);
+                    var path = makeSvgPath('edge');
+                    if (edge.kind === 'value') {
+                        path.classList.add('edge-value');
+                        path.style.stroke = PORT_COLOR[outPortType(edge.from.node, edge.from.port)] || '#00838f';
+                    }
+                    path.setAttribute('d', d);
+                    edgesSvg.appendChild(path);
+                });
+            }
+
+            function addEdge(fromNode, fromPort, fromKind, toNode, toPort, toKind) {
+                if (!fromNode || !toNode || fromNode === toNode) return;
+                if (fromKind !== toKind) return; // 只允许 exec→exec / value→value
+                if (fromKind === 'exec') {
+                    // exec 输出口只能连一条边（替换旧的）；exec 输入口可接收多条（控制流汇合 / 回环）
+                    edges = edges.filter(function (e) {
+                        return !(e.kind === 'exec' && e.from.node === fromNode && e.from.port === fromPort);
+                    });
+                } else {
+                    // value 输入口只能有一个来源；value 输出口可以扇出到多个读取者
+                    edges = edges.filter(function (e) {
+                        return !(e.kind === 'value' && e.to.node === toNode && e.to.port === toPort);
+                    });
+                }
+                edges.push({ id: uid('e'), kind: fromKind, from: { node: fromNode, port: fromPort }, to: { node: toNode, port: toPort } });
+                refreshNode(fromNode);
+                refreshNode(toNode);
+                rebuildEdges();
+            }
+
+            function removeEdge(id) {
+                var edge = null;
+                for (var i = 0; i < edges.length; i++) if (edges[i].id === id) { edge = edges[i]; break; }
+                edges = edges.filter(function (e) { return e.id !== id; });
+                if (edge) { refreshNode(edge.from.node); refreshNode(edge.to.node); }
+                rebuildEdges();
+            }
+
+            // ---------- 交互 ----------
+            function selectNode(id) {
+                selectedId = id;
+                for (var k in nodeEls) nodeEls[k].classList.toggle('selected', k === id);
+                renderInspector();
+            }
+
+            function startDragNode(e, nodeEl) {
+                e.preventDefault();
+                var node = findNode(nodeEl.getAttribute('data-id'));
+                if (!node) return;
+                var sx = e.clientX, sy = e.clientY, ox = node.x, oy = node.y;
+                function move(ev) {
+                    node.x = ox + (ev.clientX - sx) / scale;
+                    node.y = oy + (ev.clientY - sy) / scale;
+                    nodeEl.style.left = node.x + 'px';
+                    nodeEl.style.top = node.y + 'px';
+                    rebuildEdges();
+                }
+                function up() {
+                    document.removeEventListener('mousemove', move);
+                    document.removeEventListener('mouseup', up);
+                }
+                document.addEventListener('mousemove', move);
+                document.addEventListener('mouseup', up);
+            }
+
+            function startPan(e) {
+                selectNode(null);
+                var sx = e.clientX, sy = e.clientY, ox = pan.x, oy = pan.y;
+                function move(ev) {
+                    pan.x = ox + (ev.clientX - sx);
+                    pan.y = oy + (ev.clientY - sy);
+                    applyTransform();
+                }
+                function up() {
+                    document.removeEventListener('mousemove', move);
+                    document.removeEventListener('mouseup', up);
+                }
+                document.addEventListener('mousemove', move);
+                document.addEventListener('mouseup', up);
+            }
+
+            function startConnect(e, portEl) {
+                e.preventDefault();
+                e.stopPropagation();
+                var nodeEl = portEl.closest('.node');
+                var fromNodeId = nodeEl.getAttribute('data-id');
+                var fromPort = portEl.getAttribute('data-port');
+                var fromKind = portEl.getAttribute('data-kind');
+                var a = getPortPos(fromNodeId, 'out', fromPort);
+                if (!a) return;
+
+                var temp = makeSvgPath('edge temp');
+                edgesSvg.appendChild(temp);
+
+                function move(ev) {
+                    var b = toWorld(ev.clientX, ev.clientY);
+                    temp.setAttribute('d', curveD(a, b));
+                }
+                function up(ev) {
+                    document.removeEventListener('mousemove', move);
+                    document.removeEventListener('mouseup', up);
+                    if (temp.parentNode) temp.parentNode.removeChild(temp);
+
+                    var target = document.elementFromPoint(ev.clientX, ev.clientY);
+                    var inPort = target ? target.closest('.port') : null;
+                    if (!inPort) return;
+                    if (inPort.getAttribute('data-side') !== 'in') return;
+                    if (inPort.getAttribute('data-kind') !== fromKind) return; // 端口类型必须匹配
+                    var toNodeId = inPort.closest('.node').getAttribute('data-id');
+                    if (toNodeId === fromNodeId) return;
+                    addEdge(fromNodeId, fromPort, fromKind, toNodeId, inPort.getAttribute('data-port'), fromKind);
+                }
+                document.addEventListener('mousemove', move);
+                document.addEventListener('mouseup', up);
+            }
+
+            function bindCanvasEvents() {
+            // 绑在视口层而不是 world 层: world 只有固定尺寸, 平移到它外面后事件就打不到了
+            canvas.addEventListener('mousedown', function (e) {
+                if (e.button !== 0) return;
+                if (e.target.closest('.lit')) return;
+                var portEl = e.target.closest('.port');
+                if (portEl) {
+                    if (portEl.getAttribute('data-side') === 'out') startConnect(e, portEl);
+                    return;
+                }
+                if (e.target.closest('.node-del')) return;
+                var nodeEl = e.target.closest('.node');
+                if (nodeEl) {
+                    selectNode(nodeEl.getAttribute('data-id'));
+                    startDragNode(e, nodeEl);
+                    return;
+                }
+                if (e.target.closest('.edge-hit')) return;
+                startPan(e);
+            });
+
+            canvas.addEventListener('click', function (e) {
+                var del = e.target.closest('.node-del');
+                if (del) {
+                    deleteNode(del.closest('.node').getAttribute('data-id'));
+                    e.stopPropagation();
+                }
+            });
+
+            edgesSvg.addEventListener('click', function (e) {
+                var hit = e.target.closest('.edge-hit');
+                if (hit) removeEdge(hit.getAttribute('data-edge'));
+            });
+
+            canvas.addEventListener('wheel', function (e) {
+                e.preventDefault();
+                var r = canvas.getBoundingClientRect();
+                var mx = e.clientX - r.left, my = e.clientY - r.top;
+                var old = scale;
+                var next = scale * (e.deltaY < 0 ? 1.1 : 0.9);
+                scale = Math.max(0.3, Math.min(2, next));
+                pan.x = mx - (mx - pan.x) * (scale / old);
+                pan.y = my - (my - pan.y) * (scale / old);
+                applyTransform();
+            }, { passive: false });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key !== 'Delete' && e.key !== 'Backspace') return;
+                var tag = (document.activeElement && document.activeElement.tagName) || '';
+                if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+                if (selectedId) { e.preventDefault(); deleteNode(selectedId); }
+            });
+            }
+
+            // ---------- 属性面板 ----------
+            function renderInspector() {
+                var node = selectedId ? findNode(selectedId) : null;
+                if (!node) {
+                    insEmpty.style.display = 'block';
+                    insForm.style.display = 'none';
+                    return;
+                }
+                insEmpty.style.display = 'none';
+                insForm.style.display = 'block';
+                var def = DEFS[node.type];
+                if (!def) {
+                    // 节点类型所属的扩展未加载（例如别人分享的图）→ 只读提示，不要崩
+                    insKind.textContent = node.type;
+                    insCat.textContent = '';
+                    insDesc.textContent = '该节点类型的扩展未加载：' + node.type + '。导入对应扩展后即可正常编辑。';
+                    insParams.innerHTML = '';
+                    return;
+                }
+                insKind.textContent = def.label;
+                insCat.textContent = catLabel(def.category);
+                insDesc.textContent = def.desc;
+                insParams.innerHTML = '';
+                var ports = def.in || [];
+                if (!ports.length) {
+                    var em = document.createElement('p');
+                    em.className = 'ng-hintline';
+                    em.textContent = '该节点没有可编辑参数。';
+                    insParams.appendChild(em);
+                } else {
+                    ports.forEach(function (p) {
+                        var wrap = document.createElement('div');
+                        wrap.className = 'ng-field';
+                        var connected = hasValueEdge(node.id, p.id);
+                        var label = document.createElement('label');
+                        label.textContent = p.label + (connected ? '（已连接）' : '');
+                        wrap.appendChild(label);
+                        wrap.appendChild(makeLiteralWidget(node, p.id, p.type, p.default, connected));
+                        insParams.appendChild(wrap);
+                    });
+                }
+            }
+
+            function bindInspectorEvents() {
+            insDeleteBtn.addEventListener('click', function () {
+                if (selectedId) deleteNode(selectedId);
+            });
+            }
+
+            // ---------- 日志 ----------
+            function log(msg, cls) {
+                var line = document.createElement('div');
+                line.className = 'log-line' + (cls ? ' ' + cls : '');
+                line.textContent = msg;
+                consoleEl.appendChild(line);
+                consoleEl.scrollTop = consoleEl.scrollHeight;
+            }
+
+            function clearLog() { consoleEl.innerHTML = ''; }
+
+            // ---------- 执行引擎 ----------
+            function coerce(raw, type) {
+                if (type === 'number') { var n = Number(raw); return isNaN(n) ? 0 : n; }
+                if (type === 'int') { var i = parseInt(raw, 10); return isNaN(i) ? 0 : i; }
+                if (type === 'bool') return raw === true || raw === 'true';
+                if (type === 'string') return (raw === undefined || raw === null) ? '' : String(raw);
+                var s = String(raw);
+                if (/^-?\d+(\.\d+)?$/.test(s)) return Number(s);
+                if (s === 'true') return true;
+                if (s === 'false') return false;
+                return raw;
+            }
+
+            function readInput(node, port) {
+                var e = findValueEdgeInto(node.id, port.id);
+                if (e) return evalOutput(e.from.node, e.from.port);
+                var raw = (node.literals && node.literals[port.id] !== undefined) ? node.literals[port.id] : port.default;
+                return coerce(raw, port.type);
+            }
+
+            function runNode(node) {
+                var def = DEFS[node.type];
+                var inputs = {};
+                try {
+                    (def.in || []).forEach(function (p) { inputs[p.id] = readInput(node, p); });
+                    var run = RUN[node.type];
+                    if (!run) {
+                        // 扩展声明了该类型但没有网页预览逻辑（例如第三方节点），只能交给宿主程序执行
+                        log('⚠ 节点「' + def.label + '」仅有声明、没有网页预览逻辑，需由宿主程序执行，此处已中断。', 'warn');
+                        return { next: null };
+                    }
+                    var res = run(inputs, ctx) || {};
+                    if (res.set) {
+                        Object.keys(res.set).forEach(function (k) { ctx.outputs[node.id + ':' + k] = res.set[k]; });
+                    }
+                    return res;
+                } catch (e) {
+                    // 记录真正抛错的节点（可能是被值连线间接求值到的上游节点）
+                    if (e && typeof e === 'object' && !e.hhNodeId) e.hhNodeId = node.id;
+                    throw e;
+                }
+            }
+
+            function evalOutput(nodeId, portId) {
+                var key = nodeId + ':' + portId;
+                if (Object.prototype.hasOwnProperty.call(ctx.outputs, key)) return ctx.outputs[key];
+                if (ctx._depth === undefined) ctx._depth = 0;
+                if (ctx._depth > 40) return undefined;
+                var node = findNode(nodeId);
+                if (!node) return undefined;
+                ctx._depth++;
+                try { runNode(node); } finally { ctx._depth--; }
+                return Object.prototype.hasOwnProperty.call(ctx.outputs, key) ? ctx.outputs[key] : undefined;
+            }
+
+            function setRunningNode(id) {
+                for (var k in nodeEls) nodeEls[k].classList.remove('running');
+                if (id && nodeEls[id]) nodeEls[id].classList.add('running');
+            }
+
+            // ---------- 错误处理 ----------
+            // 结构化错误：信息是纯数据，可直接 JSON 序列化后交给宿主程序
+            function nodeError(code, message, detail) {
+                var err = new Error(message);
+                err.serializable = { code: code, message: message, detail: detail || {} };
+                return err;
+            }
+
+            // 把任意异常整理成可序列化的错误对象
+            // trace：出错前成功走过的节点 id 列表，用于还原「执行轨迹」高亮
+            function toSerializableError(err, node, def, step, trace) {
+                var s = (err && err.serializable) || {
+                    code: 'E_RUNTIME',
+                    message: (err && err.message) ? err.message : String(err),
+                    detail: {}
+                };
+                return {
+                    code: s.code,
+                    message: s.message,
+                    detail: s.detail,
+                    node: { id: node.id, type: node.type, label: def ? def.label : node.type },
+                    step: step,
+                    trace: trace || []
+                };
+            }
+
+            // ---------- 外部错误回放 ----------
+            // 另一个程序执行出错时，只要把错误序列化成同一份 JSON，就能喂回这里点亮节点。
+            // 期望结构（node / trace 可选，缺失时只记日志不高亮）：
+            // {
+            //   "code": "E_BAD_OPERATOR",
+            //   "message": "运算符不合法：「>=<」…",
+            //   "detail": { "port": "op", "value": ">=<" },
+            //   "node": { "id": "n4", "type": "math_cmp", "label": "比较" },
+            //   "step": 4,
+            //   "trace": ["n1", "n2", "n3"]      // 出错前成功执行过的节点
+            // }
+            // 也接受 { "error": { … }, "trace": [ … ] } 这种包装写法。
+            function applyExternalError(obj) {
+                if (!obj || typeof obj !== 'object') { log('⚠ 错误 JSON 无效：不是对象。', 'warn'); return null; }
+                var errObj = obj.error || obj;
+                var trace = obj.trace || errObj.trace || [];
+
+                // 每次回放都先重置上一次的轨迹/错误标记，避免叠加
+                clearMarks();
+                setRunningNode(null);
+
+                for (var i = 0; i < trace.length; i++) {
+                    var tn = findNode(trace[i]);
+                    if (tn) markTraced(tn);           // 走过的节点 → 黄绿
+                }
+
+                var target = (errObj.node && errObj.node.id) ? findNode(errObj.node.id) : null;
+                if (target) markFailed(target);        // 出错节点 → 红（覆盖其黄绿）
+                else log('⚠ 错误指向的节点不在当前图中：' + ((errObj.node && errObj.node.id) || '(未知)'), 'warn');
+
+                lastError = errObj;
+                window.ngLastError = errObj;
+
+                var label = (errObj.node && errObj.node.label) ||
+                    (target && DEFS[target.type] ? DEFS[target.type].label : '未知节点');
+                log('✖ [' + label + '] ' + (errObj.message || '(无错误信息)'), 'err');
+                var json;
+                try { json = JSON.stringify(errObj); } catch (e) { json = '（错误详情无法序列化）'; }
+                log('错误详情(JSON): ' + json, 'err');
+                return errObj;
+            }
+
+            // 暴露给其它页面脚本/宿主调用：window.ngApplyError(错误对象)
+            window.ngApplyError = applyExternalError;
+
+            function clearMarks() {
+                for (var k in nodeEls) nodeEls[k].classList.remove('traced', 'failed');
+            }
+
+            // 成功执行过的节点 → 黄绿色，构成“执行轨迹”
+            function markTraced(node) {
+                if (nodeEls[node.id]) nodeEls[node.id].classList.add('traced');
+            }
+
+            // 出错的节点 → 红色
+            function markFailed(node) {
+                if (!nodeEls[node.id]) return;
+                nodeEls[node.id].classList.remove('traced');
+                nodeEls[node.id].classList.add('failed');
+            }
+
+            function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+            function setRunState(state) {
+                running = state;
+                runBtn.disabled = state;
+                stopBtn.disabled = !state;
+                runBtn.textContent = state ? '运行中…' : '运行 ▶';
+            }
+
+            async function runGraph() {
+                if (running) return;
+                clearLog();
+                var entry = null;
+                for (var i = 0; i < nodes.length; i++) {
+                    var d = DEFS[nodes[i].type];
+                    if (d && d.execIn === false) { entry = nodes[i]; break; }
+                }
+                if (!entry) { log('⚠ 没有入口节点（开始/事件），无法执行。', 'warn'); return; }
+
+                setRunState(true);
+                ctx = { vars: {}, outputs: {} };
+                var cur = entry.id;
+                var guard = 0;
+                var errored = false;
+                var traceIds = [];   // 出错前成功走过的节点 id，写进错误对象里
+                // 每次运行都重置上一次的轨迹/错误标记
+                clearMarks();
+                lastError = null;
+                window.ngLastError = null;
+
+                while (cur && running) {
+                    if (++guard > 500) { log('⚠ 执行步数超过 500，可能存在死循环，已中断。', 'warn'); break; }
+
+                    var node = findNode(cur);
+                    if (!node) break;
+                    var def = DEFS[node.type];
+                    // 保留发光标记（供后续单步调试使用），节点之间不做任何等待
+                    setRunningNode(cur);
+
+                    var res;
+                    try {
+                        res = runNode(node) || {};
+                    } catch (err) {
+                        // 出错：把真正抛错的节点标红，其余走过的节点保持黄绿色轨迹
+                        var origin = findNode((err && err.hhNodeId) || node.id) || node;
+                        markFailed(origin);
+                        lastError = toSerializableError(err, origin, DEFS[origin.type] || def, guard, traceIds);
+                        window.ngLastError = lastError;
+                        log('✖ [' + lastError.node.label + '] ' + lastError.message, 'err');
+                        var json;
+                        try { json = JSON.stringify(lastError); } catch (e2) { json = '（错误详情无法序列化）'; }
+                        log('错误详情(JSON): ' + json, 'err');
+                        errored = true;
+                        break;
+                    }
+
+                    // 执行成功 → 记录到执行轨迹（黄绿色）
+                    markTraced(node);
+                    traceIds.push(node.id);
+
+                    var nextPort = res.next || null;
+                    var ne = null;
+                    if (nextPort) {
+                        for (var j = 0; j < edges.length; j++) {
+                            var e = edges[j];
+                            if (e.kind === 'exec' && e.from.node === cur && e.from.port === nextPort) { ne = e; break; }
+                        }
+                    }
+                    cur = ne ? ne.to.node : null;
+                }
+
+                setRunningNode(null);
+                setRunState(false);
+                if (!errored) log('—— 执行结束 ——', 'ok');
+            }
+
+            // ---------- 持久化 ----------
+            function clearAll() {
+                Object.keys(nodeEls).forEach(function (k) { nodeEls[k].remove(); });
+                nodeEls = {};
+                nodes = [];
+                edges = [];
+                selectedId = null;
+                rebuildEdges();
+                renderInspector();
+                updateHint();
+            }
+
+            function deserialize(data) {
+                clearAll();
+                (data.nodes || []).forEach(function (n) {
+                    if (!DEFS[n.type]) return; // 静默丢弃未知类型的节点
+                    var node = { id: n.id, type: n.type, x: n.x, y: n.y, literals: n.literals || {} };
+                    nodes.push(node);
+                    var el = createNodeEl(node);
+                    nodeEls[node.id] = el;
+                    world.appendChild(el);
+                });
+                edges = (data.edges || []).filter(function (e) {
+                    if (!e || !e.from || !e.to) return false;
+                    if (e.kind !== 'exec' && e.kind !== 'value') return false;
+                    var fn = findNode(e.from.node), tn = findNode(e.to.node);
+                    if (!fn || !tn) return false;
+                    if (!portExists(fn, e.from.port, 'out', e.kind)) return false;
+                    if (!portExists(tn, e.to.port, 'in', e.kind)) return false;
+                    return true;
+                }).map(function (e) {
+                    return { id: e.id, kind: e.kind, from: { node: e.from.node, port: e.from.port }, to: { node: e.to.node, port: e.to.port } };
+                });
+                seq = data.seq || (nodes.length + edges.length + 1);
+                pan = data.pan || { x: 40, y: 40 };
+                scale = data.scale || 1;
+                nodes.forEach(function (n) { refreshNode(n.id); }); // 依据恢复的连线刷新「已连接」状态
+                applyTransform();
+                rebuildEdges();
+                renderInspector();
+                updateHint();
+            }
+
+            function save() {
+                var data = { nodes: nodes, edges: edges, pan: pan, scale: scale, seq: seq };
+                // 同步给本地模组：写入 <名字>.json 并热载入 Java 层
+                var name = (graphNameEl && graphNameEl.value ? graphNameEl.value : 'main').trim() || 'main';
+                currentFileName = name;
+                if (ngWsSend({ type: 'save_graph', name: name, data: data })) {
+                    log('已发送到模组：' + name + '.json（等待回执）', 'ok');
+                } else {
+                    log('未连接本地模组，未能保存。', 'warn');
+                }
+                lastSavedJson = contentSnapshot();
+                updateFileStatus();
+            }
+
+            // ---------- 删除（双击按钮触发） ----------
+            // 清空左上角文件名与中间画布，并请求模组删掉磁盘上的同名节点图文件
+            function deleteGraph() {
+                var name = (graphNameEl && graphNameEl.value ? graphNameEl.value : currentFileName).trim();
+                if (!name) {
+                    log('没有可删除的文件名：请先在左上角填写或载入一个节点图。', 'warn');
+                    return;
+                }
+                if (ngWsSend({ type: 'delete_graph', name: name })) {
+                    log('已请求模组删除「' + name + '.json」…', 'ok');
+                } else {
+                    log('未连接本地模组，磁盘上的「' + name + '.json」未被删除（仅清空画布）。', 'warn');
+                }
+                running = false;
+                if (graphNameEl) graphNameEl.value = '';
+                currentFileName = '';
+                clearAll();
+                lastSavedJson = contentSnapshot();
+                updateFileStatus();
+                log('已清空文件名与画布。', 'ok');
+            }
+
+            // ---------- 文件名 + 保存状态（按钮栏左侧） ----------
+            var lastSavedJson = null;   // null 表示当前内容尚未保存过
+            var currentFileName = '';   // 当前编辑的节点图名（空 = 尚未命名）
+
+            // 用户改名（回车/失焦）后：向模组请求该节点图并载入
+            function onGraphNameChange() {
+                if (!graphNameEl) return;
+                var name = (graphNameEl.value || '').trim();
+                // 有未保存改动且已在编辑某个文件时，不允许切换（避免覆盖丢失）；新建（还没命名）时允许命名
+                if (isDirty() && currentFileName) {
+                    log('当前节点图「' + currentFileName + '」有未保存的改动，请先保存再切换文件。', 'warn');
+                    graphNameEl.value = currentFileName;
+                    return;
+                }
+                currentFileName = name;
+                if (!name) return;
+                if (ngWsSend({ type: 'request_graph', name: name })) {
+                    log('正在向模组请求节点图「' + name + '」…', 'ok');
+                } else {
+                    log('未连接本地模组，无法读取「' + name + '」。', 'warn');
+                }
+            }
+
+            // 处理模组下发的节点图
+            function applyRemoteGraph(msg) {
+                var data = msg && msg.data ? msg.data : null;
+                if (!data) { log('⚠ 模组没有返回节点图内容。', 'warn'); return; }
+                deserialize(data);
+                currentFileName = msg.name || currentFileName;
+                lastSavedJson = contentSnapshot();
+                updateFileStatus();
+                log('已从模组载入节点图「' + (currentFileName || '?') + '」。', 'ok');
+            }
+
+            // 只比较「内容」：节点与连线；平移/缩放不算改动
+            function contentSnapshot() {
+                try { return JSON.stringify({ nodes: nodes, edges: edges }); }
+                catch (e) { return ''; }
+            }
+
+            function isDirty() {
+                return lastSavedJson === null || contentSnapshot() !== lastSavedJson;
+            }
+
+            function updateFileStatus() {
+                if (!fileStatusEl) return;
+                var dirty = isDirty();
+                fileStatusEl.textContent = dirty ? '未保存 ●' : '已保存 ✓';
+                fileStatusEl.className = 'file-status ' + (dirty ? 'dirty' : 'saved');
+            }
+
+            setInterval(updateFileStatus, 1000);
+
+            // ---------- 示例 ----------
+            function loadExample() {
+                clearAll();
+                var n1 = addNode('start', 40, 240);
+                var n2 = addNode('set_var', 300, 240);
+                var n3 = addNode('inc_var', 560, 240);
+                var n4 = addNode('math_cmp', 820, 240);
+                var n5 = addNode('if', 1080, 220);
+                var n6 = addNode('print', 1340, 300);
+
+                n2.literals = { name: 'a', value: '0' };
+                n3.literals = { name: 'a' };
+                n4.literals = { a: '', b: '3', op: '<' };
+
+                addEdge(n1.id, 'out', 'exec', n2.id, 'in', 'exec');
+                addEdge(n2.id, 'out', 'exec', n3.id, 'in', 'exec');
+                addEdge(n3.id, 'out', 'exec', n4.id, 'in', 'exec');
+                addEdge(n4.id, 'out', 'exec', n5.id, 'in', 'exec');
+                addEdge(n5.id, 'true', 'exec', n3.id, 'in', 'exec');
+                addEdge(n5.id, 'false', 'exec', n6.id, 'in', 'exec');
+
+                addEdge(n3.id, 'value', 'value', n4.id, 'a', 'value');
+                addEdge(n4.id, 'value', 'value', n5.id, 'cond', 'value');
+                addEdge(n3.id, 'value', 'value', n6.id, 'text', 'value');
+
+                pan = { x: 20, y: 20 };
+                scale = 1;
+                applyTransform();
+                selectNode(null);
+            }
+
+            function updateHint() {
+                hint.style.display = nodes.length === 0 ? 'block' : 'none';
+            }
+
+            // ---------- 工具栏 ----------
+            function bindToolbarEvents() {
+            runBtn.addEventListener('click', runGraph);
+            stopBtn.addEventListener('click', function () {
+                running = false;
+                log('⏹ 已被手动停止。', 'warn');
+            });
+
+            exampleBtn.addEventListener('click', function () {
+                running = false;
+                loadExample();
+                clearLog();
+                log('已载入示例节点图，点击「运行 ▶」查看执行流程。', 'ok');
+            });
+
+            resetViewBtn.addEventListener('click', function () {
+                pan = { x: 40, y: 40 };
+                scale = 1;
+                applyTransform();
+            });
+
+            saveBtn.addEventListener('click', save);
+            clearBtn.addEventListener('click', function () {
+                running = false;
+                clearAll();
+                clearLog();
+                log('已清空节点图。', 'warn');
+            });
+
+            // 删除：必须双击才生效（单击不会触发）
+            deleteBtn.addEventListener('dblclick', deleteGraph);
+
+            // 导入第三方节点扩展（.json），导入后持久化到 localStorage，刷新自动恢复
+            importExtBtn.addEventListener('click', function () {
+                extFile.value = '';
+                extFile.click();
+            });
+            extFile.addEventListener('change', function () {
+                var f = extFile.files && extFile.files[0];
+                if (f) importExtensionFile(f);
+            });
+
+            // 导入外部程序序列化出来的错误 JSON → 在图上高亮
+            importErrBtn.addEventListener('click', function () {
+                errFile.value = '';
+                errFile.click();
+            });
+            errFile.addEventListener('change', function () {
+                var f = errFile.files && errFile.files[0];
+                if (!f) return;
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var obj;
+                    try { obj = JSON.parse(String(reader.result)); }
+                    catch (e) { log('⚠ 错误 JSON 解析失败：' + e.message, 'warn'); return; }
+                    clearLog();
+                    applyExternalError(obj);
+                };
+                reader.onerror = function () { log('⚠ 错误文件读取失败。', 'warn'); };
+                reader.readAsText(f);
+            });
+            }
+
+            // ---------- 扩展包：节点类型定义（纯数据） ----------
+            var EXT_URL = 'nodegraph_extensions/default.json';
+            var EXT_STORE_KEY = 'hh_nodegraph_ext_v1';   // 导入过的扩展存这里, 刷新后自动恢复
+
+            // 加载内置扩展包: { manifest, categories, types }
+            function loadExtension(url) {
+                return fetch(url, { cache: 'no-cache' }).then(function (r) {
+                    if (!r.ok) throw new Error('HTTP ' + r.status + ' — ' + url);
+                    return r.json();
+                }).then(function (data) {
+                    return applyExtension(data, { builtin: true, save: false });
+                });
+            }
+
+            // 把某个扩展的定义从注册表里摘掉（用于同 id 覆盖更新）
+            function stripExtension(id) {
+                Object.keys(DEFS).forEach(function (t) { if (DEFS[t].ext === id) delete DEFS[t]; });
+                for (var i = EXTS.length - 1; i >= 0; i--) if (EXTS[i].id === id) EXTS.splice(i, 1);
+                for (var j = EXT_DATA.length - 1; j >= 0; j--) {
+                    if ((EXT_DATA[j].manifest || {}).id === id) EXT_DATA.splice(j, 1);
+                }
+            }
+
+            // opts.builtin: 内置扩展(不持久化); opts.imported: 来自用户导入; opts.save: 是否写 localStorage
+            function applyExtension(data, opts) {
+                opts = opts || {};
+                if (!data || typeof data !== 'object') throw new Error('不是合法的 JSON 对象');
+                var m = data.manifest || {};
+                if (!m.id) throw new Error('缺少 manifest.id');
+                if (m.id === 'default' && opts.imported) {
+                    throw new Error('内置扩展 default 不可以通过导入覆盖（请换一个 id）');
+                }
+                // 同 id 视为更新：先摘掉旧的再合并
+                if (EXTS.some(function (x) { return x.id === m.id; })) stripExtension(m.id);
+                // 分类（保持声明顺序；后加载的扩展追加在后面）
+                (data.categories || []).forEach(function (c) {
+                    if (!c || !c.id) return;
+                    if (!CATS.some(function (x) { return x.id === c.id; })) {
+                        CATS.push({ id: c.id, label: c.label || c.id });
+                    }
+                });
+                // 节点类型（同名类型跳过并提示，避免覆盖）
+                var types = data.types || {};
+                var added = 0, dup = [];
+                Object.keys(types).forEach(function (type) {
+                    if (DEFS[type]) { dup.push(type); return; }
+                    var d = types[type] || {};
+                    if (d.category && !CATS.some(function (x) { return x.id === d.category; })) {
+                        CATS.push({ id: d.category, label: d.category });
+                    }
+                    DEFS[type] = {
+                        category: d.category || '',
+                        label: d.label || type,
+                        color: d.color || '#607d8b',
+                        execIn: !!d.execIn,
+                        execInLabel: d.execInLabel || '进入',
+                        execOut: d.execOut || [],
+                        in: d.in || [],
+                        out: d.out || [],
+                        desc: d.desc || '',
+                        ext: m.id || ''
+                    };
+                    added++;
+                });
+                if (dup.length) log('⚠ 扩展中以下节点类型已存在，已跳过：' + dup.join('、'), 'warn');
+                EXTS.push({
+                    id: m.id || '', name: m.name || m.id || '未命名扩展',
+                    version: m.version || '', count: added
+                });
+                if (!opts.builtin) EXT_DATA.push(data);
+                if (opts.save !== false) saveExtensions();
+                return added;
+            }
+
+            function saveExtensions() {
+                try {
+                    localStorage.setItem(EXT_STORE_KEY, JSON.stringify(EXT_DATA));
+                } catch (e) {
+                    log('⚠ 扩展无法保存到本地：' + e.message, 'warn');
+                }
+            }
+
+            // 刷新后恢复之前导入过的扩展
+            function restoreExtensions() {
+                var list = [];
+                try { list = JSON.parse(localStorage.getItem(EXT_STORE_KEY) || '[]') || []; }
+                catch (e) { log('⚠ 本地扩展记录已损坏，已忽略。', 'warn'); }
+                var ok = 0;
+                list.forEach(function (data) {
+                    try { applyExtension(data, { save: false }); ok++; }
+                    catch (e) { log('⚠ 恢复扩展失败：' + e.message, 'warn'); }
+                });
+                return ok;
+            }
+
+            // 从文件导入一个扩展包
+            function importExtensionFile(file) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var data;
+                    try { data = JSON.parse(String(reader.result)); }
+                    catch (e) { log('⚠ 扩展解析失败：不是合法的 JSON（' + e.message + '）', 'warn'); return; }
+                    try {
+                        var added = applyExtension(data, { imported: true });
+                        renderPalette();
+                        var m = data.manifest || {};
+                        log('已导入扩展：' + (m.name || m.id) + (m.version ? ' v' + m.version : '') +
+                            '（注册 ' + added + ' 个节点类型，已保存在本地，刷新后仍生效）', 'ok');
+                    } catch (e) {
+                        log('⚠ 导入失败：' + e.message, 'warn');
+                    }
+                };
+                reader.onerror = function () { log('⚠ 文件读取失败。', 'warn'); };
+                reader.readAsText(file);
+            }
+
+            // 按扩展声明的分类顺序渲染左侧节点列表
+            function renderPalette() {
+                var host = document.getElementById('palGroups');
+                if (!host) return;
+                host.innerHTML = '';
+                var byCat = {};
+                Object.keys(DEFS).forEach(function (type) {
+                    var c = DEFS[type].category || '';
+                    (byCat[c] = byCat[c] || []).push(type);
+                });
+                var order = CATS.map(function (c) { return c.id; });
+                Object.keys(byCat).forEach(function (c) { if (order.indexOf(c) < 0) order.push(c); });
+                order.forEach(function (cid) {
+                    var list = byCat[cid];
+                    if (!list || !list.length) return;
+                    var head = document.createElement('div');
+                    head.className = 'pal-cat';
+                    head.textContent = catLabel(cid);
+                    host.appendChild(head);
+                    list.forEach(function (type) {
+                        var d = DEFS[type];
+                        var item = document.createElement('div');
+                        item.className = 'pal-item';
+                        item.setAttribute('draggable', 'true');
+                        item.setAttribute('data-type', type);
+                        item.style.setProperty('--pal-color', d.color);
+                        item.textContent = d.label;
+                        host.appendChild(item);
+                    });
+                });
+                palItems = host.querySelectorAll('.pal-item');
+            }
+
+            // ---------- 左侧节点列表：收起 / 展开 + 拖拽添加 ----------
+            // 画布级与其它「常驻」监听只绑一次；否则扩展每次载入都重绑，
+            // 一次拖放会命中多个 drop 监听 → 生成多个重叠节点。
+            var paletteBound = false;
+            function bindPaletteEvents() {
+                if (!paletteBound) {
+                    paletteBound = true;
+
+                    palToggle.addEventListener('click', function () {
+                        palette.classList.toggle('collapsed');
+                    });
+
+                    canvas.addEventListener('dragover', function (e) {
+                        e.preventDefault();
+                        e.dataTransfer.dropEffect = 'copy';
+                        canvas.classList.add('drop-active');
+                    });
+
+                    canvas.addEventListener('dragleave', function (e) {
+                        if (!canvas.contains(e.relatedTarget)) canvas.classList.remove('drop-active');
+                    });
+
+                    canvas.addEventListener('drop', function (e) {
+                        e.preventDefault();
+                        canvas.classList.remove('drop-active');
+                        var type = e.dataTransfer.getData('text/plain');
+                        if (!DEFS[type]) return;
+                        var p = toWorld(e.clientX, e.clientY);
+                        var node = addNode(type, p.x - NODE_W / 2, p.y - HEAD_H / 2);
+                        selectNode(node.id);
+                    });
+                }
+
+                // 列表项每次 renderPalette() 都是新建的，需重新绑 dragstart
+                Array.prototype.forEach.call(palItems, function (item) {
+                    item.addEventListener('dragstart', function (e) {
+                        e.dataTransfer.setData('text/plain', item.getAttribute('data-type'));
+                        e.dataTransfer.effectAllowed = 'copy';
+                    });
+                });
+            }
+
+            // ---------- 让编辑区填充页头与页脚之间的窗口 ----------
+            function layoutChrome() {
+                if (!app) return;
+                var hdr = document.querySelector('header');
+                var ftr = document.querySelector('footer');
+                app.style.top = (hdr ? hdr.offsetHeight : 70) + 'px';
+                // 依据页脚实际位置计算底部留白，避免与页脚重叠
+                var gap = 0;
+                if (ftr && getComputedStyle(ftr).display !== 'none') {
+                    gap = window.innerHeight - ftr.getBoundingClientRect().top;
+                    if (gap < 0) gap = 0;
+                }
+                app.style.bottom = gap + 'px';
+            }
+
+            // ---------- 与本地模组的 WebSocket 桥 (ws://127.0.0.1:841) ----------
+            var NG_WS_URL = 'ws://localhost:841';
+            var ngWs = null, ngWsTimer = null, ngWsWarned = false;
+
+            function ngWsSend(obj) {
+                if (!ngWs || ngWs.readyState !== 1) return false;
+                try { ngWs.send(JSON.stringify(obj)); return true; }
+                catch (e) { return false; }
+            }
+
+            function ngWsConnect() {
+                if (ngWs && (ngWs.readyState === 0 || ngWs.readyState === 1)) return;
+                try { ngWs = new WebSocket(NG_WS_URL); }
+                catch (e) { ngWsScheduleReconnect(); return; }
+
+                ngWs.onopen = function () {
+                    ngWsWarned = false;
+                    log('已连接本地模组 ' + NG_WS_URL + '（扩展自动载入 / 保存回写 / 错误同步已启用）', 'ok');
+                    ngWsSend({ type: 'hello' });
+                };
+                ngWs.onmessage = function (ev) {
+                    var msg;
+                    try { msg = JSON.parse(ev.data); } catch (e) { return; }
+                    if (msg.type === 'extensions') {
+                        var n = 0;
+                        (msg.data || []).forEach(function (ext) {
+                            // 持久化：刷新后能在载入节点图之前恢复，避免扩展节点被当成未知类型丢弃
+                            try { applyExtension(ext, { imported: true }); n++; }
+                            catch (e) { log('⚠ 模组扩展载入失败：' + e.message, 'warn'); }
+                        });
+                        renderPalette();
+                        bindPaletteEvents();
+                        log(n ? ('已从模组自动载入 ' + n + ' 个扩展包。') : '模组扩展目录里暂无扩展包。', n ? 'ok' : 'warn');
+                    } else if (msg.type === 'graphs') {
+                        var names = msg.data || [];
+                        if (names.length) log('模组里已有节点图：' + names.join('、'), 'ok');
+                    } else if (msg.type === 'load_graph') {
+                        applyRemoteGraph(msg);
+                    } else if (msg.type === 'saved') {
+                        log('已写入模组：' + (msg.file || msg.name) + '（Java 层已热载入）', 'ok');
+                    } else if (msg.type === 'deleted') {
+                        log('模组回执：节点图「' + msg.name + '」' + (msg.existed ? '文件已删除。' : '文件本就不存在。'), 'ok');
+                    } else if (msg.type === 'error') {
+                        applyExternalError(msg.data || msg);   // 出错节点标红 + 执行轨迹黄绿
+                        log('已收到模组推送的执行错误，正在图上高亮。', 'warn');
+                    }
+                };
+                ngWs.onclose = function () { ngWs = null; ngWsScheduleReconnect(); };
+                ngWs.onerror = function () { /* 交给 onclose 重连 */ };
+            }
+
+            // 没连上就每 60 秒再试一次；一旦连上就不再重试（断开后恢复 60 秒轮询）
+            function ngWsScheduleReconnect() {
+                if (ngWsTimer) return;
+                if (!ngWsWarned) {
+                    ngWsWarned = true;
+                    log('暂未连接到本地模组，之后每 60 秒重试一次。', 'warn');
+                }
+                ngWsTimer = setTimeout(function () { ngWsTimer = null; ngWsConnect(); }, 60000);
+            }
+
+            // ---------- 初始化 ----------
+            window.headerLoadedCallback = function () {
+                if (initialized) return;
+                initialized = true;
+
+                // header.js 重建 body 之后, 必须重新获取元素引用并绑定事件
+                initDom();
+                bindCanvasEvents();
+                bindInspectorEvents();
+                bindToolbarEvents();
+
+                // 页头/页脚样式与图片异步加载, 多测几次确保高度准确
+                layoutChrome();
+                var frames = 0;
+                (function poll() {
+                    layoutChrome();
+                    if (++frames < 40) requestAnimationFrame(poll);
+                })();
+                setTimeout(layoutChrome, 800);
+                setTimeout(layoutChrome, 1600);
+                window.addEventListener('resize', layoutChrome);
+
+                applyTransform();
+
+                // 先加载扩展包（节点定义），再渲染左侧列表、绑定事件并载入示例
+                loadExtension(EXT_URL).then(function () {
+                    EXTS.forEach(function (e) {
+                        log('已加载内置扩展：' + e.name + (e.version ? ' v' + e.version : '') + '（' + e.count + ' 个节点类型）', 'ok');
+                    });
+                }).catch(function (err) {
+                    log('⚠ 内置扩展加载失败：' + err.message + '（本页需通过 http 服务器访问）', 'warn');
+                }).then(function () {
+                    var n = restoreExtensions();
+                    if (n) log('已从本地恢复 ' + n + ' 个导入的扩展，无需重新导入。', 'ok');
+                    renderPalette();
+                    bindPaletteEvents();
+                    // 进入页面时文件名是空的，自动恢复本地草稿没有意义：
+                    // 留空画布，由文件名框回车从模组按名字载入，或点「示例」快速开始。
+                    lastSavedJson = contentSnapshot();
+                    updateFileStatus();
+                    log('画布为空：在文件名框填写名字并回车可从模组读取节点图，或点「示例」快速开始。', 'ok');
+                    ngWsConnect();   // 主动连接本地模组 ws://localhost:841
+                });
+            };
+        })();
+    </script>
+</body>
+
+</html>

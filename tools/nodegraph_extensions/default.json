@@ -1,0 +1,238 @@
+{
+  "manifest": {
+    "id": "default",
+    "name": "内置节点",
+    "version": "1.0.0",
+    "minEditor": 1,
+    "description": "编辑器自带的基础节点：事件入口、控制流、变量操作、数学运算与 IO。仅声明端口与外观，预览执行逻辑内置在网页中。"
+  },
+  "categories": [
+    { "id": "event", "label": "开始/事件" },
+    { "id": "flow", "label": "控制流" },
+    { "id": "var", "label": "变量操作" },
+    { "id": "math", "label": "数学运算" },
+    { "id": "logic", "label": "逻辑运算" },
+    { "id": "str", "label": "字符串" },
+    { "id": "io", "label": "IO" }
+  ],
+  "types": {
+    "start": {
+      "category": "event",
+      "label": "开始执行",
+      "color": "#2e7d32",
+      "execIn": false,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [],
+      "out": [],
+      "desc": "整张图的执行入口，运行从这里开始。"
+    },
+    "if": {
+      "category": "flow",
+      "label": "如果判断",
+      "color": "#ef6c00",
+      "execIn": true,
+      "execInLabel": "判断",
+      "execOut": [{ "id": "true", "label": "是" }, { "id": "false", "label": "否" }],
+      "in": [{ "id": "cond", "label": "条件", "type": "bool", "default": false }],
+      "out": [],
+      "desc": "根据条件的真假，选择「是」或「否」分支。"
+    },
+
+    "get_var": {
+      "category": "var",
+      "label": "读取变量",
+      "color": "#1565c0",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "name", "label": "变量名", "type": "string", "default": "a" }],
+      "out": [{ "id": "value", "label": "值", "type": "any" }],
+      "desc": "读取变量的当前值并输出。"
+    },
+    "set_var": {
+      "category": "var",
+      "label": "修改变量",
+      "color": "#1565c0",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "name", "label": "变量名", "type": "string", "default": "a" },
+        { "id": "value", "label": "值", "type": "any", "default": "0" }
+      ],
+      "out": [],
+      "desc": "把变量设置为指定的值。"
+    },
+    "inc_var": {
+      "category": "var",
+      "label": "变量自增",
+      "color": "#1565c0",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "name", "label": "变量名", "type": "string", "default": "a" }],
+      "out": [{ "id": "value", "label": "新值", "type": "number" }],
+      "desc": "变量加 1，并输出加完后得到的新值。"
+    },
+    "dec_var": {
+      "category": "var",
+      "label": "变量自减",
+      "color": "#1565c0",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "name", "label": "变量名", "type": "string", "default": "a" }],
+      "out": [{ "id": "value", "label": "新值", "type": "number" }],
+      "desc": "变量减 1，并输出减完后得到的新值。"
+    },
+
+    "math_add": {
+      "category": "math",
+      "label": "加法",
+      "color": "#7b1fa2",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "a", "label": "数值 A", "type": "number", "default": 0 },
+        { "id": "b", "label": "数值 B", "type": "number", "default": 0 }
+      ],
+      "out": [{ "id": "value", "label": "结果", "type": "number" }],
+      "desc": "计算 A + B。"
+    },
+    "math_sub": {
+      "category": "math",
+      "label": "减法",
+      "color": "#7b1fa2",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "a", "label": "数值 A", "type": "number", "default": 0 },
+        { "id": "b", "label": "数值 B", "type": "number", "default": 0 }
+      ],
+      "out": [{ "id": "value", "label": "结果", "type": "number" }],
+      "desc": "计算 A − B。"
+    },
+    "math_mul": {
+      "category": "math",
+      "label": "乘法",
+      "color": "#7b1fa2",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "a", "label": "数值 A", "type": "number", "default": 0 },
+        { "id": "b", "label": "数值 B", "type": "number", "default": 0 }
+      ],
+      "out": [{ "id": "value", "label": "结果", "type": "number" }],
+      "desc": "计算 A × B。"
+    },
+    "math_div": {
+      "category": "math",
+      "label": "除法",
+      "color": "#7b1fa2",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "a", "label": "数值 A", "type": "number", "default": 0 },
+        { "id": "b", "label": "数值 B", "type": "number", "default": 0 }
+      ],
+      "out": [{ "id": "value", "label": "结果", "type": "number" }],
+      "desc": "计算 A ÷ B。"
+    },
+    "math_mod": {
+      "category": "math",
+      "label": "取余",
+      "color": "#7b1fa2",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "a", "label": "数值 A", "type": "number", "default": 0 },
+        { "id": "b", "label": "数值 B", "type": "number", "default": 0 }
+      ],
+      "out": [{ "id": "value", "label": "结果", "type": "number" }],
+      "desc": "计算 A 除以 B 的余数。"
+    },
+    "math_cmp": {
+      "category": "math",
+      "label": "比较",
+      "color": "#7b1fa2",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "a", "label": "数值 A", "type": "number", "default": 0 },
+        { "id": "b", "label": "数值 B", "type": "number", "default": 0 },
+        { "id": "op", "label": "运算符", "type": "string", "default": ">" }
+      ],
+      "out": [{ "id": "value", "label": "结果", "type": "bool" }],
+      "desc": "比较 A 与 B：运算符可以是 >、<、>=、<=、==、!=，结果为布尔值。"
+    },
+
+    "logic_not": {
+      "category": "logic",
+      "label": "取反",
+      "color": "#5e35b1",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "cond", "label": "输入", "type": "bool", "default": false }],
+      "out": [{ "id": "value", "label": "结果", "type": "bool" }],
+      "desc": "逻辑取反：输入 true 得到 false，输入 false 得到 true。"
+    },
+
+    "str_trim": {
+      "category": "str",
+      "label": "去首尾空",
+      "color": "#00897b",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "text", "label": "文本", "type": "string", "default": "" }],
+      "out": [{ "id": "value", "label": "结果", "type": "string" }],
+      "desc": "去掉字符串首尾的空白字符（空格、换行、制表符等）。"
+    },
+    "str_concat": {
+      "category": "str",
+      "label": "拼接",
+      "color": "#00897b",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "a", "label": "文本 A", "type": "string", "default": "" },
+        { "id": "b", "label": "文本 B", "type": "string", "default": "" }
+      ],
+      "out": [{ "id": "value", "label": "结果", "type": "string" }],
+      "desc": "把 A 与 B 依次拼接成一个字符串。"
+    },
+    "str_contains": {
+      "category": "str",
+      "label": "是否包含",
+      "color": "#00897b",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "text", "label": "文本", "type": "string", "default": "" },
+        { "id": "sub", "label": "查找内容", "type": "string", "default": "" }
+      ],
+      "out": [{ "id": "value", "label": "结果", "type": "bool" }],
+      "desc": "判断「文本」里是否包含「查找内容」，结果为布尔值。"
+    },
+    "str_replace": {
+      "category": "str",
+      "label": "替换",
+      "color": "#00897b",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "text", "label": "文本", "type": "string", "default": "" },
+        { "id": "from", "label": "被替换", "type": "string", "default": "" },
+        { "id": "to", "label": "替换为", "type": "string", "default": "" }
+      ],
+      "out": [{ "id": "value", "label": "结果", "type": "string" }],
+      "desc": "把「文本」中所有「被替换」的内容换成「替换为」；「被替换」为空时原样返回。"
+    },
+
+    "print": {
+      "category": "io",
+      "label": "输出",
+      "color": "#00838f",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "text", "label": "内容", "type": "any", "default": "Hello" }],
+      "out": [],
+      "desc": "把内容输出到运行日志。"
+    }
+  }
+}
