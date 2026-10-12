@@ -1557,12 +1557,34 @@
                 updateHint();
             }
 
+            // 文件名净化：去掉不能作为文件名的字符（与 Java 侧 safeFileName 保持一致）
+            function safeName(name) {
+                return String(name || 'main').replace(/[\\/:*?"<>|]/g, '_').replace(/\.\./g, '_') || 'main';
+            }
+
+            // 离线模式：把节点图作为 JSON 文件下载到本地
+            function downloadGraph(name, data) {
+                var file = safeName(name) + '.json';
+                var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = file;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                setTimeout(function () { URL.revokeObjectURL(url); }, 0);
+                log('已下载到本地：' + file, 'ok');
+            }
+
             function save() {
                 var data = { nodes: nodes, edges: edges, pan: pan, scale: scale, seq: seq };
-                // 同步给本地模组：写入 <名字>.json 并热载入 Java 层
                 var name = (graphNameEl && graphNameEl.value ? graphNameEl.value : 'main').trim() || 'main';
                 currentFileName = name;
-                if (ngWsSend({ type: 'save_graph', name: name, data: data })) {
+                if (!wsMode) {
+                    // 离线模式：下载到本地，不向 localhost 发任何请求
+                    downloadGraph(name, data);
+                } else if (ngWsSend({ type: 'save_graph', name: name, data: data })) {
                     log('已发送到模组：' + name + '.json（等待回执）', 'ok');
                 } else {
                     log('未连接本地模组，未能保存。', 'warn');
@@ -1950,8 +1972,13 @@
                 app.style.bottom = gap + 'px';
             }
 
-            // ---------- 与本地模组的 WebSocket 桥 (ws://127.0.0.1:841) ----------
-            var NG_WS_URL = 'ws://localhost:841';
+            // ---------- 与本地模组的 WebSocket 桥 ----------
+            // 运行模式由 URL 查询参数决定：
+            //   ?port=841  → 连接 ws://localhost:841，保存按钮把节点图回传给模组落盘
+            //   无 port    → 纯离线模式：不发起任何本地请求，保存按钮改为下载 JSON 文件
+            var NG_PORT = (new URLSearchParams(location.search).get('port') || '').trim();
+            var wsMode = !!NG_PORT;
+            var NG_WS_URL = wsMode ? ('ws://localhost:' + NG_PORT) : '';
             var ngWs = null, ngWsTimer = null, ngWsWarned = false;
 
             function ngWsSend(obj) {
@@ -1961,6 +1988,7 @@
             }
 
             function ngWsConnect() {
+                if (!wsMode) return;   // 未指定 ?port=，离线模式不连接本地
                 if (ngWs && (ngWs.readyState === 0 || ngWs.readyState === 1)) return;
                 try { ngWs = new WebSocket(NG_WS_URL); }
                 catch (e) { ngWsScheduleReconnect(); return; }
@@ -2003,6 +2031,7 @@
 
             // 没连上就每 60 秒再试一次；一旦连上就不再重试（断开后恢复 60 秒轮询）
             function ngWsScheduleReconnect() {
+                if (!wsMode) return;
                 if (ngWsTimer) return;
                 if (!ngWsWarned) {
                     ngWsWarned = true;
@@ -2051,8 +2080,12 @@
                     // 留空画布，由文件名框回车从模组按名字载入，或点「示例」快速开始。
                     lastSavedJson = contentSnapshot();
                     updateFileStatus();
-                    log('画布为空：在文件名框填写名字并回车可从模组读取节点图，或点「示例」快速开始。', 'ok');
-                    ngWsConnect();   // 主动连接本地模组 ws://localhost:841
+                    if (wsMode) {
+                        log('画布为空：在文件名框填写名字并回车可从模组读取节点图，或点「示例」快速开始。', 'ok');
+                        ngWsConnect();   // 主动连接本地模组 ws://localhost:<port>
+                    } else {
+                        log('未指定 ?port=，已进入离线模式：不连接本地模组，保存将直接下载 JSON 文件。', 'ok');
+                    }
                 });
             };
         })();

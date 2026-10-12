@@ -175,7 +175,7 @@
 
     "str_trim": {
       "category": "str",
-      "label": "去首尾空",
+      "label": "文本去首尾空",
       "color": "#00897b",
       "execIn": true,
       "execOut": [{ "id": "out", "label": "执行" }],
@@ -185,7 +185,7 @@
     },
     "str_concat": {
       "category": "str",
-      "label": "拼接",
+      "label": "文本拼接",
       "color": "#00897b",
       "execIn": true,
       "execOut": [{ "id": "out", "label": "执行" }],
@@ -198,7 +198,7 @@
     },
     "str_contains": {
       "category": "str",
-      "label": "是否包含",
+      "label": "文本是否包含",
       "color": "#00897b",
       "execIn": true,
       "execOut": [{ "id": "out", "label": "执行" }],
@@ -211,7 +211,7 @@
     },
     "str_replace": {
       "category": "str",
-      "label": "替换",
+      "label": "文本替换",
       "color": "#00897b",
       "execIn": true,
       "execOut": [{ "id": "out", "label": "执行" }],
