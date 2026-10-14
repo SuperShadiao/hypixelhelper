@@ -190,7 +190,8 @@
             color: #333;
             font-size: 13px;
             font-weight: 700;
-            white-space: nowrap;
+            display: flex;
+            align-items: center;
             cursor: grab;
             user-select: none;
             transition: transform .15s, box-shadow .15s;
@@ -198,6 +199,7 @@
 
         .pal-item::before {
             content: "";
+            flex: none;            /* 圆点固定 9px，空间不足时只让文字侧收缩 */
             display: inline-block;
             width: 9px;
             height: 9px;
@@ -205,6 +207,11 @@
             border-radius: 50%;
             background: var(--pal-color, #FFB300);
             vertical-align: middle;
+        }
+
+        /* 开始 / 入口节点：左侧标记由圆形改成上指正三角形（颜色沿用节点色） */
+        .pal-item.is-entry::before {
+            clip-path: polygon(50% 0, 100% 100%, 0 100%);
         }
 
         .pal-item:hover {
@@ -319,10 +326,34 @@
             cursor: move;
         }
 
+        /* 节点标题：过长时直接裁掉，靠 hover 提示看全名（不做内部滚动） */
         .node-name {
-            white-space: nowrap;
+            flex: 1 1 auto;
+            min-width: 0;          /* flex 子项默认 min-width:auto 会顶出节点框，必须归零 */
             overflow: hidden;
-            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* 左侧列表项：名字过长时在内部来回滚动（外层裁剪，内层做位移动画） */
+        .pal-label {
+            flex: 1 1 auto;
+            min-width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .pal-label-inner {
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .pal-label.scroll .pal-label-inner {
+            animation: node-name-marquee var(--marquee-dur, 3s) ease-in-out infinite alternate;
+        }
+
+        @keyframes node-name-marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(var(--marquee-shift, 0px)); }
         }
 
         .node-del {
@@ -597,7 +628,9 @@
 
             var PORT_COLOR = {
                 number: '#1565c0', int: '#1565c0', string: '#7b1fa2',
-                bool: '#ef6c00', any: '#00838f'
+                bool: '#ef6c00', any: '#00838f',
+                // 容器类型：List（数组）/ Set / Map
+                list: '#c2185b', set: '#5d4037', map: '#00695c'
             };
             // 分类名称由扩展包提供，这里做一次查表
             function catLabel(id) {
@@ -619,6 +652,87 @@
                 if (name === undefined || name === null || String(name).trim() === '') {
                     throw nodeError('E_EMPTY_VAR_NAME', '变量名不得为空', { port: 'name' });
                 }
+            }
+
+            // 对象比较公用：能当数字看的先按数值比（"1" 与 1 相等），其余按内容/结构比
+            function numOrNull(v) {
+                if (typeof v === 'number') return isNaN(v) ? null : v;
+                if (typeof v === 'string' && v.trim() !== '' && !isNaN(Number(v))) return Number(v);
+                return null;
+            }
+
+            // 对象比较公用：List（数组）/ Set / Map 的大小；不是容器返回 -1
+            function containerSize(v) {
+                if (Array.isArray(v)) return v.length;
+                if (typeof Set !== 'undefined' && v instanceof Set) return v.size;
+                if (typeof Map !== 'undefined' && v instanceof Map) return v.size;
+                return -1;
+            }
+
+            function objEquals(a, b) {
+                var an = a === null || a === undefined, bn = b === null || b === undefined;
+                if (an || bn) return an && bn;
+                var x = numOrNull(a), y = numOrNull(b);
+                if (x !== null && y !== null) return x === y;
+                // 结构化值（List / Set / Map）按 fmt 的文本形式比，两边口径一致
+                if (typeof a === 'object' || typeof b === 'object') return fmt(a) === fmt(b);
+                return String(a) === String(b);
+            }
+
+            // 对象比较公用：空值 / 纯空白文本 / 空 List·Set·Map / 空对象 都算空
+            function objEmpty(v) {
+                if (v === null || v === undefined) return true;
+                if (typeof v === 'string') return v.trim() === '';
+                var n = containerSize(v);
+                if (n >= 0) return n === 0;
+                if (typeof v === 'object') return Object.keys(v).length === 0;
+                return false;
+            }
+
+            // 数值公用：不是数字（含未连接）当 0，与 Java 侧 inputNumber 的默认值一致
+            function numOrZero(v) {
+                var n = Number(v);
+                return isFinite(n) ? n : 0;
+            }
+
+            // 容器公用：网页端 List = 数组、Set = Set、Map = Map（键统一按文本处理）
+            // 单一对象机制：传进来已经是目标类型就直接用这个对象本身（改就是在改它），
+            // 不复制副本，免得同一容器连到不同端点时各分支看到的数据不一致
+            function asList(v) {
+                if (Array.isArray(v)) return v;
+                if (typeof Set !== 'undefined' && v instanceof Set) return Array.from(v);
+                return [];
+            }
+
+            function asSet(v) {
+                if (typeof Set !== 'undefined' && v instanceof Set) return v;
+                if (Array.isArray(v)) return new Set(v);
+                return new Set();
+            }
+
+            function asMap(v) {
+                if (typeof Map !== 'undefined' && v instanceof Map) return v;
+                var m = new Map();
+                if (v && typeof v === 'object' && !Array.isArray(v)) {
+                    Object.keys(v).forEach(function (k) { m.set(k, v[k]); });
+                }
+                return m;
+            }
+
+            // 容器查找公用：按值相等来找（与 obj_equals 共用同一套判等）
+            function indexOfLoose(arr, target) {
+                for (var i = 0; i < arr.length; i++) {
+                    if (objEquals(arr[i], target)) return i;
+                }
+                return -1;
+            }
+
+            // 文本常量能转换成的端口类型：文本 / 任意 / 数字 / 整数 / 布尔
+            // 容器（List / Set / Map）没法由文本常量转换过来，这类端口就不给编辑框
+            var TEXT_EDITABLE_TYPES = { string: 1, any: 1, number: 1, int: 1, float: 1, bool: 1 };
+
+            function isTextEditable(type) {
+                return !!TEXT_EDITABLE_TYPES[type || 'any'];
             }
 
             var RUN = {
@@ -646,6 +760,50 @@
                     requireVarName(inputs);
                     var n = Number(ctx.vars[inputs.name] || 0) - 1;
                     ctx.vars[inputs.name] = n;
+                    return { next: 'out', set: { value: n } };
+                },
+                /* ---- 节点图变量（整张图共享，清空/载入别的图时清零）---- */
+                graph_get_var: function (inputs, ctx) {
+                    requireVarName(inputs);
+                    return { next: 'out', set: { value: ctx.graphVars[inputs.name] } };
+                },
+                graph_set_var: function (inputs, ctx) {
+                    requireVarName(inputs);
+                    ctx.graphVars[inputs.name] = inputs.value;
+                    return { next: 'out' };
+                },
+                graph_inc_var: function (inputs, ctx) {
+                    requireVarName(inputs);
+                    var n = Number(ctx.graphVars[inputs.name] || 0) + 1;
+                    ctx.graphVars[inputs.name] = n;
+                    return { next: 'out', set: { value: n } };
+                },
+                graph_dec_var: function (inputs, ctx) {
+                    requireVarName(inputs);
+                    var n = Number(ctx.graphVars[inputs.name] || 0) - 1;
+                    ctx.graphVars[inputs.name] = n;
+                    return { next: 'out', set: { value: n } };
+                },
+                /* ---- 全局变量（整个应用实例共享，刷新/重启前一直有效）---- */
+                global_get_var: function (inputs, ctx) {
+                    requireVarName(inputs);
+                    return { next: 'out', set: { value: ctx.globalVars[inputs.name] } };
+                },
+                global_set_var: function (inputs, ctx) {
+                    requireVarName(inputs);
+                    ctx.globalVars[inputs.name] = inputs.value;
+                    return { next: 'out' };
+                },
+                global_inc_var: function (inputs, ctx) {
+                    requireVarName(inputs);
+                    var n = Number(ctx.globalVars[inputs.name] || 0) + 1;
+                    ctx.globalVars[inputs.name] = n;
+                    return { next: 'out', set: { value: n } };
+                },
+                global_dec_var: function (inputs, ctx) {
+                    requireVarName(inputs);
+                    var n = Number(ctx.globalVars[inputs.name] || 0) - 1;
+                    ctx.globalVars[inputs.name] = n;
                     return { next: 'out', set: { value: n } };
                 },
                 /* ---- 数学运算 ---- */
@@ -678,6 +836,14 @@
                         { port: 'op', value: op, allowed: ['>', '<', '>=', '<=', '==', '!='] });
                     return { next: 'out', set: { value: r } };
                 },
+                math_int_text: function (inputs, ctx) {
+                    // 向零取整后转文本；不是数字当 0，与 Java 侧一致
+                    return { next: 'out', set: { value: String(Math.trunc(numOrZero(inputs.a))) } };
+                },
+                math_round_text: function (inputs, ctx) {
+                    // 四舍五入后转文本；不是数字当 0，与 Java 侧一致
+                    return { next: 'out', set: { value: String(Math.round(numOrZero(inputs.a))) } };
+                },
                 /* ---- 逻辑运算 ---- */
                 logic_not: function (inputs, ctx) {
                     return { next: 'out', set: { value: !inputs.cond } };
@@ -696,6 +862,130 @@
                     var text = str(inputs.text), from = str(inputs.from), to = str(inputs.to);
                     // 全部替换（与 Java 的 String.replace 一致；JS 原生 replace 只换第一处）
                     return { next: 'out', set: { value: from === '' ? text : text.split(from).join(to) } };
+                },
+                str_starts_with: function (inputs, ctx) {
+                    return { next: 'out', set: { value: str(inputs.text).indexOf(str(inputs.prefix)) === 0 } };
+                },
+                str_ends_with: function (inputs, ctx) {
+                    var text = str(inputs.text), suffix = str(inputs.suffix);
+                    return { next: 'out', set: { value: text.length >= suffix.length && text.lastIndexOf(suffix) === text.length - suffix.length } };
+                },
+                str_split: function (inputs, ctx) {
+                    // 分隔符留空时按单个字符拆分，与 Java 的 split 行为一致
+                    return { next: 'out', set: { value: str(inputs.text).split(str(inputs.sep)) } };
+                },
+                /* ---- 对象比较 ---- */
+                obj_equals: function (inputs, ctx) {
+                    return { next: 'out', set: { value: objEquals(inputs.a, inputs.b) } };
+                },
+                obj_null: function (inputs, ctx) {
+                    return { next: 'out', set: { value: inputs.obj === null || inputs.obj === undefined } };
+                },
+                obj_empty: function (inputs, ctx) {
+                    return { next: 'out', set: { value: objEmpty(inputs.obj) } };
+                },
+                /* ---- 容器：列表 ---- */
+                list_new: function (inputs, ctx) {
+                    return { next: 'out', set: { value: [] } };
+                },
+                list_add: function (inputs, ctx) {
+                    var list = asList(inputs.list);
+                    list.push(inputs.value);
+                    return { next: 'out', set: { value: list } };
+                },
+                list_index_of: function (inputs, ctx) {
+                    return { next: 'out', set: { value: indexOfLoose(asList(inputs.list), inputs.value) } };
+                },
+                list_get: function (inputs, ctx) {
+                    var list = asList(inputs.list);
+                    var i = Math.trunc(numOrZero(inputs.index));
+                    return { next: 'out', set: { value: (i >= 0 && i < list.length) ? list[i] : null } };
+                },
+                list_remove_at: function (inputs, ctx) {
+                    var list = asList(inputs.list);
+                    var i = Math.trunc(numOrZero(inputs.index));
+                    if (i >= 0 && i < list.length) list.splice(i, 1);
+                    return { next: 'out', set: { value: list } };
+                },
+                list_clear: function (inputs, ctx) {
+                    // 清空传进来的那个列表本身并原样输出；没连线时才新建空列表
+                    var v = inputs.list;
+                    if (Array.isArray(v)) {
+                        v.length = 0;
+                        return { next: 'out', set: { value: v } };
+                    }
+                    return { next: 'out', set: { value: [] } };
+                },
+                list_to_set: function (inputs, ctx) {
+                    var out = new Set();
+                    // 去重口径与 set_add 一致：按值相等，重复的元素只留第一个
+                    asList(inputs.list).forEach(function (v) {
+                        if (indexOfLoose(Array.from(out), v) < 0) out.add(v);
+                    });
+                    return { next: 'out', set: { value: out } };
+                },
+                /* ---- 容器：集合 ---- */
+                set_new: function (inputs, ctx) {
+                    return { next: 'out', set: { value: new Set() } };
+                },
+                set_add: function (inputs, ctx) {
+                    var set = asSet(inputs.set);
+                    // 判重与 set_contains / set_remove 一样按值相等，避免两边口径不一致
+                    if (indexOfLoose(Array.from(set), inputs.value) < 0) set.add(inputs.value);
+                    return { next: 'out', set: { value: set } };
+                },
+                set_contains: function (inputs, ctx) {
+                    return { next: 'out', set: { value: indexOfLoose(Array.from(asSet(inputs.set)), inputs.value) >= 0 } };
+                },
+                set_remove: function (inputs, ctx) {
+                    var set = asSet(inputs.set);
+                    Array.from(set).forEach(function (v) {
+                        if (objEquals(v, inputs.value)) set.delete(v);
+                    });
+                    return { next: 'out', set: { value: set } };
+                },
+                set_clear: function (inputs, ctx) {
+                    // 清空传进来的那个集合本身并原样输出；没连线时才新建空集合
+                    var v = inputs.set;
+                    if (typeof Set !== 'undefined' && v instanceof Set) {
+                        v.clear();
+                        return { next: 'out', set: { value: v } };
+                    }
+                    return { next: 'out', set: { value: new Set() } };
+                },
+                set_to_list: function (inputs, ctx) {
+                    // 顺序与遍历集合一致，方便按下标遍历元素
+                    return { next: 'out', set: { value: Array.from(asSet(inputs.set)) } };
+                },
+                /* ---- 容器：映射 ---- */
+                map_new: function (inputs, ctx) {
+                    return { next: 'out', set: { value: new Map() } };
+                },
+                map_put: function (inputs, ctx) {
+                    var m = asMap(inputs.map);
+                    m.set(str(inputs.key), inputs.value);
+                    return { next: 'out', set: { value: m } };
+                },
+                map_get: function (inputs, ctx) {
+                    var v = asMap(inputs.map).get(str(inputs.key));
+                    return { next: 'out', set: { value: v === undefined ? null : v } };
+                },
+                map_has_key: function (inputs, ctx) {
+                    return { next: 'out', set: { value: asMap(inputs.map).has(str(inputs.key)) } };
+                },
+                map_remove: function (inputs, ctx) {
+                    var m = asMap(inputs.map);
+                    m.delete(str(inputs.key));
+                    return { next: 'out', set: { value: m } };
+                },
+                map_clear: function (inputs, ctx) {
+                    // 清空传进来的那个映射本身并原样输出；没连线时才新建空映射
+                    var v = inputs.map;
+                    if (typeof Map !== 'undefined' && v instanceof Map) {
+                        v.clear();
+                        return { next: 'out', set: { value: v } };
+                    }
+                    return { next: 'out', set: { value: new Map() } };
                 },
                 /* ---- IO ---- */
                 print: function (inputs, ctx) { log('输出: ' + fmt(inputs.text), 'out'); return { next: 'out' }; }
@@ -719,6 +1009,11 @@
             var initialized = false;
             var ctx = null;      // 当前执行上下文
             var lastError = null;   // 最近一次运行错误（纯 JSON，可序列化）
+            // 作用域变量：
+            //   graphVars  —— 当前节点图作用域，载入/清空/删除图时清零
+            //   globalVars —— 整个页面（应用实例）作用域，刷新前一直有效，不同节点图共享
+            var graphVars = {};
+            var globalVars = {};
 
             // ---------- DOM ----------
             // 注意: header.js 会通过 document.body.innerHTML 重建整个 body,
@@ -780,6 +1075,15 @@
             function fmt(a) {
                 if (a === null) return 'null';
                 if (a === undefined) return 'undefined';
+                // Set / Map 的元素存在内部槽里，不是自有属性，JSON.stringify 只会得到 "{}"，得自己拼
+                if (typeof Set !== 'undefined' && a instanceof Set) {
+                    return '[' + Array.from(a).map(fmt).join(',') + ']';
+                }
+                if (typeof Map !== 'undefined' && a instanceof Map) {
+                    var pairs = [];
+                    a.forEach(function (val, key) { pairs.push(fmt(key) + ':' + fmt(val)); });
+                    return '{' + pairs.join(',') + '}';
+                }
                 if (typeof a === 'object') {
                     try { return JSON.stringify(a); } catch (e) { return String(a); }
                 }
@@ -791,15 +1095,16 @@
                 var def = DEFS[node.type];
                 var rows = [];
                 if (!def) return rows;
-                if (def.execIn) rows.push({ kind: 'exec', side: 'in', id: 'in', label: def.execInLabel || '进入' });
+                // color 由扩展包按端口声明（可选）：声明了就用它，否则由 makePortDot 回滚默认颜色
+                if (def.execIn) rows.push({ kind: 'exec', side: 'in', id: 'in', label: def.execInLabel || '进入', color: def.execInColor });
                 (def.in || []).forEach(function (p) {
-                    rows.push({ kind: 'value', side: 'in', id: p.id, label: p.label, type: p.type, port: p });
+                    rows.push({ kind: 'value', side: 'in', id: p.id, label: p.label, type: p.type, color: p.color, port: p });
                 });
                 (def.execOut || []).forEach(function (p) {
-                    rows.push({ kind: 'exec', side: 'out', id: p.id, label: p.label });
+                    rows.push({ kind: 'exec', side: 'out', id: p.id, label: p.label, color: p.color });
                 });
                 (def.out || []).forEach(function (p) {
-                    rows.push({ kind: 'value', side: 'out', id: p.id, label: p.label, type: p.type, port: p });
+                    rows.push({ kind: 'value', side: 'out', id: p.id, label: p.label, type: p.type, color: p.color, port: p });
                 });
                 return rows;
             }
@@ -891,7 +1196,11 @@
                 }
                 el.setAttribute('data-lit-node', node.id);
                 el.setAttribute('data-lit-port', portId);
-                if (disabled) el.disabled = true;
+                if (disabled) {
+                    el.disabled = true;
+                    // 已连接、或端口类型没法由文本常量填充（如 List / Set / Map）时才有编辑框被禁用
+                    if (el.tagName === 'INPUT') el.placeholder = '仅连线';
+                }
                 stopLitEvents(el);
                 return el;
             }
@@ -916,7 +1225,11 @@
                 dot.style.top = (ROW_H / 2 - 6) + 'px';
                 if (row.side === 'in') dot.style.left = '-8px';
                 else dot.style.right = '-8px';
-                if (row.kind === 'value') dot.style.background = PORT_COLOR[row.type] || '#00838f';
+                // 端口颜色：扩展声明了 color 就用它；否则回滚默认色
+                //   值节点 → 按端口类型取 PORT_COLOR（没有则 #00838f）
+                //   执行节点 → 不设置，沿用 CSS 里的默认灰 #9e9e9e
+                if (row.color) dot.style.background = row.color;
+                else if (row.kind === 'value') dot.style.background = PORT_COLOR[row.type] || '#00838f';
                 return dot;
             }
 
@@ -950,7 +1263,7 @@
                         li.className = 'row-label';
                         li.textContent = row.label;
                         r.appendChild(li);
-                        r.appendChild(makeLiteralWidget(node, row.id, row.type, row.port.default, false));
+                        r.appendChild(makeLiteralWidget(node, row.id, row.type, row.port.default, !isTextEditable(row.type)));
                     }
                     r.appendChild(makePortDot(node, row));
                     container.appendChild(r);
@@ -971,6 +1284,8 @@
                 head.className = 'node-head';
                 var name = document.createElement('span');
                 name.className = 'node-name';
+                // 悬停提示：节点名字 | 节点说明
+                name.title = def.desc ? (def.label + ' | ' + def.desc) : def.label;
                 name.textContent = def.label;
                 var del = document.createElement('span');
                 del.className = 'node-del';
@@ -987,6 +1302,37 @@
                 return el;
             }
 
+            // 左侧列表项名字比容器宽时，让它来回滚动；放不下才启用，放得下保持静止
+            function fitMarquee(boxEl, innerSel) {
+                // 必须等元素挂进文档、完成布局后才能量到真实宽度
+                requestAnimationFrame(function () {
+                    if (!boxEl.isConnected) return;
+                    // 折叠（宽度为 0）时量不出结果，等展开后再量
+                    if (boxEl.clientWidth <= 0) {
+                        boxEl.classList.remove('scroll');
+                        return;
+                    }
+                    var inner = boxEl.querySelector(innerSel);
+                    if (!inner) return;
+                    var over = inner.scrollWidth - boxEl.clientWidth;
+                    if (over <= 1) {
+                        boxEl.classList.remove('scroll');
+                        return;
+                    }
+                    boxEl.classList.add('scroll');
+                    boxEl.style.setProperty('--marquee-shift', (-over) + 'px');
+                    // 滚动速度约 25px/s，最少 2s，避免短距离来回闪得太快
+                    boxEl.style.setProperty('--marquee-dur', Math.max(2, over / 25).toFixed(2) + 's');
+                });
+            }
+
+            // 左侧列表整体重量一次（展开面板 / 重新渲染列表后调用）
+            function fitAllPalLabels() {
+                Array.prototype.forEach.call(document.querySelectorAll('.pal-label'), function (el) {
+                    fitMarquee(el, '.pal-label-inner');
+                });
+            }
+
             function refreshNode(id) {
                 var node = findNode(id);
                 var el = nodeEls[id];
@@ -998,6 +1344,14 @@
 
             function addNode(type, x, y) {
                 var node = { id: uid('n'), type: type, x: x, y: y, literals: {} };
+                // 把端口默认值固化进 literals：否则「拖进来但没编辑」的默认值不会被序列化，
+                // 宿主程序侧只能取到它自己的默认值，表现为默认值丢失（例如 OvO 变空）
+                var def = DEFS[type];
+                if (def && def.in) {
+                    def.in.forEach(function (p) {
+                        if (p.default !== undefined && p.default !== null) node.literals[p.id] = p.default;
+                    });
+                }
                 nodes.push(node);
                 var el = createNodeEl(node);
                 nodeEls[node.id] = el;
@@ -1268,7 +1622,7 @@
                         var label = document.createElement('label');
                         label.textContent = p.label + (connected ? '（已连接）' : '');
                         wrap.appendChild(label);
-                        wrap.appendChild(makeLiteralWidget(node, p.id, p.type, p.default, connected));
+                        wrap.appendChild(makeLiteralWidget(node, p.id, p.type, p.default, connected || !isTextEditable(p.type)));
                         insParams.appendChild(wrap);
                     });
                 }
@@ -1458,7 +1812,7 @@
                 if (!entry) { log('⚠ 没有入口节点（开始/事件），无法执行。', 'warn'); return; }
 
                 setRunState(true);
-                ctx = { vars: {}, outputs: {} };
+                ctx = { vars: {}, outputs: {}, graphVars: graphVars, globalVars: globalVars };
                 var cur = entry.id;
                 var guard = 0;
                 var errored = false;
@@ -1516,6 +1870,7 @@
 
             // ---------- 持久化 ----------
             function clearAll() {
+                graphVars = {};   // 换图/清空后，图变量随之清零（全局变量不受影响）
                 Object.keys(nodeEls).forEach(function (k) { nodeEls[k].remove(); });
                 nodeEls = {};
                 nodes = [];
@@ -1908,8 +2263,19 @@
                         item.setAttribute('draggable', 'true');
                         item.setAttribute('data-type', type);
                         item.style.setProperty('--pal-color', d.color);
-                        item.textContent = d.label;
+                        // 开始 / 入口节点（没有 exec 输入口）的标记用正三角形区分
+                        if (d.execIn === false) item.classList.add('is-entry');
+                        // 悬停提示与节点框内保持一致：节点名字 | 节点说明
+                        item.title = d.desc ? (d.label + ' | ' + d.desc) : d.label;
+                        var label = document.createElement('span');
+                        label.className = 'pal-label';
+                        var labelInner = document.createElement('span');
+                        labelInner.className = 'pal-label-inner';
+                        labelInner.textContent = d.label;
+                        label.appendChild(labelInner);
+                        item.appendChild(label);
                         host.appendChild(item);
+                        fitMarquee(label, '.pal-label-inner');
                     });
                 });
                 palItems = host.querySelectorAll('.pal-item');
@@ -1925,6 +2291,8 @@
 
                     palToggle.addEventListener('click', function () {
                         palette.classList.toggle('collapsed');
+                        // 折叠时宽度为 0 量不出滚动距离，展开后（等过渡结束）再量一次
+                        if (!palette.classList.contains('collapsed')) setTimeout(fitAllPalLabels, 300);
                     });
 
                     canvas.addEventListener('dragover', function (e) {
@@ -2013,7 +2381,10 @@
                         log(n ? ('已从模组自动载入 ' + n + ' 个扩展包。') : '模组扩展目录里暂无扩展包。', n ? 'ok' : 'warn');
                     } else if (msg.type === 'graphs') {
                         var names = msg.data || [];
-                        if (names.length) log('模组里已有节点图：' + names.join('、'), 'ok');
+                        if (names.length) {
+                            log('模组里已有节点图：' + names.join('、'), 'ok');
+                            log('在左上角输入节点图名字即可开始编辑对应节点图', 'ok');
+                        }
                     } else if (msg.type === 'load_graph') {
                         applyRemoteGraph(msg);
                     } else if (msg.type === 'saved') {
@@ -2029,15 +2400,15 @@
                 ngWs.onerror = function () { /* 交给 onclose 重连 */ };
             }
 
-            // 没连上就每 60 秒再试一次；一旦连上就不再重试（断开后恢复 60 秒轮询）
+            // 没连上就每 10 秒再试一次；一旦连上就不再重试（断开后恢复 10 秒轮询）
             function ngWsScheduleReconnect() {
                 if (!wsMode) return;
                 if (ngWsTimer) return;
                 if (!ngWsWarned) {
                     ngWsWarned = true;
-                    log('暂未连接到本地模组，之后每 60 秒重试一次。', 'warn');
+                    log('暂未连接到本地模组，之后每 10 秒重试一次。', 'warn');
                 }
-                ngWsTimer = setTimeout(function () { ngWsTimer = null; ngWsConnect(); }, 60000);
+                ngWsTimer = setTimeout(function () { ngWsTimer = null; ngWsConnect(); }, 10000);
             }
 
             // ---------- 初始化 ----------

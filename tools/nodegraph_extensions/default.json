@@ -9,10 +9,16 @@
   "categories": [
     { "id": "event", "label": "开始/事件" },
     { "id": "flow", "label": "控制流" },
-    { "id": "var", "label": "变量操作" },
+    { "id": "var", "label": "局部变量操作" },
+    { "id": "graph_var", "label": "节点图变量操作" },
+    { "id": "global_var", "label": "全局变量操作" },
     { "id": "math", "label": "数学运算" },
     { "id": "logic", "label": "逻辑运算" },
     { "id": "str", "label": "字符串" },
+    { "id": "obj", "label": "对象比较" },
+    { "id": "list", "label": "列表" },
+    { "id": "set", "label": "集合" },
+    { "id": "map", "label": "映射" },
     { "id": "io", "label": "IO" }
   ],
   "types": {
@@ -32,7 +38,7 @@
       "color": "#ef6c00",
       "execIn": true,
       "execInLabel": "判断",
-      "execOut": [{ "id": "true", "label": "是" }, { "id": "false", "label": "否" }],
+      "execOut": [{ "id": "true", "label": "是", "color": "#11AA11" }, { "id": "false", "label": "否", "color": "#CC1111" }],
       "in": [{ "id": "cond", "label": "条件", "type": "bool", "default": false }],
       "out": [],
       "desc": "根据条件的真假，选择「是」或「否」分支。"
@@ -40,7 +46,7 @@
 
     "get_var": {
       "category": "var",
-      "label": "读取变量",
+      "label": "读取局部变量",
       "color": "#1565c0",
       "execIn": true,
       "execOut": [{ "id": "out", "label": "执行" }],
@@ -50,7 +56,7 @@
     },
     "set_var": {
       "category": "var",
-      "label": "修改变量",
+      "label": "修改局部变量",
       "color": "#1565c0",
       "execIn": true,
       "execOut": [{ "id": "out", "label": "执行" }],
@@ -63,7 +69,7 @@
     },
     "inc_var": {
       "category": "var",
-      "label": "变量自增",
+      "label": "局部变量自增",
       "color": "#1565c0",
       "execIn": true,
       "execOut": [{ "id": "out", "label": "执行" }],
@@ -73,13 +79,101 @@
     },
     "dec_var": {
       "category": "var",
-      "label": "变量自减",
+      "label": "局部变量自减",
       "color": "#1565c0",
       "execIn": true,
       "execOut": [{ "id": "out", "label": "执行" }],
       "in": [{ "id": "name", "label": "变量名", "type": "string", "default": "a" }],
       "out": [{ "id": "value", "label": "新值", "type": "number" }],
       "desc": "变量减 1，并输出减完后得到的新值。"
+    },
+
+    "graph_get_var": {
+      "category": "graph_var",
+      "label": "读取节点图变量",
+      "color": "#1565c0",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "name", "label": "变量名", "type": "string", "default": "a" }],
+      "out": [{ "id": "value", "label": "值", "type": "any" }],
+      "desc": "读取当前节点图作用域内变量的值。整张图共享，载入别的图时清零。"
+    },
+    "graph_set_var": {
+      "category": "graph_var",
+      "label": "修改节点图变量",
+      "color": "#1565c0",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "name", "label": "变量名", "type": "string", "default": "a" },
+        { "id": "value", "label": "值", "type": "any", "default": "0" }
+      ],
+      "out": [],
+      "desc": "把当前节点图作用域内的变量设置为指定的值。整张图共享。"
+    },
+    "graph_inc_var": {
+      "category": "graph_var",
+      "label": "节点图变量自增",
+      "color": "#1565c0",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "name", "label": "变量名", "type": "string", "default": "a" }],
+      "out": [{ "id": "value", "label": "新值", "type": "number" }],
+      "desc": "当前节点图作用域内的变量加 1，并输出新值。"
+    },
+    "graph_dec_var": {
+      "category": "graph_var",
+      "label": "节点图变量自减",
+      "color": "#1565c0",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "name", "label": "变量名", "type": "string", "default": "a" }],
+      "out": [{ "id": "value", "label": "新值", "type": "number" }],
+      "desc": "当前节点图作用域内的变量减 1，并输出新值。"
+    },
+
+    "global_get_var": {
+      "category": "global_var",
+      "label": "读取全局变量",
+      "color": "#1565c0",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "name", "label": "变量名", "type": "string", "default": "a" }],
+      "out": [{ "id": "value", "label": "值", "type": "any" }],
+      "desc": "读取全局变量的值。整个应用实例共享，所有节点图共用同一份，刷新/重启前一直有效。"
+    },
+    "global_set_var": {
+      "category": "global_var",
+      "label": "修改全局变量",
+      "color": "#1565c0",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "name", "label": "变量名", "type": "string", "default": "a" },
+        { "id": "value", "label": "值", "type": "any", "default": "0" }
+      ],
+      "out": [],
+      "desc": "把全局变量设置为指定的值。整个应用实例共享，所有节点图共用同一份。"
+    },
+    "global_inc_var": {
+      "category": "global_var",
+      "label": "全局变量自增",
+      "color": "#1565c0",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "name", "label": "变量名", "type": "string", "default": "a" }],
+      "out": [{ "id": "value", "label": "新值", "type": "number" }],
+      "desc": "全局变量加 1，并输出新值。跨节点图共享。"
+    },
+    "global_dec_var": {
+      "category": "global_var",
+      "label": "全局变量自减",
+      "color": "#1565c0",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "name", "label": "变量名", "type": "string", "default": "a" }],
+      "out": [{ "id": "value", "label": "新值", "type": "number" }],
+      "desc": "全局变量减 1，并输出新值。跨节点图共享。"
     },
 
     "math_add": {
@@ -161,6 +255,26 @@
       "out": [{ "id": "value", "label": "结果", "type": "bool" }],
       "desc": "比较 A 与 B：运算符可以是 >、<、>=、<=、==、!=，结果为布尔值。"
     },
+    "math_int_text": {
+      "category": "math",
+      "label": "到整数文本",
+      "color": "#7b1fa2",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "a", "label": "数值", "type": "number", "default": 0 }],
+      "out": [{ "id": "value", "label": "文本", "type": "string" }],
+      "desc": "丢掉小数部分（向零取整）后输出文本，例如 3.9 得到 \"3\"、-3.9 得到 \"-3\"。"
+    },
+    "math_round_text": {
+      "category": "math",
+      "label": "四舍五入到文本",
+      "color": "#7b1fa2",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "a", "label": "数值", "type": "number", "default": 0 }],
+      "out": [{ "id": "value", "label": "文本", "type": "string" }],
+      "desc": "四舍五入到整数后输出文本，例如 3.5 得到 \"4\"、3.4 得到 \"3\"。"
+    },
 
     "logic_not": {
       "category": "logic",
@@ -222,6 +336,306 @@
       ],
       "out": [{ "id": "value", "label": "结果", "type": "string" }],
       "desc": "把「文本」中所有「被替换」的内容换成「替换为」；「被替换」为空时原样返回。"
+    },
+    "str_starts_with": {
+      "category": "str",
+      "label": "文本开头匹配",
+      "color": "#00897b",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "text", "label": "文本", "type": "string", "default": "" },
+        { "id": "prefix", "label": "开头内容", "type": "string", "default": "" }
+      ],
+      "out": [{ "id": "value", "label": "结果", "type": "bool" }],
+      "desc": "判断「文本」是否以「开头内容」开头，结果为布尔值。"
+    },
+    "str_ends_with": {
+      "category": "str",
+      "label": "文本结尾匹配",
+      "color": "#00897b",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "text", "label": "文本", "type": "string", "default": "" },
+        { "id": "suffix", "label": "结尾内容", "type": "string", "default": "" }
+      ],
+      "out": [{ "id": "value", "label": "结果", "type": "bool" }],
+      "desc": "判断「文本」是否以「结尾内容」结尾，结果为布尔值。"
+    },
+    "str_split": {
+      "category": "str",
+      "label": "分割文本",
+      "color": "#00897b",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "text", "label": "文本", "type": "string", "default": "" },
+        { "id": "sep", "label": "分隔符", "type": "string", "default": "," }
+      ],
+      "out": [{ "id": "value", "label": "结果", "type": "list" }],
+      "desc": "按「分隔符」把「文本」拆成一个列表（含空段）；分隔符留空时按单个字符拆分。"
+    },
+
+    "obj_equals": {
+      "category": "obj",
+      "label": "对象是否相等",
+      "color": "#6d4c41",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "a", "label": "对象 A", "type": "any", "default": "" },
+        { "id": "b", "label": "对象 B", "type": "any", "default": "" }
+      ],
+      "out": [{ "id": "value", "label": "结果", "type": "bool" }],
+      "desc": "判断两个值是否相等：数字按数值比较，文本按内容比较，List / Set / Map 等结构化值按结构比较。"
+    },
+    "obj_null": {
+      "category": "obj",
+      "label": "对象是否为空",
+      "color": "#6d4c41",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "obj", "label": "对象", "type": "any", "default": "" }],
+      "out": [{ "id": "value", "label": "结果", "type": "bool" }],
+      "desc": "判断对象是否为空值（null）：只有空值算空，空文本、空 List/Set/Map 都不算。"
+    },
+    "obj_empty": {
+      "category": "obj",
+      "label": "对象内容是否为空",
+      "color": "#6d4c41",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "obj", "label": "对象", "type": "any", "default": "" }],
+      "out": [{ "id": "value", "label": "结果", "type": "bool" }],
+      "desc": "判断对象内容是否为空：空值、纯空白文本、空 List/Set/Map、空数组都算空，结果为布尔值。"
+    },
+
+    "list_new": {
+      "category": "list",
+      "label": "创建空列表",
+      "color": "#c2185b",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [],
+      "out": [{ "id": "value", "label": "列表", "type": "list" }],
+      "desc": "新建一个空列表（List）。容器端口不能填文本常量，只能用值连线接进来。"
+    },
+    "list_add": {
+      "category": "list",
+      "label": "添加列表元素",
+      "color": "#c2185b",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "list", "label": "列表", "type": "list" },
+        { "id": "value", "label": "元素", "type": "any", "default": "" }
+      ],
+      "out": [{ "id": "value", "label": "列表", "type": "list" }],
+      "desc": "在传进来的列表末尾追加一个元素，并原样输出该列表（原地修改，其它持有同一个列表的地方也会一起变）。"
+    },
+    "list_index_of": {
+      "category": "list",
+      "label": "元素取列表索引",
+      "color": "#c2185b",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "list", "label": "列表", "type": "list" },
+        { "id": "value", "label": "元素", "type": "any", "default": "" }
+      ],
+      "out": [{ "id": "value", "label": "索引", "type": "int" }],
+      "desc": "按值相等查找元素在列表中的索引，找不到返回 -1。"
+    },
+    "list_get": {
+      "category": "list",
+      "label": "索引取列表元素",
+      "color": "#c2185b",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "list", "label": "列表", "type": "list" },
+        { "id": "index", "label": "索引", "type": "int", "default": 0 }
+      ],
+      "out": [{ "id": "value", "label": "元素", "type": "any" }],
+      "desc": "取列表指定索引处的元素；索引越界返回空值。"
+    },
+    "list_remove_at": {
+      "category": "list",
+      "label": "移除列表索引",
+      "color": "#c2185b",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "list", "label": "列表", "type": "list" },
+        { "id": "index", "label": "索引", "type": "int", "default": 0 }
+      ],
+      "out": [{ "id": "value", "label": "列表", "type": "list" }],
+      "desc": "移除传进来的列表中指定索引处的元素，并原样输出该列表（原地修改）；索引越界时原样输出。"
+    },
+    "list_clear": {
+      "category": "list",
+      "label": "移除列表所有元素",
+      "color": "#c2185b",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "list", "label": "列表", "type": "list" }],
+      "out": [{ "id": "value", "label": "列表", "type": "list" }],
+      "desc": "清空传进来的列表本身，并原样输出该列表（其它持有同一个列表的地方也会一起变空）；没连线时输出一个新的空列表。"
+    },
+    "list_to_set": {
+      "category": "list",
+      "label": "列表转集合",
+      "color": "#c2185b",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "list", "label": "列表", "type": "list" }],
+      "out": [{ "id": "value", "label": "集合", "type": "set" }],
+      "desc": "把列表转成集合，重复的元素只保留第一个（按值相等判重），可用于去重；输出一个新集合，列表本身不会被改动。"
+    },
+
+    "set_new": {
+      "category": "set",
+      "label": "创建空集合",
+      "color": "#5d4037",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [],
+      "out": [{ "id": "value", "label": "集合", "type": "set" }],
+      "desc": "新建一个空集合（Set）。容器端口不能填文本常量，只能用值连线接进来。"
+    },
+    "set_add": {
+      "category": "set",
+      "label": "添加集合元素",
+      "color": "#5d4037",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "set", "label": "集合", "type": "set" },
+        { "id": "value", "label": "元素", "type": "any", "default": "" }
+      ],
+      "out": [{ "id": "value", "label": "集合", "type": "set" }],
+      "desc": "往传进来的集合加入一个元素，并原样输出该集合（原地修改；已存在的元素不会重复加入）。"
+    },
+    "set_contains": {
+      "category": "set",
+      "label": "集合是否包含元素",
+      "color": "#5d4037",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "set", "label": "集合", "type": "set" },
+        { "id": "value", "label": "元素", "type": "any", "default": "" }
+      ],
+      "out": [{ "id": "value", "label": "结果", "type": "bool" }],
+      "desc": "按值相等判断集合中是否存在该元素，结果为布尔值。"
+    },
+    "set_remove": {
+      "category": "set",
+      "label": "移除集合元素",
+      "color": "#5d4037",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "set", "label": "集合", "type": "set" },
+        { "id": "value", "label": "元素", "type": "any", "default": "" }
+      ],
+      "out": [{ "id": "value", "label": "集合", "type": "set" }],
+      "desc": "按值相等移除传进来的集合中的元素，并原样输出该集合（原地修改）；不存在时原样输出。"
+    },
+    "set_clear": {
+      "category": "set",
+      "label": "移除集合所有元素",
+      "color": "#5d4037",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "set", "label": "集合", "type": "set" }],
+      "out": [{ "id": "value", "label": "集合", "type": "set" }],
+      "desc": "清空传进来的集合本身，并原样输出该集合（其它持有同一个集合的地方也会一起变空）；没连线时输出一个新的空集合。"
+    },
+    "set_to_list": {
+      "category": "set",
+      "label": "集合转列表",
+      "color": "#5d4037",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "set", "label": "集合", "type": "set" }],
+      "out": [{ "id": "value", "label": "列表", "type": "list" }],
+      "desc": "把集合转成列表，元素顺序与遍历集合一致，可用于按下标取元素；输出一个新列表，集合本身不会被改动。"
+    },
+
+    "map_new": {
+      "category": "map",
+      "label": "创建空映射",
+      "color": "#00695c",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [],
+      "out": [{ "id": "value", "label": "映射", "type": "map" }],
+      "desc": "新建一个空映射（Map，键为文本）。容器端口不能填文本常量，只能用值连线接进来。"
+    },
+    "map_put": {
+      "category": "map",
+      "label": "设置映射键值",
+      "color": "#00695c",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "map", "label": "映射", "type": "map" },
+        { "id": "key", "label": "键", "type": "string", "default": "" },
+        { "id": "value", "label": "值", "type": "any", "default": "" }
+      ],
+      "out": [{ "id": "value", "label": "映射", "type": "map" }],
+      "desc": "设置一对键值（键已存在则覆盖），并原样输出该映射（原地修改）。"
+    },
+    "map_get": {
+      "category": "map",
+      "label": "键取映射值",
+      "color": "#00695c",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "map", "label": "映射", "type": "map" },
+        { "id": "key", "label": "键", "type": "string", "default": "" }
+      ],
+      "out": [{ "id": "value", "label": "值", "type": "any" }],
+      "desc": "按键取值；键不存在时返回空值。"
+    },
+    "map_has_key": {
+      "category": "map",
+      "label": "映射是否包含键",
+      "color": "#00695c",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "map", "label": "映射", "type": "map" },
+        { "id": "key", "label": "键", "type": "string", "default": "" }
+      ],
+      "out": [{ "id": "value", "label": "结果", "type": "bool" }],
+      "desc": "判断映射中是否存在该键，结果为布尔值。"
+    },
+    "map_remove": {
+      "category": "map",
+      "label": "移除映射键",
+      "color": "#00695c",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [
+        { "id": "map", "label": "映射", "type": "map" },
+        { "id": "key", "label": "键", "type": "string", "default": "" }
+      ],
+      "out": [{ "id": "value", "label": "映射", "type": "map" }],
+      "desc": "移除传进来的映射中指定键及其值，并原样输出该映射（原地修改）；键不存在时原样输出。"
+    },
+    "map_clear": {
+      "category": "map",
+      "label": "移除映射所有键值",
+      "color": "#00695c",
+      "execIn": true,
+      "execOut": [{ "id": "out", "label": "执行" }],
+      "in": [{ "id": "map", "label": "映射", "type": "map" }],
+      "out": [{ "id": "value", "label": "映射", "type": "map" }],
+      "desc": "清空传进来的映射本身，并原样输出该映射（其它持有同一个映射的地方也会一起变空）；没连线时输出一个新的空映射。"
     },
 
     "print": {
