@@ -696,24 +696,23 @@
             }
 
             // 容器公用：网页端 List = 数组、Set = Set、Map = Map（键统一按文本处理）
-            // 单一对象机制：传进来已经是目标类型就直接用这个对象本身（改就是在改它），
-            // 不复制副本，免得同一容器连到不同端点时各分支看到的数据不一致
             function asList(v) {
-                if (Array.isArray(v)) return v;
+                if (Array.isArray(v)) return v.slice();
                 if (typeof Set !== 'undefined' && v instanceof Set) return Array.from(v);
                 return [];
             }
 
             function asSet(v) {
-                if (typeof Set !== 'undefined' && v instanceof Set) return v;
+                if (typeof Set !== 'undefined' && v instanceof Set) return new Set(v);
                 if (Array.isArray(v)) return new Set(v);
                 return new Set();
             }
 
             function asMap(v) {
-                if (typeof Map !== 'undefined' && v instanceof Map) return v;
                 var m = new Map();
-                if (v && typeof v === 'object' && !Array.isArray(v)) {
+                if (typeof Map !== 'undefined' && v instanceof Map) {
+                    v.forEach(function (val, key) { m.set(String(key), val); });
+                } else if (v && typeof v === 'object' && !Array.isArray(v)) {
                     Object.keys(v).forEach(function (k) { m.set(k, v[k]); });
                 }
                 return m;
