@@ -62,6 +62,14 @@
         "https://xiaoshadiao.club/datagetter?url=https://cdn.modrinth.com/data/jbJKIVzJ/versions/g0asNZ8J/yqlossclientmixin-1.8.9-forge-2.1.0.jar",
         "https://cdn.modrinth.com/data/jbJKIVzJ/versions/g0asNZ8J/yqlossclientmixin-1.8.9-forge-2.1.0.jar"
     ],
-    "yqlossmixinclientmd5": "214927d6690388448c75aeb31beec773"
+    "yqlossmixinclientmd5": "214927d6690388448c75aeb31beec773",
 
+    "files": {
+        "updater_v2": {
+            "ul": [
+                "https://xiaoshadiao.club/xsdhhupv2.exe"
+            ],
+            "md5": "cd472a15752475a0b3b841e68708131d"
+        }
+    }
 }
