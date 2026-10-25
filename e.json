@@ -1,10 +1,10 @@
 {
 
-    "v":"5.6.0",
+    "v":"5.6.1",
     "u":"https://xiaoshadiao.club/release.jar",
     "ul":[
         "https://xiaoshadiao.club/release.jar",
-        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v560/hypixelhelper-5.6.0.jar"
+        "https://github.com/SuperShadiao/hypixelhelper/releases/download/v561/hypixelhelper-5.6.1.jar"
     ],
     "a":[
         "%%hello%%",
@@ -19,6 +19,11 @@
         ...
         */
     
+        "5.6.1更新公告:",
+        "1，新增指令/hhch用于加入Macro Check订阅群",
+        "2，修复启动游戏时连接irc的小问题",
+        "3，修复点歌台一些小问题",
+        "4，将IRC的玩家合并至Hypixel Helper Online Players",
         "5.6.0更新公告:",
         "1，优化并修复IRC的问题",
         "2，IRC适配音乐分享功能",
@@ -33,9 +38,6 @@
         "5.5.8更新公告:",
         "1，XSDAC现在不会在街机, 密室, TNTGame等游戏工作",
         "2，修复B站直播间监听的连接问题",
-        "5.5.7更新公告:",
-        "1，新增设置IRC玩家加入与离开消息",
-        "2，提取IRC的Macro check消息到专属分类并做了优化",
 
 
 
