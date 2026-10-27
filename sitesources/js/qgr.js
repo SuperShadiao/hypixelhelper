@@ -124,7 +124,7 @@ function handleSuccess(response) {
                 }
                 executeVerifySuccess()
             } else if (requestVerify.status == 404) {
-                executeRefresh("验证链接不存在或已过期!", false)
+                executeRefresh("验证链接不存在或已过期, 请尝试重新生成!", false)
             } else {
                 executeRefresh(json.msg, true)
             }
