@@ -1,0 +1,19 @@
+{
+    "v":"1.1.0",
+    "ul":[
+        "https://xiaoshadiao.club/skydiao_26_3.jar",
+        "https://github.com/SuperShadiao/skydiao/releases/download/v110/skydiao-1.1.0.jar"      
+    ],
+    "spmv": "2.3.1",
+    "xiaoshadiaoWantMoreSocialXP": true,
+    "gifv": 4,
+
+    "files": {
+        "updater_v2": {
+            "ul": [
+                "https://xiaoshadiao.club/xsdhhupv2.exe"
+            ],
+            "md5": "cd472a15752475a0b3b841e68708131d"
+        }
+    }
+}
