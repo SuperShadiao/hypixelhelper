@@ -21,6 +21,10 @@
         {
             "uuid": "5bf52f1507fc4d2f8e2d25fc329d137b",
             "reason": "'疑似'爆破水晶矿洞钓虫点"
+        },
+        {
+            "uuid": "1f88aae2e890415db83d457997ff514c",
+            "reason": "没爆破水晶矿洞钓虫点"
         }
     ],
     "dungeon": [
