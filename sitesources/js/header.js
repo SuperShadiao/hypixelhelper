@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         getFooterHeight(true);
+        renderAccountArea();
     }).catch(error => {
         console.error('Error loading header:', error);
     }).finally(() => {
@@ -66,4 +67,50 @@ function isFooterCSSLoaded() {
         }
     }
     return false;
+}
+
+// 账号服务地址：本地调试指向 localhost:3000，线上指向账号站域名
+const PASSPORT_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+    ? 'http://localhost:3000'
+    : 'https://passport.xiaoshadiao.club';
+
+function renderAccountArea() {
+    const area = document.getElementById('account-area');
+    if (!area) return;
+
+    const base = area.dataset.passportBase || PASSPORT_BASE;
+    const link = document.createElement('a');
+    link.className = 'remove-decoration';
+
+    fetch(base + '/api/auth/me', { credentials: 'include' })
+        .then(res => res.ok ? res.json() : null)
+        .then(data => {
+            const user = data && data.data && data.data.user;
+            if (user) {
+                const initial = (user.email || '?').charAt(0).toUpperCase();
+                link.className = 'remove-decoration account-avatar';
+                link.href = base + '/dashboard.html';
+                link.title = user.email;
+                if (user.avatarUrl) {
+                    const img = document.createElement('img');
+                    img.src = base + user.avatarUrl;
+                    img.alt = '';
+                    img.onerror = () => {
+                        img.remove();
+                        link.textContent = initial;
+                    };
+                    link.appendChild(img);
+                } else {
+                    link.textContent = initial;
+                }
+            } else {
+                link.className = 'remove-decoration account-login';
+                link.href = base + '/login.html';
+                link.textContent = '登录';
+            }
+            area.appendChild(link);
+        })
+        .catch(() => {
+            // 账号服务不可用时保持安静，不显示入口
+        });
 }
