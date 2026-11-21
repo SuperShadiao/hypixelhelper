@@ -174,3 +174,71 @@ header {
 .header-offset {
     margin-top: 70px;
 }
+
+/* 右侧账号入口 */
+.account-area {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    margin-left: 12px;
+}
+
+.account-login {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--yellow-primary), var(--yellow-dark));
+    color: #fff;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.account-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 179, 0, 0.35);
+}
+
+.account-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--yellow-primary), var(--yellow-dark));
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 8px rgba(255, 179, 0, 0.35);
+    transition: all 0.2s ease;
+}
+
+.account-avatar:hover {
+    transform: translateY(-2px) scale(1.03);
+}
+
+.account-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .account-avatar {
+        width: 34px;
+        height: 34px;
+        font-size: 0.95rem;
+    }
+
+    .account-login {
+        padding: 6px 14px;
+        font-size: 0.9rem;
+    }
+}
