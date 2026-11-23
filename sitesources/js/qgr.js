@@ -2,40 +2,42 @@ let url0 = new URL(window.location.href);
 let code = url0.searchParams.get("qgvc");
 function setTurnstile() {
     if (!code) return;
-    if (turnstile) {
-        xsdToast.info("阅读群公告后在页面底部完成验证。");
-        const btn = document.getElementById("verifyButton");
-        btn.style.display = "block";
-        btn.addEventListener("click", function () {
-            this.classList.remove("click-anim");
-            void this.offsetWidth;
-            this.classList.add("click-anim");
-            const self = this;
-            setTimeout(() => {
-                self.remove()
 
-                const resultH3 = document.querySelector('#result h3');
-                resultH3.textContent = "请稍等...";
-                resultH3.style.color = "black";
-            }, 250);
+    xsdToast.info("阅读群公告后在页面底部完成验证。");
+    const btn = document.getElementById("verifyButton");
+    btn.style.display = "block";
+    btn.addEventListener("click", function () {
+        this.classList.remove("click-anim");
+        void this.offsetWidth;
+        this.classList.add("click-anim");
+        const self = this;
+        setTimeout(() => {
+            self.remove()
 
-            setTimeout(() => {
-                turnstile.execute("#turnstile-widget");
-            }, 2000);
-        });
-        turnstile.render(document.getElementById("turnstile-widget"), {
-            size: window.innerWidth < 400 ? 'compact' : 'flexible',
-            sitekey: '0x4AAAAAABghjek4jVecQ-sc',
-            'callback': handleSuccess,
-            'error-callback': handleFailed,
-            'expired-callback': handleFailed,
-            'timeout-callback': handleFailed,
-            execution: "execute",
-            theme: "light"
-        })
-    } else {
-        setTimeout(setTurnstile, 1000);
-    }
+            const resultH3 = document.querySelector('#result h3');
+            resultH3.textContent = "请稍等...";
+            resultH3.style.color = "black";
+        }, 250);
+
+        setTimeout(() => {
+            if(!turnstile) {
+                executeRefresh("页面的人机验证未能正确加载, 请检查网络, 页面将在5s后刷新...")
+                return;
+            }
+            turnstile.render(document.getElementById("turnstile-widget"), {
+                size: window.innerWidth < 400 ? 'compact' : 'flexible',
+                sitekey: '0x4AAAAAABghjek4jVecQ-sc',
+                'callback': handleSuccess,
+                'error-callback': handleFailed,
+                'expired-callback': handleFailed,
+                'timeout-callback': handleFailed,
+                execution: "execute",
+                theme: "light"
+            })
+            turnstile.execute("#turnstile-widget");
+        }, 2000);
+    });
+
 }
 window.headerLoadedCallback = setTurnstile;
 
