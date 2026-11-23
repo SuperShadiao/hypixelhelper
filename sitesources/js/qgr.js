@@ -20,8 +20,8 @@ function setTurnstile() {
         }, 250);
 
         setTimeout(() => {
-            if(!turnstile) {
-                executeRefresh("页面的人机验证未能正确加载, 请检查网络, 页面将在5s后刷新...")
+            if(typeof turnstile === "undefined") {
+                executeRefresh("页面的人机验证未能正确加载, 请检查网络, 页面将在5s后刷新...", true)
                 return;
             }
             turnstile.render(document.getElementById("turnstile-widget"), {
